@@ -54,7 +54,15 @@ const AdminCombinationSkin = () => {
   // Delete
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
-      setProducts((prev) => prev.filter((p) => p.id !== id));
+      setProducts((prev) => {
+        const updatedProducts = prev.filter((p) => p.id !== id);
+
+        // Update the idCounter to the next highest ID
+        const highestId = updatedProducts.reduce((max, p) => (p.id > max ? p.id : max), 0);
+        setIdCounter(highestId + 1); // Make sure next ID is higher than the current highest ID
+
+        return updatedProducts;
+      });
     }
   };
 

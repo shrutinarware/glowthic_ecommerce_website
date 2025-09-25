@@ -8,10 +8,10 @@ const Main = () => {
         paddingRight: "5%",
         fontSize: "60px",
         textAlign: "center",
-        color: "#D63384",
+        color: "black",
       }}
     >
-      Welcome to the Admin Panel Shruti
+      Welcome to the Admin Panel <span style={{color: "#D63384",}}> "SHRUTI"</span>
     </div>
   );
 };

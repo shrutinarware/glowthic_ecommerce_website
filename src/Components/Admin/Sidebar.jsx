@@ -22,6 +22,7 @@ import Makeup from "../../assets/sidebar/MakeupIcon.jpg";
 import Skin from "../../assets/sidebar/SkinIcon.jpg";
 import Fragnance from "../../assets/sidebar/FragnanceIcon.jpg";
 import Hair from "../../assets/sidebar/HairIcon.jpg";
+import Tools from "../../assets/sidebar/tools_15030294.jpg";
 import Oily from "../../assets/sidebar/OilyIcon.jpg";
 import Dry from "../../assets/sidebar/DryIcon.jpg";
 import Normal from "../../assets/sidebar/NormalIcon.jpg";
@@ -34,7 +35,7 @@ const drawerWidth = 240;
 
 export default function Sidebar() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [ setIsClosing] = React.useState(false);
+  const [setIsClosing] = React.useState(false);
   const navigate = useNavigate();
 
   const handleDrawerClose = () => {
@@ -74,6 +75,11 @@ export default function Sidebar() {
   const handleHyginieClick = () => {
     setOpenHyginie(!openHyginie);
   };
+  //Tools
+  const [openTools, setOpenTools] = React.useState(false);
+  const handleToolsClick = () => {
+    setOpenTools(!openTools);
+  };
   //log out
   const handleLogout = () => {
     const confirmLogout = window.confirm("Are you sure you want to log out?");
@@ -81,17 +87,32 @@ export default function Sidebar() {
       localStorage.removeItem("token");
       localStorage.removeItem("role");
       sessionStorage.clear();
-      
+      clearProductLocalStorage();
+
       navigate("/adminlogin");
     }
   };
+  function clearProductLocalStorage() {
+    const keysToRemove = [];
+
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && key.startsWith("products_")) {
+        keysToRemove.push(key);
+      }
+    }
+
+    keysToRemove.forEach((key) => {
+      localStorage.removeItem(key);
+    });
+  }
 
   const drawer = (
     <div
       style={{
         background: "pink",
         height: "",
-        marginTop:"-60px"
+        marginTop: "-60px",
       }}
     >
       <Toolbar />
@@ -342,7 +363,65 @@ export default function Sidebar() {
             </ListItemButton>
           </List>
         </Collapse>
+
+        <ListItem disablePadding>
+          <ListItemButton onClick={handleToolsClick}>
+            <img
+              src={Tools}
+              alt="tools"
+              style={{ height: "35px", width: "35px", marginRight: "20px" }}
+            />
+            <ListItemText primary="Appliances & Tools" />
+            {openTools ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+        </ListItem>
       </List>
+      <Collapse in={openTools} timeout="auto" unmountOnExit>
+        <List component="div" disablePadding>
+          <ListItemButton
+            sx={{ pl: 8, marginLeft: "15px" }}
+            onClick={() => navigate(`/admin-dryer`)}
+          >
+            <ListItemText primary="Hair Dryers" />
+          </ListItemButton>
+          <ListItemButton
+            sx={{ pl: 8, marginLeft: "15px" }}
+            onClick={() => navigate(`/admin-straightner`)}
+          >
+            <ListItemText primary="Hair Straightner" />
+          </ListItemButton>
+          <ListItemButton
+            sx={{ pl: 8, marginLeft: "15px" }}
+            onClick={() => navigate(`/admin-curler`)}
+          >
+            <ListItemText primary="Hair Culers" />
+          </ListItemButton>
+          <ListItemButton
+            sx={{ pl: 8, marginLeft: "15px" }}
+            onClick={() => navigate(`/admin-trimmer`)}
+          >
+            <ListItemText primary="Timmers" />
+          </ListItemButton>
+          <ListItemButton
+            sx={{ pl: 8, marginLeft: "15px" }}
+            onClick={() => navigate(`/admin-steamer`)}
+          >
+            <ListItemText primary="Facial Steamers" />
+          </ListItemButton>
+          <ListItemButton
+            sx={{ pl: 8, marginLeft: "15px" }}
+            onClick={() => navigate(`/admin-epillator`)}
+          >
+            <ListItemText primary="Epillators" />
+          </ListItemButton>
+          <ListItemButton
+            sx={{ pl: 8, marginLeft: "15px" }}
+            onClick={() => navigate(`/admin-massagetools`)}
+          >
+            <ListItemText primary="Massage Tools" />
+          </ListItemButton>
+        </List>
+      </Collapse>
 
       <Divider
         sx={{
@@ -501,10 +580,10 @@ export default function Sidebar() {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
-              top: "150px", 
-              height: "calc(100% - 150px)", 
-              position: "fixed", 
-              zIndex: 500, 
+              top: "150px",
+              height: "calc(100% - 150px)",
+              position: "fixed",
+              zIndex: 500,
             },
           }}
           open

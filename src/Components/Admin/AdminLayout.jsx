@@ -34,12 +34,19 @@ import AdminSoap from "./AdminSubPage/AdminSoap";
 import AdminBodywash from "./AdminSubPage/AdminBodywash";
 import AdminShavingCream from "./AdminSubPage/AdminShavingCream";
 import AdminWaxing from "./AdminSubPage/AdminWaxing";
+import AdminDryer from "./AdminSubPage/AdminDryer";
+import AdminStraightner from "./AdminSubPage/AdminStraightner";
+import AdminCurler from "./AdminSubPage/AdminCurler";
 import AdminOilSkin from "./AdminSubPage/AdminOilSkin";
 import AdminDrySkin from "./AdminSubPage/AdminDrySkin";
 import AdminNormalSkin from "./AdminSubPage/AdminNormalSkin";
 import AdminCombinationSkin from "./AdminSubPage/AdminCombinationSkin";
 import AdminWomen from "./AdminSubPage/AdminWomen";
 import AdminMen from "./AdminSubPage/AdminMen";
+import AdminTrimmer from "./AdminSubPage/AdminTrimmer";
+import AdminSteamer from "./AdminSubPage/AdminSteamer";
+import AdminEpilator from "./AdminSubPage/AdminEpillator";
+import AdminMassageTool from "./AdminSubPage/AdminMassageTool";
 
 
 const AdminLayout = () => {
@@ -295,6 +302,70 @@ const AdminLayout = () => {
           element={
             <ProtectedRoute>
               <AdminWaxing />
+              <Sidebar/>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin-dryer"
+          element={
+            <ProtectedRoute>
+              <AdminDryer />
+              <Sidebar/>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin-straightner"
+          element={
+            <ProtectedRoute>
+              <AdminStraightner />
+              <Sidebar/>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin-curler"
+          element={
+            <ProtectedRoute>
+              <AdminCurler />
+              <Sidebar/>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin-trimmer"
+          element={
+            <ProtectedRoute>
+              <AdminTrimmer />
+              <Sidebar/>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin-steamer"
+          element={
+            <ProtectedRoute>
+              <AdminSteamer />
+              <Sidebar/>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin-epillator"
+          element={
+            <ProtectedRoute>
+              <AdminEpilator/>
+              <Sidebar/>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin-massagetools"
+          element={
+            <ProtectedRoute>
+              <AdminMassageTool/>
               <Sidebar/>
             </ProtectedRoute>
           }

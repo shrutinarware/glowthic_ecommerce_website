@@ -4,6 +4,7 @@ import Skin from "../../../Components/User/SubPage/Skin";
 import Hair from "../../../Components/User/SubPage/Hair";
 import Fragnance from "../../../Components/User/SubPage/Fragnance";
 import BathAndHygiene from "../../../Components/User/SubPage/BathandHyginie";
+import AppliancesAndTools from "../../../Components/User/SubPage/Appliances";
 
 const Men = () => {
   useEffect(() => {
@@ -34,6 +35,12 @@ const Men = () => {
           <BathAndHygiene showSlider={false} headingColor="black" isMenPage={true} />
         </div>
       </div>
+
+      <div style={{ marginBottom: "60px", display: "flex", justifyContent: "center" }}>
+              <div style={{ width: "100%", maxWidth: "1400px" }}>
+                <AppliancesAndTools showSlider={false} headingColor="black" isMenPage={true} />
+              </div>
+            </div>
     </div>
   );
 };

@@ -9,8 +9,8 @@ const Adminface = () => {
   const [products, setProducts] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
-  const [idCounter, setIdCounter] = useState(1); //  Track current ID
-  const [newProductId, setNewProductId] = useState(null); //  Store ID for new form
+  const [idCounter, setIdCounter] = useState(1); // Track current ID
+  const [newProductId, setNewProductId] = useState(null); // Store ID for new form
 
   // Load products from localStorage when the component mounts
   useEffect(() => {
@@ -39,21 +39,28 @@ const Adminface = () => {
     } else {
       const newProduct = { ...product, id: idCounter };
       setProducts([newProduct, ...products]);
-      setIdCounter((prev) => prev + 1); //  Increment for next use
+      setIdCounter((prev) => prev + 1); // Increment for next use
     }
 
     setShowForm(false);
     setEditingProduct(null);
     setNewProductId(null);
   };
+
   // Handle delete
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
-      setProducts((prev) => prev.filter((p) => p.id !== id));
+      setProducts((prev) => {
+        const updatedProducts = prev.filter((p) => p.id !== id);
+
+        // Update the idCounter to the next highest ID
+        const highestId = updatedProducts.reduce((max, p) => (p.id > max ? p.id : max), 0);
+        setIdCounter(highestId + 1); // Make sure next ID is higher than the current highest ID
+
+        return updatedProducts;
+      });
     }
   };
-
-  
 
   return (
     <div style={{ paddingLeft: "14%", paddingRight: "5%" }}>

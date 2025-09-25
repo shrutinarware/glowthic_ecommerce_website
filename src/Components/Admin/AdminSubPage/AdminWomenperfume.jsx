@@ -45,7 +45,10 @@ const AdminWomenperfume = () => {
 
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
-      setProducts((prev) => prev.filter((p) => p.id !== id));
+      setProducts((prev) => {
+        const updatedProducts = prev.filter((p) => p.id !== id);
+        return updatedProducts;
+      });
     }
   };
 

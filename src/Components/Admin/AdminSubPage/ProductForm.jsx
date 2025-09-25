@@ -39,7 +39,6 @@ const ProductForm = ({ onSubmit, onCancel, initialData, newId }) => {
       alert("Please fill out all fields.");
       return;
     }
-
     const newProduct = {
       id: displayId,
       Heading: heading,
@@ -48,14 +47,7 @@ const ProductForm = ({ onSubmit, onCancel, initialData, newId }) => {
       link,
       img: previewImage,
     };
-
-    // Save new product to localStorage
-    const storedProducts = JSON.parse(localStorage.getItem("products")) || [];
-    storedProducts.push(newProduct);
-    localStorage.setItem("products", JSON.stringify(storedProducts));
-
     onSubmit(newProduct);
-
     // Reset form (optional)
     setHeading("");
     setSubHeading("");
@@ -182,7 +174,8 @@ const ProductForm = ({ onSubmit, onCancel, initialData, newId }) => {
             Product Link
           </label>
           <input
-            type="url" required
+            type="url"
+            required
             placeholder="Enter product link"
             value={link}
             onChange={(e) => setLink(e.target.value)}

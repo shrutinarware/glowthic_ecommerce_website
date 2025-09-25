@@ -21,6 +21,7 @@ import Top2 from "../../assets/Categories/Tskin.jpg";
 import Top3 from "../../assets/Categories/Thair.jpg";
 import Top4 from "../../assets/Categories/Tperfume.jpg";
 import Top5 from "../../assets/Categories/Tbody.jpg";
+import Top6 from "../../assets/Categories/Ttools.jpg";
 
 //Skin Types
 import Oily from "../../assets/SkinTypes/oily.jpg";
@@ -36,18 +37,14 @@ import Men from "../../assets/Gender/men.jpg";
 import blog1 from "../../assets/Blog/eyecare.jpg";
 import Blog2 from "../../assets/Blog/facecare.jpg";
 
-//customer
-import customer1 from "../../assets/Customer/customer1.jpg";
-import customer2 from "../../assets/Customer/customer2.jpg";
-
 const settings = {
   dots: true,
   infinite: true,
-  speed: 700,
+  speed: 800,
   slidesToShow: 1,
   slidesToScroll: 1,
   autoplay: true,
-  autoplaySpeed: 3000,
+  autoplaySpeed: 2000,
   arrows: false,
 };
 
@@ -110,6 +107,7 @@ const Top = [
   { image: Top3, title: "Hair", path: "/Hair" },
   { image: Top4, title: "Fragnance", path: "/Fragnance" },
   { image: Top5, title: "Bath & Hygiene", path: "/bath-hygiene" },
+  { image: Top6, title: "Appliances & Beauty Tools", path: "/appliances" },
 ];
 const Skin = [
   { title: "Oily skin", image: Oily, path: "/oily-skin" },
@@ -120,34 +118,34 @@ const Skin = [
 
 const Testinomials = [
   {
-    image: customer1,
     name: "Aarushi verma",
     text: "I've finally found skincare that works! The face serum made my skin glow within days. Absolutely in love!",
     title: "verified customer",
+    rating: 5,
   },
   {
-    image: customer1,
     name: "Pragati pare",
     text: "From eye cream to lipsticks, everything feels premium. My skin feels hydrated, and the packaging is gorgeous.",
     title: "Regular Buyer",
+    rating: 3,
   },
   {
-    image: customer1,
     name: "Sakshi Rathore",
     text: "Customer service was excellent, and the products smell divine. I’ve already recommended this site to friends!",
     title: "Happy Customer",
+    rating: 4,
   },
   {
-    image: customer2,
     name: "Aditya Sharma",
     text: "What I love the most is that everything is cruelty-free and skin-friendly. My sensitive skin usually reacts, but these products are gentle and effective.",
     title: "verified customer",
+    rating: 5,
   },
   {
-    image: customer1,
     name: "Mehak Mehra",
     text: "The lipsticks are super pigmented and moisturizing. I get compliments every time I wear them. A must-have in every vanity.",
     title: "Makeup Enthusiast",
+    rating: 4,
   },
 ];
 
@@ -178,7 +176,7 @@ const Home = () => {
   }, [location]);
 
   return (
-    <div style={{ padding: "3% 0 10px 10px", fontFamily: "sans-serif" }}>
+    <div style={{ padding: "1% 0 10px 10px", fontFamily: "sans-serif" }}>
       <p
         style={{
           textAlign: "center",
@@ -190,17 +188,15 @@ const Home = () => {
       >
         Your Ultimate Makeup and SkinCare Collection: Discover Your Perfect Look
       </p>
-
       {/* Slider */}
       <div style={{ width: "80%", margin: "0 auto" }}>
         <Slider {...settings}>
           {slides.map((slide, index) => (
             <div key={index}>
               <div
-                className="slider-container"
                 style={{
                   position: "relative",
-                  height: "500px",
+                  height: "550px",
                   overflow: "hidden",
                   borderRadius: "20px",
                 }}
@@ -216,25 +212,16 @@ const Home = () => {
                   }}
                 />
                 <div
-                  className="text-overlay"
                   style={{
                     position: "absolute",
                     top: "20%",
-                    left: "10%",
-                    color: "white",
-                    fontWeight: "bold",
+                    left: "8%",
+                    color: "black",
+                    fontWeight: "bolder",
                   }}
                 >
-                  <h2
-                    className="slide-title"
-                    style={{ fontSize: "30px", margin: 0 }}
-                  >
-                    {slide.title}
-                  </h2>
-                  <p
-                    className="slide-subtitle"
-                    style={{ fontSize: "16px", marginTop: "10px" }}
-                  >
+                  <h2 style={{ fontSize: "40px", margin: 0 ,color: "#D63384",}}>{slide.title}</h2>
+                  <p style={{ fontSize: "16px", marginTop: "10px" }}>
                     {slide.subtitle}
                   </p>
                 </div>
@@ -243,7 +230,6 @@ const Home = () => {
           ))}
         </Slider>
       </div>
-
       {/* Description */}
       <div
         style={{
@@ -265,7 +251,6 @@ const Home = () => {
           every day. Explore quality, color, and care — all in one place.
         </p>
       </div>
-
       {/* Top Categories */}
       <div
         id="topcategories"
@@ -291,7 +276,7 @@ const Home = () => {
               <div
                 className="top-category-card"
                 style={{
-                  width: "300px",
+                  width: "250px",
                   borderRadius: "12px",
                   overflow: "hidden",
                   boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
@@ -318,7 +303,6 @@ const Home = () => {
           ))}
         </div>
       </div>
-
       {/* Responsive Styles */}
       <style>
         {`
@@ -429,7 +413,6 @@ const Home = () => {
       </div>
       {/*SKin................*/}
       {/** gender */}
-
       <div
         style={{
           display: "flex",
@@ -486,7 +469,6 @@ const Home = () => {
           />
         </Link>
       </div>
-
       {/** Blog1..................... */}
       <div
         style={{
@@ -546,7 +528,6 @@ const Home = () => {
         </div>
       </div>
       {/** Blog1..................... */}
-
       {/** Blog2..................... */}
       <div
         style={{
@@ -605,14 +586,13 @@ const Home = () => {
         </div>
       </div>
       {/** Blog2..................... */}
-
-      {/** Testimonials..................... */}
+      {/* Testimonials..................... */}
       <p
         style={{
           textAlign: "center",
           color: "#D63384",
           fontFamily: "cursive",
-          fontSize: "30px",
+          fontSize: "40px",
           fontWeight: "bolder",
         }}
       >
@@ -621,7 +601,7 @@ const Home = () => {
       <div
         style={{
           background: "#e3e1e1",
-          padding: "40px",
+          padding: "30px",
           width: "80%",
           margin: "0 auto",
           borderRadius: "20px",
@@ -634,34 +614,65 @@ const Home = () => {
                 style={{
                   display: "flex",
                   flexDirection: isMobile ? "column" : "row",
-                  gap: "20px",
+                  gap: "30px",
                   justifyContent: "center",
                   alignItems: "center",
-                  padding: "20px",
+                  padding: "10px",
                   textAlign: "center",
                 }}
               >
-                <img
-                  src={testimonial.image}
-                  alt={testimonial.name}
+                {/* Circle with first letter */}
+                <div
                   style={{
                     borderRadius: "50%",
-                    height: "100px",
-                    width: "100px",
-                    // objectFit: "cover",
+                    height: "200px",
+                    width: "200px",
+                    backgroundColor: "#D63384",
+                    color: "white",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    fontSize: "50px",
+                    fontWeight: "bold",
+                    userSelect: "none",
                   }}
-                />
+                >
+                  {testimonial.name.charAt(0).toUpperCase()}
+                </div>
+
                 <div style={{ maxWidth: isMobile ? "90%" : "100%" }}>
-                  <h3>{testimonial.name}</h3>
+                  <h2
+                    style={{
+                      color: "#D63384",
+                      fontWeight: "bold",
+                      fontFamily: "cursive",
+                    }}
+                  >
+                    {testimonial.name}
+                  </h2>
                   <p>"{testimonial.text}"</p>
-                  <p>{testimonial.title}</p>
+
+                  {/* Star rating */}
+                  <div>
+                    {[...Array(5)].map((_, i) => (
+                      <span
+                        key={i}
+                        style={{
+                          color: i < testimonial.rating ? "#D63384" : "#ccc", // yellow for filled stars
+                          fontSize: "30px",
+                        }}
+                      >
+                        ★
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
           ))}
         </Slider>
-      </div>
-      {/** Testimonials..................... */}
+      </div>{" "}
+      {/* Testimonials..................... */}
     </div>
   );
 };

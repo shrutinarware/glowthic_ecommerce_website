@@ -52,6 +52,14 @@ import CombinationSkin from './SubPage/CombinationSkin'
 import Women from './SubPage/Women'
 import Men from './SubPage/Men'
 import Face from "./SubPage/Face"
+import Appliances from './SubPage/Appliances'
+import HairDryer from './SubPage/HairDryer'
+import HairStraightener from './SubPage/HairStraightner'
+import HairCurler from './SubPage/HairCurler'
+import Trimmers from './SubPage/Trimmers'
+import FacialSteamers from './SubPage/FacialSteamers'
+import Epilators from './SubPage/Epillators'
+import Massage from './SubPage/MassageTools'
 
 const UserRoutes = () => {
   return (
@@ -69,6 +77,8 @@ const UserRoutes = () => {
         <Route path="/Hair" element={<Haircare />} />
         <Route path="/Fragnance" element={<Fragnance />} />
         <Route path="/bath-hygiene" element={<BathAndHygiene />} />
+        <Route path="/appliances" element={<Appliances />} />
+
 
         {/* Sub Pages */}
         <Route path="/face" element={<Face />} />
@@ -98,6 +108,14 @@ const UserRoutes = () => {
         <Route path="/bodywash" element={<BodyWash />} />
         <Route path="/shavingcreams" element={<Shaving />} />
         <Route path="/waxingneeds" element={<Waxing />} />
+        <Route path= "/hair-dryers" element={<HairDryer/>}/>
+        <Route path="/straighteners" element={<HairStraightener/>}/>
+        <Route path="/curlers" element={<HairCurler/>}/>
+        <Route path="/trimmers" element={<Trimmers/>}/>
+        <Route path="/facial-steamers" element={<FacialSteamers/>}/>
+        <Route path="/epilators" element={<Epilators/>}/>
+       <Route path="/massage" element={<Massage/>}/>
+
 
         {/* Skin Care Types */}
         <Route path="/oily-skin" element={<OilySkin />} />

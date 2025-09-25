@@ -65,6 +65,7 @@ import Joy from "../../assets/Brands/joy.png";
 import Boro from "../../assets/Brands/boropls.jpg";
 import Forever from "../../assets/Brands/forever.jpg";
 import Acne from "../../assets/Brands/acne.png";
+import Park from "../../assets/Brands/park.jpg";
 
 const Brands = () => {
   const brandList = [
@@ -142,6 +143,7 @@ const Brands = () => {
     { id: 62, name: "Joy", link: "", image: Joy },
     { id: 63, name: "Boroplus", link: "", image: Boro },
     { id: 64, name: "Forever 21", link: "", image: Forever },
+    { id: 65, name: "Park Avenue", link: "", image: Park },
   ];
 
   const location = useLocation();
