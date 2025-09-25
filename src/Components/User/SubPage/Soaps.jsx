@@ -1,5 +1,5 @@
 import React, { useState ,useEffect} from "react";
-import SoapBanner from "../../../assets/TBath.jpg"; // Replace with your actual banner image
+import SoapBanner from "../../../assets/BathSubpage/TBath.jpg"; // Replace with your actual banner image
 
 // Soap Product Images
 import Soap1 from "../../../assets/SoapSubpage/SoapDove.jpg";

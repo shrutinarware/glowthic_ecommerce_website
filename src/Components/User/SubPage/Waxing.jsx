@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-import WaxingBanner from "../../../assets/TBath.jpg"; // Replace with your waxing banner image
+import WaxingBanner from "../../../assets/BathSubpage/TBath.jpg"; // Replace with your waxing banner image
 
 // Waxing Product Images (replace with actual images)
 import Wax1 from "../../../assets/WaxingSubpage/WaxingVeet.jpg";

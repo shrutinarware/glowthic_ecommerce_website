@@ -12,6 +12,8 @@ import Skincare2 from "../../../assets/SkinSubpage/Sslides/SkinJoy.webp";
 import Skincare3 from "../../../assets/SkinSubpage/Sslides/SkinMINI.webp";
 import Skincare4 from "../../../assets/SkinSubpage/Sslides/Skincetaphil.jpg";
 import Skincare5 from "../../../assets/SkinSubpage/Sslides/SkinVselline.jpg";
+import Skincare6 from "../../../assets/SkinSubpage/Sslides/dermaproduct.jpg"
+import Skincare7 from "../../../assets/SkinSubpage/Sslides/dot&keyproduct.jpg"
 
 // Category Images
 import MoisturizerImg from "../../../assets/SkinSubpage/Scategories/Moisturizer.jpg";
@@ -28,6 +30,8 @@ const SkincareItems = [
   { image: Skincare3 },
   { image: Skincare4 },
   { image: Skincare5 },
+  { image: Skincare6 },
+  { image: Skincare7 },
 ];
 
 const Categories = [

@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-import ShavingBanner from "../../../assets/TBath.jpg"; // Update this path as per your project
+import ShavingBanner from "../../../assets/BathSubpage/TBath.jpg"; // Update this path as per your project
 
 // Shaving Product Images
 import Shaving1 from "../../../assets/ShavingSubpage/ShavingGellite.jpg";
