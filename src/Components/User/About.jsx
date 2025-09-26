@@ -200,7 +200,7 @@ const About = () => {
           <br />
           With all our love,
           <br />
-          <strong>Team Glowthic</strong>
+          <strong style={{color: "#D63384",fontSize:"25px"}}>Team Glowthic</strong>
         </h3>
       </div>
     </div>

@@ -26,6 +26,7 @@ const AdminBodywash = () => {
     setEditingProduct(null);
     setNewProductId(null);
   };
+
   // Load products from localStorage when the component mounts
   useEffect(() => {
     const storedProducts =
@@ -48,12 +49,15 @@ const AdminBodywash = () => {
   }, [products]);
 
   const handleDelete = (id) => {
-   if (window.confirm("Are you sure you want to delete this product?")) {
+    if (window.confirm("Are you sure you want to delete this product?")) {
       setProducts((prev) => {
         const updatedProducts = prev.filter((p) => p.id !== id);
 
         // Update the idCounter to the next highest ID
-        const highestId = updatedProducts.reduce((max, p) => (p.id > max ? p.id : max), 0);
+        const highestId = updatedProducts.reduce(
+          (max, p) => (p.id > max ? p.id : max),
+          0
+        );
         setIdCounter(highestId + 1); // Make sure next ID is higher than the current highest ID
 
         return updatedProducts;
@@ -62,20 +66,24 @@ const AdminBodywash = () => {
   };
 
   return (
-    <div style={{ paddingLeft: "14%", paddingRight: "5%" }}>
+    <div style={{ paddingLeft: "250px", paddingRight: "5%" }}>
       <h1>Body Wash</h1>
 
       {/* Top Bar */}
       <div
+        className="admin-topbar"
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          flexWrap: "wrap",
+          gap: "10px",
         }}
       >
         <input
           type="text"
           placeholder="Search product..."
+          className="admin-search-input"
           style={{
             height: "45px",
             width: "320px",
@@ -84,14 +92,17 @@ const AdminBodywash = () => {
             padding: "0 15px",
             fontSize: "16px",
             background: "#e3e1e1",
+            maxWidth: "280px",
           }}
         />
 
         <button
+          className="admin-add-button"
           onClick={() => {
             setShowForm(true);
             setEditingProduct(null);
             setNewProductId(idCounter);
+            setIdCounter((prev) => prev + 1);
           }}
           style={{
             background: "#D63384",
@@ -125,11 +136,13 @@ const AdminBodywash = () => {
           newId={newProductId}
         />
       )}
-      {/* Card List */}
+
+      {/* Product List */}
       <div>
         {products.map((item) => (
           <div
             key={item.id}
+            className="product-card"
             style={{
               height: "150px",
               width: "100%",
@@ -139,6 +152,7 @@ const AdminBodywash = () => {
             }}
           >
             <div
+              className="product-info"
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -156,19 +170,21 @@ const AdminBodywash = () => {
                 <img
                   src={item.img}
                   alt="product"
+                  className="product-img"
                   style={{
                     height: "100px",
                     width: "100px",
                     borderRadius: "8px",
                   }}
                 />
-                <div style={{ lineHeight: "1.2", color: "white" }}>
+                <div className="product-title" style={{ color: "white" }}>
                   <h1 style={{ margin: 0 }}>{item.Heading}</h1>
                   <h3 style={{ margin: 0 }}>{item.subHeading}</h3>
                 </div>
               </div>
 
               <div
+                className="product-actions"
                 style={{
                   display: "flex",
                   gap: "20px",
@@ -224,6 +240,70 @@ const AdminBodywash = () => {
           </div>
         ))}
       </div>
+
+      {/* Responsive styles */}
+      <style>
+        {`
+          @media (max-width: 768px) {
+            .admin-container {
+              padding-left: 250px;
+              padding-right: 5%;
+            }
+
+            .admin-topbar {
+              flex-direction: column;
+              gap: 15px;
+              align-items: flex-start !important;
+            }
+
+            .admin-search-input {
+              width: 100% !important;
+              max-width: 280px !important;
+              margin-bottom: 10px !important;
+            }
+
+            .admin-add-button {
+              width: 100% !important;
+              justify-content: center;
+            }
+
+            .product-card {
+              flex-direction: column;
+              height: auto !important;
+            }
+
+            .product-info {
+              flex-direction: column;
+              align-items: flex-start !important;
+              gap: 10px;
+            }
+
+            .product-actions {
+              padding-right: 0 !important;
+              justify-content: flex-start;
+              gap: 10px !important;
+              flex-wrap: wrap;
+            }
+
+            .product-actions button {
+              width: 48% !important;
+            }
+
+            .product-title h1 {
+              font-size: 20px;
+            }
+
+            .product-title h3 {
+              font-size: 16px;
+            }
+
+            img.product-img {
+              width: 80px !important;
+              height: 80px !important;
+            }
+          }
+        `}
+      </style>
     </div>
   );
 };

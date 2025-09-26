@@ -3,7 +3,7 @@ import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-import ProductForm from "../AdminSubPage/ProductForm"; // Make sure path is correct
+import ProductForm from "../AdminSubPage/ProductForm"; // Ensure path is correct
 
 const AdminCurler = () => {
   const [products, setProducts] = useState([]);
@@ -48,9 +48,11 @@ const AdminCurler = () => {
       setProducts((prev) => {
         const updatedProducts = prev.filter((p) => p.id !== id);
 
-        // Update the idCounter to the next highest ID
-        const highestId = updatedProducts.reduce((max, p) => (p.id > max ? p.id : max), 0);
-        setIdCounter(highestId + 1); // Make sure next ID is higher than the current highest ID
+        const highestId = updatedProducts.reduce(
+          (max, p) => (p.id > max ? p.id : max),
+          0
+        );
+        setIdCounter(highestId + 1); // Ensure next ID is higher than the current highest ID
 
         return updatedProducts;
       });
@@ -58,8 +60,8 @@ const AdminCurler = () => {
   };
 
   return (
-    <div style={{ paddingLeft: "14%", paddingRight: "5%" }}>
-      <h1> Hair Curler</h1>
+    <div style={{ paddingLeft: "250px", paddingRight: "5%" }}>
+      <h1>Hair Curler</h1>
 
       {/* Top Bar */}
       <div
@@ -67,11 +69,15 @@ const AdminCurler = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          flexWrap: "wrap",
+          gap: "10px",
         }}
       >
+        {/* Search Input */}
         <input
           type="text"
           placeholder="Search product..."
+          className="admin-search-input"
           style={{
             height: "45px",
             width: "320px",
@@ -80,11 +86,13 @@ const AdminCurler = () => {
             padding: "0 15px",
             fontSize: "16px",
             background: "#e3e1e1",
+            maxWidth: "280px",
           }}
         />
 
         {/* Add Button */}
         <button
+          className="admin-add-button"
           onClick={() => {
             setShowForm(true);
             setEditingProduct(null);
@@ -145,13 +153,7 @@ const AdminCurler = () => {
               }}
             >
               {/* Image & Headings */}
-              <div
-                style={{
-                  display: "flex",
-                  gap: "20px",
-                  alignItems: "center",
-                }}
-              >
+              <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
                 <img
                   src={item.img}
                   alt="product"
@@ -225,6 +227,70 @@ const AdminCurler = () => {
           </div>
         ))}
       </div>
+
+      {/* Responsive styles */}
+      <style>
+        {`
+          @media (max-width: 768px) {
+            .admin-container {
+              padding-left: 250px;
+              padding-right: 5%;
+            }
+
+            .admin-topbar {
+              flex-direction: column;
+              gap: 15px;
+              align-items: flex-start !important;
+            }
+
+            .admin-search-input {
+              width: 100% !important;
+              max-width: 280px !important;
+              margin-bottom: 10px !important;
+            }
+
+            .admin-add-button {
+              width: 100% !important;
+              justify-content: center;
+            }
+
+            .product-card {
+              flex-direction: column;
+              height: auto !important;
+            }
+
+            .product-info {
+              flex-direction: column;
+              align-items: flex-start !important;
+              gap: 10px;
+            }
+
+            .product-actions {
+              padding-right: 0 !important;
+              justify-content: flex-start;
+              gap: 10px !important;
+              flex-wrap: wrap;
+            }
+
+            .product-actions button {
+              width: 48% !important;
+            }
+
+            .product-title h1 {
+              font-size: 20px;
+            }
+
+            .product-title h3 {
+              font-size: 16px;
+            }
+
+            img.product-img {
+              width: 80px !important;
+              height: 80px !important;
+            }
+          }
+        `}
+      </style>
     </div>
   );
 };

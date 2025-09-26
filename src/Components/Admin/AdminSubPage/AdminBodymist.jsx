@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -8,7 +8,6 @@ const AdminBodymist = () => {
   const [products, setProducts] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
-  // Add this at the top with other useState imports
   const [idCounter, setIdCounter] = useState(1); // 👈 Track current ID
   const [newProductId, setNewProductId] = useState(null); // 👈 Store ID for new form
 
@@ -28,25 +27,25 @@ const AdminBodymist = () => {
     setNewProductId(null);
   };
 
-   // Load products from localStorage when the component mounts
-    useEffect(() => {
-      const storedProducts = JSON.parse(localStorage.getItem("products_Bodymist")) || [];
-      setProducts(storedProducts);
-  
-      // Set idCounter from the last product ID or 0 if no products
-      const lastProductId =
-        storedProducts.length > 0
-          ? storedProducts[storedProducts.length - 1].id
-          : 0;
-      setIdCounter(lastProductId + 1);
-    }, []);
-  
-    // Save products to localStorage whenever the products state changes
-    useEffect(() => {
-      if (products.length > 0) {
-        localStorage.setItem("products_Bodymist", JSON.stringify(products));
-      }
-    }, [products]);
+  // Load products from localStorage when the component mounts
+  useEffect(() => {
+    const storedProducts = JSON.parse(localStorage.getItem("products_Bodymist")) || [];
+    setProducts(storedProducts);
+
+    // Set idCounter from the last product ID or 0 if no products
+    const lastProductId =
+      storedProducts.length > 0
+        ? storedProducts[storedProducts.length - 1].id
+        : 0;
+    setIdCounter(lastProductId + 1);
+  }, []);
+
+  // Save products to localStorage whenever the products state changes
+  useEffect(() => {
+    if (products.length > 0) {
+      localStorage.setItem("products_Bodymist", JSON.stringify(products));
+    }
+  }, [products]);
 
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
@@ -63,15 +62,19 @@ const AdminBodymist = () => {
   };
 
   return (
-    <div style={{ paddingLeft: "14%", paddingRight: "5%", }}>
+    <div style={{ paddingLeft: "250px", paddingRight: "5%" }}>
       <h1>Body Mist</h1>
 
       {/* Top Bar */}
       <div
+        className="admin-topbar"
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          flexWrap: "wrap",
+          gap: "10px",
+          zIndex: 10,
         }}
       >
         <input
@@ -85,6 +88,8 @@ const AdminBodymist = () => {
             padding: "0 15px",
             fontSize: "16px",
             background: "#e3e1e1",
+            zIndex: 10, // Ensures input stays on top
+            maxWidth: "280px",
           }}
         />
 
@@ -107,6 +112,7 @@ const AdminBodymist = () => {
             alignItems: "center",
             justifyContent: "center",
             gap: "10px",
+            zIndex: 10,
           }}
         >
           <AddIcon style={{ fontSize: 24 }} />
@@ -167,7 +173,6 @@ const AdminBodymist = () => {
                 <div style={{ lineHeight: "1.2", color: "white" }}>
                   <h1 style={{ margin: 0 }}>{item.Heading}</h1>
                   <h3 style={{ margin: 0 }}>{item.subHeading}</h3>
-                  
                 </div>
               </div>
 
@@ -176,7 +181,7 @@ const AdminBodymist = () => {
                   display: "flex",
                   gap: "30px",
                   alignItems: "center",
-                  paddingRight:"40px"
+                  paddingRight: "40px",
                 }}
               >
                 <button
@@ -227,6 +232,70 @@ const AdminBodymist = () => {
           </div>
         ))}
       </div>
+
+      {/* Responsive styles */}
+      <style>
+        {`
+          @media (max-width: 768px) {
+            .admin-container {
+              padding-left: 250px;
+              padding-right: 5%;
+            }
+
+            .admin-topbar {
+              flex-direction: column;
+              gap: 15px;
+              align-items: flex-start !important;
+            }
+
+            .admin-search-input {
+              width: 100% !important;
+              max-width: 280px !important;
+              margin-bottom: 10px !important;
+            }
+
+            .admin-add-button {
+              width: 100% !important;
+              justify-content: center;
+            }
+
+            .product-card {
+              flex-direction: column;
+              height: auto !important;
+            }
+
+            .product-info {
+              flex-direction: column;
+              align-items: flex-start !important;
+              gap: 10px;
+            }
+
+            .product-actions {
+              padding-right: 0 !important;
+              justify-content: flex-start;
+              gap: 10px !important;
+              flex-wrap: wrap;
+            }
+
+            .product-actions button {
+              width: 48% !important;
+            }
+
+            .product-title h1 {
+              font-size: 20px;
+            }
+
+            .product-title h3 {
+              font-size: 16px;
+            }
+
+            img.product-img {
+              width: 80px !important;
+              height: 80px !important;
+            }
+          }
+        `}
+      </style>
     </div>
   );
 };

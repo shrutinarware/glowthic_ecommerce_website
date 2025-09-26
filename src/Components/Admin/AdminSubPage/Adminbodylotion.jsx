@@ -52,7 +52,10 @@ const Adminbodylotion = () => {
         const updatedProducts = prev.filter((p) => p.id !== id);
 
         // Update the idCounter to the next highest ID
-        const highestId = updatedProducts.reduce((max, p) => (p.id > max ? p.id : max), 0);
+        const highestId = updatedProducts.reduce(
+          (max, p) => (p.id > max ? p.id : max),
+          0
+        );
         setIdCounter(highestId + 1); // Make sure next ID is higher than the current highest ID
 
         return updatedProducts;
@@ -61,7 +64,10 @@ const Adminbodylotion = () => {
   };
 
   return (
-    <div className="admin-container" style={{ paddingLeft: "14%", paddingRight: "5%" }}>
+    <div
+      className="admin-container"
+      style={{ paddingLeft: "250px", paddingRight: "5%" }}
+    >
       <h1>Body Lotion</h1>
 
       {/* Top Bar */}
@@ -73,6 +79,7 @@ const Adminbodylotion = () => {
           alignItems: "center",
           flexWrap: "wrap",
           gap: "10px",
+          zIndex: 10,
         }}
       >
         <input
@@ -87,6 +94,8 @@ const Adminbodylotion = () => {
             padding: "0 15px",
             fontSize: "16px",
             background: "#e3e1e1",
+            zIndex: 10, // Ensures input stays on top
+            maxWidth: "280px",
           }}
         />
 
@@ -112,6 +121,7 @@ const Adminbodylotion = () => {
             alignItems: "center",
             justifyContent: "center",
             gap: "10px",
+            zIndex: 10,
           }}
         >
           <AddIcon style={{ fontSize: 24 }} />
@@ -170,7 +180,10 @@ const Adminbodylotion = () => {
                   objectFit: "cover",
                 }}
               />
-              <div className="product-title" style={{ lineHeight: "1.2", color: "white" }}>
+              <div
+                className="product-title"
+                style={{ lineHeight: "1.2", color: "white" }}
+              >
                 <h1 style={{ margin: 0 }}>{item.Heading}</h1>
                 <h3 style={{ margin: 0 }}>{item.subHeading}</h3>
               </div>
@@ -240,7 +253,7 @@ const Adminbodylotion = () => {
         {`
           @media (max-width: 768px) {
             .admin-container {
-              padding-left: 5%;
+              padding-left: 250px
               padding-right: 5%;
             }
 
@@ -251,7 +264,9 @@ const Adminbodylotion = () => {
             }
 
             .admin-search-input {
-              width: 100% !important;
+             width: 100% !important;
+          max-width: 280px !important;
+          margin-bottom: 10px !important; 
             }
 
             .admin-add-button {
