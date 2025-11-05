@@ -1,0 +1,40 @@
+<svg width="180" height="180" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .circle-bg {
+      fill: #fff5f9;
+      stroke: #D63384;
+      stroke-width: 2;
+    }
+    .monogram {
+      font-family: 'Georgia', serif;
+      font-weight: bold;
+      font-size: 90px;
+      fill: #D63384;
+    }
+    .monogram-secondary {
+      fill-opacity: 0.6;
+    }
+    .text-small {
+      font-family: 'Arial', sans-serif;
+      font-size: 12px;
+      fill: #D63384;
+      font-weight: 600;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+    }
+  </style>
+
+  <!-- Circle background -->
+  <circle cx="90" cy="90" r="85" class="circle-bg" />
+
+  <!-- Large G -->
+  <text x="35" y="95" class="monogram">G</text>
+
+  <!-- Large A overlapping G -->
+  <text x="75" y="95" class="monogram monogram-secondary">A</text>
+
+  <!-- Smaller text, perfectly inside the circle -->
+  <text x="90" y="125" class="text-small" dominant-baseline="middle" text-anchor="middle">
+    Glow + Aesthetic
+  </text>
+</svg>
