@@ -200,11 +200,22 @@ const Topbar = () => {
               {navItems.map((item, i) => (
                 <h3 key={i} style={{ margin: 0 }}>
                   <Link
+                    key={i}
                     to={getLinkPath(item)}
+                    onMouseEnter={(e) => {
+                      e.target.style.color = "#D63384";
+                      e.target.style.textShadow =
+                        "0 0 8px rgba(255,215,0,0.6), 0 0 15px rgba(255,215,0,0.3)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.color = "white";
+                      e.target.style.textShadow = "none";
+                    }}
                     style={{
                       textDecoration: "none",
                       color: "white",
                       fontSize: "18px",
+                      transition: "all 0.3s ease",
                     }}
                   >
                     {item}
@@ -254,6 +265,13 @@ const Topbar = () => {
                       marginTop: "-12px",
                     }}
                     title={username}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.boxShadow =
+                        "0 0 12px rgba(255,215,0,0.6), 0 0 25px rgba(255,215,0,0.3)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.boxShadow = "none";
+                    }}
                   >
                     {username ? (
                       username.charAt(0).toUpperCase()
@@ -264,10 +282,18 @@ const Topbar = () => {
                 ) : (
                   <AccountBoxIcon
                     onClick={handleAccountClick}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.filter =
+                        "drop-shadow(0 0 8px rgba(255,215,0,0.6)) drop-shadow(0 0 20px rgba(255,215,0,0.3))";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.filter = "none";
+                    }}
                     style={{
                       fontSize: isMobile ? 38 : 55,
                       color: "#D63384",
                       marginTop: "-6px",
+                      transition: "all 0.3s ease",
                     }}
                   />
                 )}

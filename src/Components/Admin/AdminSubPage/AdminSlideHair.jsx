@@ -216,7 +216,7 @@ const AdminSlideHair = () => {
                   }}
                 />
                 <p style={{ color: "white", wordBreak: "break-all" }}>
-                  {item.link}
+                  {item.heading}
                 </p>
               </div>
 

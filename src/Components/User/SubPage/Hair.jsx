@@ -163,12 +163,12 @@ const Haircare = ({
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  flex-wrap: nowrap;          /* keep in one line */
+  flex-wrap: wrap;
   gap: 20px;
   padding: 20px;
-  overflow: hidden;           /* prevent scroll */
   width: 100%;
-  flex-shrink: 0;
+  overflow: hidden;  /* prevents scrollbar */
+  box-sizing: border-box;          
 }
 
 
@@ -196,8 +196,11 @@ const Haircare = ({
         }
 
         .category-card:hover {
-          transform: scale(1.03);
-        }
+  transform: scale(1.03);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+  border-color: #D4AF37;
+}
+
 
         .category-image {
           width: 100%;
@@ -248,6 +251,7 @@ const Haircare = ({
             overflow: "hidden",
             paddingBottom: "20px",
             marginTop: "10px",
+            boxSizing: "border-box",
           }}
         >
           <Swiper
@@ -272,7 +276,7 @@ const Haircare = ({
                     alt="hair"
                     className="makeup-slide-image"
                     style={{
-                      width: "90%",
+                      width: "100%",
                       maxWidth: "1200px",
                       height: "550px",
                       objectFit: "cover",
@@ -304,7 +308,7 @@ const Haircare = ({
 
       {/* Categories */}
       <div
-        className={`categories-container ${isMenPage ? "men" : "women"}`}
+        className="categories-container"
         style={{
           flexWrap: isMenPage ? "nowrap" : "wrap",
           justifyContent: "center",

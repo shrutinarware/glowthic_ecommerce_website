@@ -115,7 +115,7 @@ const Lips = () => {
       <div style={styles.searchContainer}>
         <input
           type="text"
-          placeholder="Search for a product..."
+          placeholder="Search for a Lip product..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           style={styles.searchInput}

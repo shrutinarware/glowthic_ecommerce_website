@@ -198,9 +198,12 @@ const Skin = ({
 }
 
 
-       .category-card:hover {
+ .category-card:hover {
   transform: scale(1.03);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+  border-color: #D4AF37;
 }
+
 
 .category-image {
   width: 100%;

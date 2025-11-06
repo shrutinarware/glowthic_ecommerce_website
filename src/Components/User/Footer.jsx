@@ -13,6 +13,17 @@ const Footer = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const linkStyle = {
+    color: "black",
+    textDecoration: "none",
+    fontWeight: "normal",
+    transition: "all 0.3s ease",
+  };
+
+  const hoverStyle = {
+    fontWeight: "bold",
+  };
+
   return (
     <div
       style={{
@@ -86,11 +97,15 @@ const Footer = () => {
         >
           {/* Quick Links */}
           <div>
-            <h3 style={{ marginBottom: "10px" }}>Quick Links</h3>
+            <h3 style={{ marginBottom: "10px", color: "#D63384" }}>
+              Quick Links
+            </h3>
             <p>
               <Link
                 to="/#topcategories"
-                style={{ color: "black", textDecoration: "none" }}
+                style={linkStyle}
+                onMouseEnter={(e) => Object.assign(e.target.style, hoverStyle)}
+                onMouseLeave={(e) => Object.assign(e.target.style, linkStyle)}
               >
                 Categories
               </Link>
@@ -98,7 +113,9 @@ const Footer = () => {
             <p>
               <Link
                 to="/Brands"
-                style={{ color: "black", textDecoration: "none" }}
+                style={linkStyle}
+                onMouseEnter={(e) => Object.assign(e.target.style, hoverStyle)}
+                onMouseLeave={(e) => Object.assign(e.target.style, linkStyle)}
               >
                 Brands
               </Link>
@@ -106,7 +123,9 @@ const Footer = () => {
             <p>
               <Link
                 to="/About"
-                style={{ color: "black", textDecoration: "none" }}
+                style={linkStyle}
+                onMouseEnter={(e) => Object.assign(e.target.style, hoverStyle)}
+                onMouseLeave={(e) => Object.assign(e.target.style, linkStyle)}
               >
                 About
               </Link>
@@ -117,7 +136,7 @@ const Footer = () => {
             <h3>
               <Link
                 to="/contact"
-                style={{ color: "black", textDecoration: "none" }}
+                style={{ color: "#D63384", textDecoration: "none" }}
               >
                 Contact Us
               </Link>

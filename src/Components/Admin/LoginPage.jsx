@@ -21,7 +21,7 @@ const LoginPage = () => {
     if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
       localStorage.setItem("token", "sample-token");
       localStorage.setItem("role", "admin");
-      navigate("/Dashboard"); 
+      navigate("/Dashboard");
     } else {
       alert("Invalid email or password ❌");
     }
@@ -36,12 +36,12 @@ const LoginPage = () => {
         height: "100vh",
         background: "#f5f5f5",
         fontFamily: "Georgia, serif",
-        padding: "20px", 
+        padding: "20px",
       }}
     >
       <div
         style={{
-          height: "auto", 
+          height: "auto",
           background: "pink",
           borderRadius: "45px",
           display: "flex",
@@ -49,7 +49,7 @@ const LoginPage = () => {
           alignItems: "center",
           boxShadow: "0px 4px 10px rgba(0,0,0,0.2)",
           width: "100%",
-          maxWidth: "600px", 
+          maxWidth: "600px",
           padding: "30px 30px",
         }}
       >
@@ -61,10 +61,10 @@ const LoginPage = () => {
             alignItems: "center",
             gap: "20px",
             fontFamily: "Georgia, serif",
-            width: "100%", 
+            width: "100%",
           }}
         >
-          <h1 style={{ textAlign: "center",color:"#D63384" }}>Admin Login</h1>
+          <h1 style={{ textAlign: "center", color: "#D63384" }}>Admin Login</h1>
 
           {/* Email Input */}
           <TextField
@@ -75,7 +75,7 @@ const LoginPage = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             sx={{
-              width: "100%", 
+              width: "100%",
               maxWidth: "400px",
               "& .MuiOutlinedInput-root": {
                 "&.Mui-focused fieldset": {
@@ -100,7 +100,7 @@ const LoginPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             sx={{
-              width: "100%", 
+              width: "100%",
               maxWidth: "400px",
               "& .MuiOutlinedInput-root": {
                 "&.Mui-focused fieldset": {
@@ -123,7 +123,7 @@ const LoginPage = () => {
             sx={{
               cursor: "pointer",
               background: "black",
-              color:"#D63384",
+              color: "#D63384",
               height: "45px",
               width: "100%",
               maxWidth: "180px",
@@ -133,7 +133,7 @@ const LoginPage = () => {
               fontSize: "20px",
               textTransform: "none",
               "&:hover": {
-                background: "#333", 
+                background: "#333",
               },
             }}
           >

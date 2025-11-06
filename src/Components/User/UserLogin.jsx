@@ -115,7 +115,6 @@ const UserLogin = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
       window.dispatchEvent(new Event("storage")); // 🔥 instantly updates Topbar
       onLoginSuccess({ username: username, email, userId: newUserId });
       onClose();
-      navigate(-1);
     } catch (err) {
       setSignupError("Signup failed. Try again.");
       console.error(err);
@@ -157,7 +156,6 @@ const UserLogin = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
       window.dispatchEvent(new Event("storage")); // 🔥 triggers Topbar update
 
       onClose?.();
-      navigate(-1);
     } catch (err) {
       setLoginError("Login failed. Try again.");
       console.error(err);
@@ -176,6 +174,7 @@ const UserLogin = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
         overflowY: "auto", // ✅ allow scroll
         padding: isMobile || isTablet ? "20px 0" : "0",
         zIndex: 9999,
+        backdropFilter: "blur(4px)",
       }}
     >
       <div
@@ -183,22 +182,22 @@ const UserLogin = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
           display: "flex",
           flexDirection: isMobile ? "column" : "row",
           width: isMobile ? "90%" : isTablet ? "80%" : "900px",
-          height: "auto", // ✅ always auto for responsiveness
+          height: "auto",
           maxHeight: isMobile ? "none" : "95vh",
-          borderRadius: "20px",
-          overflow: "visible", // ✅ allow inner scroll if needed
+          overflow: "visible",
           background: "rgba(255,192,203,0.95)",
-          boxShadow: "0 0 25px rgba(0,0,0,0.2)",
           position: "relative",
           transition: "all 0.3s ease",
           margin: isMobile || isTablet ? "40px 0" : "0",
+          boxShadow:
+            "0 0 35px rgba(255,182,193,0.45), 0 0 10px rgba(255,215,0,0.25)",
+          borderRadius: "18px",
         }}
       >
         {/* ❌ Close Button */}
         <span
           onClick={() => {
             if (onClose) onClose();
-            navigate(-1); // ✅ makes close button work even when opened via navigation
           }}
           style={{
             position: "absolute",
@@ -208,7 +207,7 @@ const UserLogin = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
             cursor: "pointer",
             color: "#D63384",
             fontWeight: "bold",
-            zIndex: 10,
+            transition: "0.3s",
           }}
         >
           &times;
@@ -324,7 +323,9 @@ const UserLogin = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                 onClick={() => setShowLogin(true)}
               >
                 Already have an Account?{" "}
-                <span style={{ color: "#D63384" }}>Log in</span>
+                <span style={{ color: "#D63384", fontWeight: "bold" }}>
+                  Log in
+                </span>
               </p>
               <p style={{ color: "#D63384", marginBottom: "5px" }}>Name</p>
               <input

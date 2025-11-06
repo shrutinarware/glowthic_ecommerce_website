@@ -112,7 +112,7 @@ const Nails = () => {
       <div style={styles.searchContainer}>
         <input
           type="text"
-          placeholder="Search for a product..."
+          placeholder="Search for a Nail product..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           style={styles.searchInput}

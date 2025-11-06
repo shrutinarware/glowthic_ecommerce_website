@@ -5,6 +5,7 @@ import { ref, set } from "firebase/database";
 
 const SlideManager = ({ onCancel, initialData, newId, folder }) => {
   const [link, setLink] = useState(initialData?.link || "");
+  const [heading, setHeading] = useState(initialData?.heading || "");
   const [slideImage, setSlideImage] = useState(initialData?.img || "");
   const [previewImage, setPreviewImage] = useState(initialData?.img || "");
   const [uploading, setUploading] = useState(false);
@@ -73,6 +74,7 @@ const SlideManager = ({ onCancel, initialData, newId, folder }) => {
       id: initialData?.id || newId,
       link,
       img: slideImage,
+      heading,
     };
 
     try {
@@ -108,11 +110,13 @@ const SlideManager = ({ onCancel, initialData, newId, folder }) => {
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <label style={{ fontSize: "25px", color: "#D63384" }}>
             {" "}
-            Image Name{" "}
+            Heading{" "}
           </label>
           <input
             type="text"
-            placeholder="Enter Name"
+            placeholder="Enter Slide Heading"
+            value={heading}
+            onChange={(e) => setHeading(e.target.value)}
             style={{
               width: "75%",
               padding: "10px",

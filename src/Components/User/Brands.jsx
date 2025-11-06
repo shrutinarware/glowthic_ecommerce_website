@@ -49,11 +49,14 @@ const Brands = () => {
   };
 
   const handleProductClick = async (product) => {
-    const email = getUserEmail();
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    const userId = localStorage.getItem("userId");
+
     try {
       const logRef = push(ref(database, "UserProductInfo"));
       await set(logRef, {
-        email: email || "Guest",
+        email: getUserEmail(),
+
         productId: product.id,
         productName: product.name || "",
         category: product.category || "brand",
@@ -65,13 +68,14 @@ const Brands = () => {
     } catch (err) {
       console.error("Failed to log product click:", err);
     }
-    if (email) {
-      if (product.link) {
-        window.open(product.link, "_blank");
-      }
-    } else {
+    if (!isLoggedIn || !userId) {
       setShowLogin(true);
       localStorage.setItem("redirectAfterLogin", product.link || "");
+      return;
+    }
+
+    if (product.link) {
+      window.open(product.link, "_blank");
     }
   };
 
@@ -151,10 +155,19 @@ const Brands = () => {
               style={{
                 textAlign: "center",
                 background: "#fff",
-                border: "1px solid #D63384",
+                border: "2px solid #D63384",
                 borderRadius: "12px",
                 padding: "15px 10px",
                 boxShadow: "0 2px 6px rgba(0,0,0,0.05)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow =
+                  "0 0 15px rgba(212, 175, 55, 0.6)";
+                e.currentTarget.style.borderColor = "#D4AF37"; // gold
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = "0 2px 6px rgba(0,0,0,0.05)";
+                e.currentTarget.style.borderColor = "#D63384"; // back to pink
               }}
             >
               <a

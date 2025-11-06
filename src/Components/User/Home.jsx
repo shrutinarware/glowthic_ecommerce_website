@@ -182,6 +182,7 @@ const Home = () => {
       setIsLoggedIn(true);
     }
   }, []);
+  const gold = "#d4af37"; // elegant gold tone
 
   return (
     <div style={{ padding: "1% 0 10px 10px", fontFamily: "sans-serif" }}>
@@ -280,14 +281,23 @@ const Home = () => {
                 className="top-category-card"
                 style={{
                   width: "200px",
-                  border: "1px solid #D63384",
-                  borderRadius: "12px",
+                  borderRadius: "18px",
                   overflow: "hidden",
-                  boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-                  textAlign: "center",
-                  backgroundColor: "#fff",
-                  transition: "transform 0.3s ease",
-                  color: "#000",
+                  background: "#fff",
+                  border: `2px solid #D63384`,
+                  boxShadow: "0 4px 15px rgba(212,175,55,0.2)",
+                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                  cursor: "pointer",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "scale(1.06)";
+                  e.currentTarget.style.boxShadow =
+                    "0 8px 25px rgba(212,175,55,0.4)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "scale(1)";
+                  e.currentTarget.style.boxShadow =
+                    "0 4px 15px rgba(212,175,55,0.2)";
                 }}
               >
                 <img
@@ -688,14 +698,23 @@ const Home = () => {
                 className="top-category-card"
                 style={{
                   width: "300px",
-                  borderRadius: "12px",
+                  borderRadius: "18px",
                   overflow: "hidden",
-                  boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-                  textAlign: "center",
-                  backgroundColor: "#fff",
-                  transition: "transform 0.3s ease",
-                  color: "#000",
-                  border: "1px solid #D63384",
+                  background: "#fff",
+                  border: `2px solid #D63384`,
+                  boxShadow: "0 4px 15px rgba(212,175,55,0.2)",
+                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                  cursor: "pointer",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "scale(1.06)";
+                  e.currentTarget.style.boxShadow =
+                    "0 8px 25px rgba(212,175,55,0.4)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "scale(1)";
+                  e.currentTarget.style.boxShadow =
+                    "0 4px 15px rgba(212,175,55,0.2)";
                 }}
               >
                 <img
