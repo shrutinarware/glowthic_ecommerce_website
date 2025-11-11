@@ -12,8 +12,8 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   // 🔑 Static credentials
-  const ADMIN_EMAIL = "shrutinarware03@gmail.com";
-  const ADMIN_PASSWORD = "shruti@03";
+  const ADMIN_EMAIL = process.env.REACT_APP_ADMIN_EMAIL;
+  const ADMIN_PASSWORD = process.env.REACT_APP_ADMIN_PASSWORD;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,6 +25,8 @@ const LoginPage = () => {
     } else {
       alert("Invalid email or password ❌");
     }
+    console.log("Admin Email from ENV:", ADMIN_EMAIL);
+    console.log("Admin Password from ENV:", ADMIN_PASSWORD);
   };
 
   return (
