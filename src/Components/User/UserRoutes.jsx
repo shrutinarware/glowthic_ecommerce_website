@@ -61,7 +61,7 @@ import FacialSteamers from "./SubPage/FacialSteamers";
 import Epilators from "./SubPage/Epillators";
 import Massage from "./SubPage/MassageTools";
 
-import UserLogin from "../../Components/User/UserLogin";
+import UserLoginModal from "./UserLoginModal";
 
 const UserRoutes = () => {
   return (
@@ -123,7 +123,7 @@ const UserRoutes = () => {
         <Route path="/women" element={<Women />} />
         <Route path="/men" element={<Men />} />
         {/** Account  */}
-        <Route path="/user-login" element={<UserLogin />} />
+        <Route path="/user-login" element={<UserLoginModal />} />
       </Routes>
     </div>
   );

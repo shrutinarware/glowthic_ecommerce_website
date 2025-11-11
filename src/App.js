@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -14,6 +14,7 @@ import Footer from "./Components/User/Footer";
 import UserRoutes from "./Components/User/UserRoutes";
 import AdminLayout from "./Components/Admin/AdminLayout";
 import LoginPage from "./Components/Admin/LoginPage";
+import UserLoginModal from "./Components/User/UserLoginModal";
 
 
 // 🔹 ScrollToTop component (must be above App)
@@ -58,6 +59,17 @@ const Layout = () => {
 
     document.title = `Glowthic | ${formatted}`;
   }, [location]);
+  // ✅ Global Login Modal State
+  const [showLoginModal, setShowLoginModal] = useState(false);
+
+  // ✅ Listen for login open event
+  useEffect(() => {
+    const openLogin = () => setShowLoginModal(true);
+
+    window.addEventListener("openLoginModal", openLogin);
+    return () => window.removeEventListener("openLoginModal", openLogin);
+  }, []);
+
 
   return (
     <>
@@ -68,6 +80,11 @@ const Layout = () => {
       <UserRoutes />
       <AdminLayout />
       {!isAdminRoute && <Footer />}
+
+      {/* ✅ Global Login Modal Render */}
+      {showLoginModal && (
+        <UserLoginModal onClose={() => setShowLoginModal(false)} />
+      )}
     </>
   );
 };

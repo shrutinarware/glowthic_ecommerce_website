@@ -5,7 +5,6 @@ import { ref, onValue, set, push } from "firebase/database";
 const MassageTools = () => {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [isLoginPopupVisible, setIsLoginPopupVisible] = useState(false);
 
   // Check user from localStorage
   const [userId, setUserId] = useState(() => {});
@@ -57,7 +56,8 @@ const MassageTools = () => {
   const handleProductClick = async (product) => {
     if (!userId) {
       // Not logged in → show popup
-      setIsLoginPopupVisible(true);
+      window.dispatchEvent(new CustomEvent("openLoginModal"));
+
       return;
     }
 
@@ -186,38 +186,6 @@ const MassageTools = () => {
     background: #b2276a;
   }
 `}</style>
-
-      {isLoginPopupVisible && (
-        <div
-          className="popup-overlay"
-          onClick={() => setIsLoginPopupVisible(false)}
-        >
-          <div className="popup-box" onClick={(e) => e.stopPropagation()}>
-            <button
-              onClick={() => setIsLoginPopupVisible(false)}
-              style={{
-                position: "absolute",
-                top: "8px",
-                right: "10px",
-                border: "none",
-                background: "transparent",
-                fontSize: "18px",
-                cursor: "pointer",
-                color: "#d63384",
-              }}
-            >
-              ✕
-            </button>
-
-            <h3>Please login first to see product details</h3>
-            <a href="/user-login" style={{ color: "#d63384" }}>
-              <button style={{ borderRadius: "20%", background: "#d63384" }}>
-                Login
-              </button>
-            </a>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

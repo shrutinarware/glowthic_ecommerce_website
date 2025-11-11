@@ -35,6 +35,32 @@ const BathAndHygiene = ({
   const [showPopup, setShowPopup] = useState(false);
   const [slides, setSlides] = useState([]);
   const [userId, setUserId] = useState(() => {});
+  const [deals, setDeals] = useState([]);
+  const [showDeals, setShowDeals] = useState(true);
+
+  useEffect(() => {
+    const dealsRef = ref(database, "adminDeals/bath&hyginie");
+    onValue(dealsRef, (snapshot) => {
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        const arr = Object.keys(data).map((id) => ({ id, ...data[id] }));
+        setDeals(arr);
+      } else {
+        setDeals([]);
+      }
+    });
+  }, []);
+  useEffect(() => {
+    const settingsRef = ref(database, "homepageSettings/sections/bathdeals");
+
+    onValue(settingsRef, (snapshot) => {
+      if (snapshot.exists()) {
+        setShowDeals(snapshot.val());
+      } else {
+        setShowDeals(true); // default
+      }
+    });
+  }, []);
 
   useEffect(() => {
     const storedUserId = localStorage.getItem("userId");
@@ -133,7 +159,7 @@ const BathAndHygiene = ({
               }}
               onClick={() => {
                 setShowPopup(false);
-                navigate("/user-login");
+                window.dispatchEvent(new CustomEvent("openLoginModal"));
               }}
             >
               Go to Login
@@ -328,6 +354,53 @@ const BathAndHygiene = ({
           </Link>
         ))}
       </div>
+      {showDeals && (
+        <div style={{ padding: "20px" }}>
+          <h2
+            style={{
+              fontSize: "28px",
+              fontWeight: "700",
+              marginBottom: "20px",
+            }}
+          >
+            Bath & hyginie Deals
+          </h2>
+
+          <div
+            style={{
+              display: "flex",
+              overflowX: "auto",
+              gap: "20px",
+              paddingBottom: "10px",
+            }}
+          >
+            {deals.map((item) => (
+              <a
+                key={item.id}
+                href={item.link}
+                target="_blank"
+                style={{
+                  minWidth: "240px",
+                  height: "140px",
+                  borderRadius: "14px",
+                  overflow: "hidden",
+                  border: "2px solid gold",
+                }}
+              >
+                <img
+                  src={item.image}
+                  alt=""
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                  }}
+                />
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
     </>
   );
 };

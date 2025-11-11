@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { ref, push, set, onValue } from "firebase/database";
 import { database } from "../../Firebase";
-import UserLogin from "./UserLogin";
+import UserLoginModal from "./UserLoginModal";
 
 const Brands = () => {
   const location = useLocation();
@@ -98,7 +98,7 @@ const Brands = () => {
           color: "#D63384",
           fontFamily: "cursive",
           marginBottom: "10px",
-          marginTop: "-10px",
+          marginTop: "10px",
         }}
       >
         Brands You Love
@@ -236,7 +236,7 @@ const Brands = () => {
               maxWidth: "400px",
             }}
           >
-            <UserLogin
+            <UserLoginModal
               onClose={() => setShowLogin(false)}
               onLoginSuccess={() => {
                 setShowLogin(false);

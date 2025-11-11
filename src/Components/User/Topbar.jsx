@@ -4,7 +4,7 @@ import LOGO from "../../assets/Topbar/glow_aesthetic_logo.svg";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-const UserLogin = lazy(() => import("../User/UserLogin")); // Lazy load
+const UserLoginModal = lazy(() => import("../User/UserLoginModal")); // Lazy load
 
 const Topbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -341,7 +341,7 @@ const Topbar = () => {
                     <div onClick={(e) => e.stopPropagation()}>
                       <Suspense fallback={<div>Loading...</div>}>
                         {!isLoggedIn && (
-                          <UserLogin
+                          <UserLoginModal
                             onLoginSuccess={(user) => handleLoginSuccess(user)} // ✅ pass user data
                             onClose={() => setShowLogin(false)}
                           />
@@ -373,9 +373,10 @@ const Topbar = () => {
             background: "pink",
             display: "flex",
             flexDirection: "column",
-            gap: "20px",
-            padding: "15px 0",
+            gap: "10px",
+            padding: "18px 0",
             textAlign: "center",
+            marginBottom: "12px",
           }}
         >
           {navItems.map((item, i) => (

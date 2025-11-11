@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { ref, onValue } from "firebase/database";
+import { database } from "../../Firebase";
 
 // Slider Images
 import slide1 from "../../assets/HomeSlides/slide1.jpg";
@@ -148,11 +150,20 @@ const Testinomials = [
     rating: 4,
   },
 ];
+
 const Home = () => {
   const location = useLocation();
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
   const [username, setUsername] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [trending, setTrending] = useState([]);
+  const [homeSections, setHomeSections] = useState({
+    topCategories: true,
+    trending: true,
+    blogs: true,
+    skinType: true,
+    genderSection: true,
+  });
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -173,6 +184,27 @@ const Home = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [location]);
+
+  useEffect(() => {
+    const starRef = ref(database, "trendingProducts");
+    onValue(starRef, (snap) => {
+      const data = snap.val();
+      if (data) {
+        const arr = Object.values(data).filter((item) => item.active === true);
+        setTrending(arr);
+      }
+    });
+  }, []);
+
+  const settingsRef = ref(database, "homepageSettings/sections");
+
+  useEffect(() => {
+    onValue(settingsRef, (snapshot) => {
+      if (snapshot.exists()) {
+        setHomeSections(snapshot.val());
+      }
+    });
+  }, []);
 
   // Load from localStorage on mount
   useEffect(() => {
@@ -264,58 +296,177 @@ const Home = () => {
         </p>
       </div>
       {/* Top Categories */}
-      <div
-        id="topcategories"
-        style={{
-          marginTop: "100px",
-          textAlign: "center",
-        }}
-      >
-        <h2 style={{ color: "#D63384", fontFamily: "cursive" }}>
-          Top Categories
-        </h2>
-        <div className="top-categories-grid">
-          {Top.map((item, index) => (
-            <Link key={index} to={item.path} style={{ textDecoration: "none" }}>
-              <div
-                className="top-category-card"
-                style={{
-                  width: "200px",
-                  borderRadius: "18px",
-                  overflow: "hidden",
-                  background: "#fff",
-                  border: `2px solid #D63384`,
-                  boxShadow: "0 4px 15px rgba(212,175,55,0.2)",
-                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                  cursor: "pointer",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "scale(1.06)";
-                  e.currentTarget.style.boxShadow =
-                    "0 8px 25px rgba(212,175,55,0.4)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "scale(1)";
-                  e.currentTarget.style.boxShadow =
-                    "0 4px 15px rgba(212,175,55,0.2)";
-                }}
+      {homeSections.topCategories && (
+        <div
+          id="topcategories"
+          style={{ marginTop: "100px", textAlign: "center" }}
+        >
+          <h2 style={{ color: "#D63384", fontFamily: "cursive" }}>
+            Top Categories
+          </h2>
+          <div className="top-categories-grid">
+            {Top.map((item, index) => (
+              <Link
+                key={index}
+                to={item.path}
+                style={{ textDecoration: "none" }}
               >
-                <img
-                  src={item.image}
-                  alt={item.title}
+                <div
+                  className="top-category-card"
                   style={{
-                    width: "100%",
-                    height: "250px",
-                    objectFit: "cover",
+                    width: "240px",
+                    borderRadius: "18px",
+                    overflow: "hidden",
+                    background: "#fff",
+                    border: `2px solid #D63384`,
+                    boxShadow: "0 4px 15px rgba(212,175,55,0.2)",
+                    transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                    cursor: "pointer",
                   }}
-                />
-                <div style={{ padding: "10px" }}>
-                  <h4 style={{ margin: 0, color: "#D63384" }}>{item.title}</h4>
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "scale(1.06)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "scale(1)";
+                  }}
+                >
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    style={{
+                      width: "100%",
+                      height: "250px",
+                      objectFit: "cover",
+                    }}
+                  />
+                  <div style={{ padding: "10px" }}>
+                    <h4 style={{ margin: 0, color: "#D63384" }}>
+                      {item.title}
+                    </h4>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            ))}
+          </div>
         </div>
+      )}
+      {/* ✅ Trending Products Section */}
+      <div>
+        {homeSections.trending && (
+          <div
+            style={{
+              background: "#F6E8D7",
+              height: "450px",
+              marginTop: "60px",
+            }}
+          >
+            <h2
+              style={{
+                paddingTop: "10px",
+                paddingLeft: "20px",
+                fontSize: "30px",
+                color: "#D63384",
+              }}
+            >
+              {" "}
+              Trending Products
+            </h2>
+            <Slider
+              {...{
+                dots: false,
+                infinite: true,
+                speed: 600,
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2500,
+                responsive: [
+                  { breakpoint: 1024, settings: { slidesToShow: 3 } },
+                  { breakpoint: 768, settings: { slidesToShow: 2 } },
+                  { breakpoint: 480, settings: { slidesToShow: 1 } },
+                ],
+              }}
+            >
+              {/* ✅ Product Card 1 */}
+              {trending.map((item, index) => (
+                <div key={index} style={{ padding: "6px" }}>
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <div
+                      style={{
+                        background: "#fff",
+                        borderRadius: "12px",
+                        border: "1px solid #e5e5e5",
+                        padding: "12px",
+                        textAlign: "center",
+                        boxShadow: "0px 2px 8px rgba(0,0,0,0.08)",
+                        transition: "0.3s",
+                        cursor: "pointer",
+                        width: "180px",
+                        margin: " 0 auto",
+                      }}
+                    >
+                      {/* ✅ Flipkart-style tall image section */}
+                      <div
+                        style={{
+                          width: "100%",
+                          height: "240px",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          background: "#fafafa",
+                          borderRadius: "10px",
+                          overflow: "hidden",
+                        }}
+                      >
+                        <img
+                          src={item.image}
+                          alt="Product"
+                          style={{
+                            width: "80%",
+                            height: "100%",
+                            objectFit: "contain",
+                          }}
+                        />
+                      </div>
+
+                      {/* ✅ Title */}
+                      <h4
+                        style={{
+                          fontSize: "15px",
+                          fontWeight: "600",
+                          color: "#333",
+                          marginTop: "10px",
+                          whiteSpace: "nowrap",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                        }}
+                      >
+                        {item.title}
+                      </h4>
+
+                      {/* ✅ Price */}
+                      <p
+                        style={{
+                          fontSize: "14px",
+                          fontWeight: "700",
+                          color: "#d32f2f",
+                          marginTop: "4px",
+                        }}
+                      >
+                        ₹{item.price}
+                      </p>
+                    </div>
+                  </a>
+                </div>
+              ))}
+            </Slider>
+          </div>
+        )}
       </div>
       {/* Responsive Styles */}
       <style>
@@ -341,7 +492,7 @@ const Home = () => {
         font-size: 20px !important;
       }
       .top-category-card {
-        width: 150px !important;
+        width: 350px !important;
       }
     }
 
@@ -356,7 +507,7 @@ const Home = () => {
         font-size: 12px !important;
       }
       .top-category-card {
-        width: 130px !important;
+        width: 180px !important;
       }
     }
 
@@ -523,7 +674,7 @@ const Home = () => {
         font-size: 20px !important;
       }
       .top-category-card {
-        width: 150px !important;
+        width: 180px !important;
       }
     }
 
@@ -682,234 +833,252 @@ const Home = () => {
     }
   `}
       </style>
-      <div
-        style={{
-          marginTop: "50px",
-          textAlign: "center",
-        }}
-      >
-        <h2 style={{ color: "#D63384", fontFamily: "cursive" }}>
-          Shop Skincare Products by Your Skin Type
-        </h2>
-        <div className="skin-type-grid">
-          {Skin.map((item, index) => (
-            <Link key={index} to={item.path} style={{ textDecoration: "none" }}>
-              <div
-                className="top-category-card"
-                style={{
-                  width: "300px",
-                  borderRadius: "18px",
-                  overflow: "hidden",
-                  background: "#fff",
-                  border: `2px solid #D63384`,
-                  boxShadow: "0 4px 15px rgba(212,175,55,0.2)",
-                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                  cursor: "pointer",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "scale(1.06)";
-                  e.currentTarget.style.boxShadow =
-                    "0 8px 25px rgba(212,175,55,0.4)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "scale(1)";
-                  e.currentTarget.style.boxShadow =
-                    "0 4px 15px rgba(212,175,55,0.2)";
-                }}
+      {homeSections.skinType && (
+        <div
+          style={{
+            marginTop: "50px",
+            textAlign: "center",
+          }}
+        >
+          <h2 style={{ color: "#D63384", fontFamily: "cursive" }}>
+            Shop Skincare Products by Your Skin Type
+          </h2>
+          <div className="skin-type-grid">
+            {Skin.map((item, index) => (
+              <Link
+                key={index}
+                to={item.path}
+                style={{ textDecoration: "none" }}
               >
-                <img
-                  src={item.image}
-                  alt={item.title}
+                <div
+                  className="top-category-card"
                   style={{
-                    width: "100%",
-                    height: "250px",
-                    objectFit: "cover",
+                    width: "300px",
+                    borderRadius: "18px",
+                    overflow: "hidden",
+                    background: "#fff",
+                    border: `2px solid #D63384`,
+                    boxShadow: "0 4px 15px rgba(212,175,55,0.2)",
+                    transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                    cursor: "pointer",
                   }}
-                />
-                <div style={{ padding: "10px" }}>
-                  <h4 style={{ margin: 0, color: "#D63384" }}>{item.title}</h4>
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "scale(1.06)";
+                    e.currentTarget.style.boxShadow =
+                      "0 8px 25px rgba(212,175,55,0.4)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "scale(1)";
+                    e.currentTarget.style.boxShadow =
+                      "0 4px 15px rgba(212,175,55,0.2)";
+                  }}
+                >
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    style={{
+                      width: "100%",
+                      height: "250px",
+                      objectFit: "cover",
+                    }}
+                  />
+                  <div style={{ padding: "10px" }}>
+                    <h4 style={{ margin: 0, color: "#D63384" }}>
+                      {item.title}
+                    </h4>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
       {/*SKin................*/}
       {/** gender */}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: isMobile ? "column" : "row",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: isMobile ? "20px" : "60px",
-          paddingTop: "10px",
-          color: "#D63384",
-          fontFamily: "cursive",
-        }}
-      >
-        <Link
-          to="/women"
+      {homeSections.genderSection && (
+        <div
           style={{
-            textAlign: "center",
-            textDecoration: "none",
+            display: "flex",
+            flexDirection: isMobile ? "column" : "row",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: isMobile ? "20px" : "60px",
+            paddingTop: "10px",
             color: "#D63384",
+            fontFamily: "cursive",
           }}
         >
-          <h1>Women</h1>
-          <img
-            src={Women}
-            alt="Women"
+          <Link
+            to="/women"
             style={{
-              height: "350px",
-              width: isMobile ? "300px" : "600px",
-              maxWidth: "100%",
-              borderRadius: "10px",
-              cursor: "pointer",
-              border: "1px solid #D63384",
-            }}
-          />
-        </Link>
-        <Link
-          to="/men"
-          style={{
-            textAlign: "center",
-            textDecoration: "none",
-            color: "#D63384",
-          }}
-        >
-          <h1>Men</h1>
-          <img
-            src={Men}
-            alt="Men"
-            style={{
-              height: "350px",
-              width: isMobile ? "300px" : "600px",
-              maxWidth: "100%",
-              borderRadius: "10px",
-              cursor: "pointer",
-              border: "1px solid #D63384",
-            }}
-          />
-        </Link>
-      </div>
-      {/** Blog1..................... */}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: isMobile ? "column" : "row",
-          justifyContent: "center",
-          alignItems: "center",
-          background: "#e3e1e1",
-          padding: "30px",
-          gap: "40px",
-          width: "70%",
-          margin: "40px auto",
-          boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
-          height: isMobile ? "auto" : "400px",
-          borderRadius: "20px",
-        }}
-      >
-        <div style={{ textAlign: "center", flex: 1 }}>
-          <h1 style={{ maxWidth: "700px", margin: "0 auto", color: "#D63384" }}>
-            Explore our Eyecare essentials and unlock the secret to glowing,
-            confident eyes
-          </h1>
-          <p
-            style={{
-              Width: "450px",
-              margin: "20px auto",
-              lineHeight: "1.6",
-              fontSize: "16px",
-              color: "#333",
+              textAlign: "center",
+              textDecoration: "none",
+              color: "#D63384",
             }}
           >
-            Your eyes deserve the best care. Whether it's dark circles,
-            puffiness, or dryness, our eyecare collection is designed to refresh
-            and protect your under-eye area. With hydrating creams and powerful
-            serums, we help reduce fine lines, wrinkles, and signs of fatigue
-            for a brighter, youthful look.
-          </p>
-          <h3 style={{ color: "#555", marginTop: "20px" }}>
-            Say goodbye to tired eyes and hello to a refreshed, radiant gaze.
-          </h3>
-        </div>
-        <div style={{ flex: 1 }}>
-          <img
-            src={blog1}
-            alt="Eyecare"
+            <h1>Women</h1>
+            <img
+              src={Women}
+              alt="Women"
+              style={{
+                height: "350px",
+                width: isMobile ? "300px" : "600px",
+                maxWidth: "100%",
+                borderRadius: "10px",
+                cursor: "pointer",
+                border: "1px solid #D63384",
+              }}
+            />
+          </Link>
+          <Link
+            to="/men"
             style={{
-              width: "100%",
-              maxWidth: "550px",
-              height: isMobile ? "auto" : "400px",
-              borderRadius: "20px",
-              mixBlendMode: "multiply",
-              objectFit: "cover",
-              opacity: 0.9,
-              border: "1px solid #D63384",
+              textAlign: "center",
+              textDecoration: "none",
+              color: "#D63384",
             }}
-          />
+          >
+            <h1>Men</h1>
+            <img
+              src={Men}
+              alt="Men"
+              style={{
+                height: "350px",
+                width: isMobile ? "300px" : "600px",
+                maxWidth: "100%",
+                borderRadius: "10px",
+                cursor: "pointer",
+                border: "1px solid #D63384",
+              }}
+            />
+          </Link>
         </div>
-      </div>
+      )}
+      {/** Blog1..................... */}
+      {homeSections.blogs && (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: isMobile ? "column" : "row",
+            justifyContent: "center",
+            alignItems: "center",
+            background: "#e3e1e1",
+            padding: "30px",
+            gap: "40px",
+            width: "70%",
+            margin: "40px auto",
+            boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+            height: isMobile ? "auto" : "400px",
+            borderRadius: "20px",
+          }}
+        >
+          <div style={{ textAlign: "center", flex: 1 }}>
+            <h1
+              style={{ maxWidth: "700px", margin: "0 auto", color: "#D63384" }}
+            >
+              Explore our Eyecare essentials and unlock the secret to glowing,
+              confident eyes
+            </h1>
+            <p
+              style={{
+                Width: "450px",
+                margin: "20px auto",
+                lineHeight: "1.6",
+                fontSize: "16px",
+                color: "#333",
+              }}
+            >
+              Your eyes deserve the best care. Whether it's dark circles,
+              puffiness, or dryness, our eyecare collection is designed to
+              refresh and protect your under-eye area. With hydrating creams and
+              powerful serums, we help reduce fine lines, wrinkles, and signs of
+              fatigue for a brighter, youthful look.
+            </p>
+            <h3 style={{ color: "#555", marginTop: "20px" }}>
+              Say goodbye to tired eyes and hello to a refreshed, radiant gaze.
+            </h3>
+          </div>
+          <div style={{ flex: 1 }}>
+            <img
+              src={blog1}
+              alt="Eyecare"
+              style={{
+                width: "100%",
+                maxWidth: "550px",
+                height: isMobile ? "auto" : "400px",
+                borderRadius: "20px",
+                mixBlendMode: "multiply",
+                objectFit: "cover",
+                opacity: 0.9,
+                border: "1px solid #D63384",
+              }}
+            />
+          </div>
+        </div>
+      )}
       {/** Blog1..................... */}
       {/** Blog2..................... */}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: isMobile ? "column" : "row",
-          justifyContent: "center",
-          alignItems: "center",
-          background: "#e3e1e1",
-          padding: "30px",
-          gap: "40px",
-          width: "70%",
-          margin: "40px auto",
-          boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
-          height: isMobile ? "auto" : "400px",
-          borderRadius: "20px",
-        }}
-      >
-        <div style={{ flex: 1 }}>
-          <img
-            src={Blog2}
-            alt="Facecare"
-            style={{
-              width: "100%",
-              maxWidth: "550px",
-              height: isMobile ? "auto" : "400px",
-              borderRadius: "20px",
-              mixBlendMode: "multiply",
-              objectFit: "cover",
-              opacity: 0.9,
-              border: "1px solid #D63384",
-            }}
-          />
+      {homeSections.blogs && (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: isMobile ? "column" : "row",
+            justifyContent: "center",
+            alignItems: "center",
+            background: "#e3e1e1",
+            padding: "30px",
+            gap: "40px",
+            width: "70%",
+            margin: "40px auto",
+            boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+            height: isMobile ? "auto" : "400px",
+            borderRadius: "20px",
+          }}
+        >
+          <div style={{ flex: 1 }}>
+            <img
+              src={Blog2}
+              alt="Facecare"
+              style={{
+                width: "100%",
+                maxWidth: "550px",
+                height: isMobile ? "auto" : "400px",
+                borderRadius: "20px",
+                mixBlendMode: "multiply",
+                objectFit: "cover",
+                opacity: 0.9,
+                border: "1px solid #D63384",
+              }}
+            />
+          </div>
+          <div style={{ textAlign: "center", flex: 1 }}>
+            <h1
+              style={{ maxWidth: "700px", margin: "0 auto", color: "#D63384" }}
+            >
+              Nourish, Rejuvenate, and Glow: The Ultimate Face Care Ritual
+            </h1>
+            <p
+              style={{
+                Width: "450px",
+                margin: "20px auto",
+                lineHeight: "1.6",
+                fontSize: "16px",
+                color: "#333",
+              }}
+            >
+              Your face deserves the finest care — it's the canvas of your
+              beauty. Whether you're aiming to combat acne, reduce pigmentation,
+              or simply maintain radiant, balanced skin, our face care
+              collection has been designed with all skin types in mind. From
+              deeply hydrating moisturizers and brightening serums to gentle
+              cleansers and exfoliants.
+            </p>
+            <h3 style={{ color: "#555", marginTop: "20px" }}>
+              Let your natural beauty shine through with every step.
+            </h3>
+          </div>
         </div>
-        <div style={{ textAlign: "center", flex: 1 }}>
-          <h1 style={{ maxWidth: "700px", margin: "0 auto", color: "#D63384" }}>
-            Nourish, Rejuvenate, and Glow: The Ultimate Face Care Ritual
-          </h1>
-          <p
-            style={{
-              Width: "450px",
-              margin: "20px auto",
-              lineHeight: "1.6",
-              fontSize: "16px",
-              color: "#333",
-            }}
-          >
-            Your face deserves the finest care — it's the canvas of your beauty.
-            Whether you're aiming to combat acne, reduce pigmentation, or simply
-            maintain radiant, balanced skin, our face care collection has been
-            designed with all skin types in mind. From deeply hydrating
-            moisturizers and brightening serums to gentle cleansers and
-            exfoliants.
-          </p>
-          <h3 style={{ color: "#555", marginTop: "20px" }}>
-            Let your natural beauty shine through with every step.
-          </h3>
-        </div>
-      </div>
+      )}
       {/** Blog2..................... */}
       {/* Testimonials..................... */}
       <p

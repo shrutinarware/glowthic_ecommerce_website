@@ -33,6 +33,9 @@ import LoginIcon from "@mui/icons-material/Login";
 import AnalyticsIcon from "@mui/icons-material/Analytics";
 import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 import StoreIcon from "@mui/icons-material/Store";
+import LocalOfferIcon from "@mui/icons-material/LocalOffer";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import HomeIcon from "@mui/icons-material/Home";
 
 const drawerWidth = 240;
 
@@ -557,6 +560,23 @@ export default function Sidebar() {
       </Collapse>
       <List>
         <ListItem disablePadding>
+          <ListItemButton onClick={() => navigate(`/admin-homepage-setting`)}>
+            <ListItemIcon>
+              <HomeIcon
+                sx={{
+                  fontSize: "35px",
+                  color: "black",
+                  height: "35px",
+                  width: "35px",
+                }}
+              />
+            </ListItemIcon>
+            <ListItemText primary="Home Page" />
+          </ListItemButton>
+        </ListItem>
+      </List>
+      <List>
+        <ListItem disablePadding>
           <ListItemButton onClick={() => navigate(`/admin-brands`)}>
             <ListItemIcon>
               <StoreIcon
@@ -569,6 +589,41 @@ export default function Sidebar() {
               />
             </ListItemIcon>
             <ListItemText primary="Brands" />
+          </ListItemButton>
+        </ListItem>
+      </List>
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton onClick={() => navigate(`/admin-trending-product`)}>
+            <ListItemIcon>
+              <TrendingUpIcon
+                sx={{
+                  fontSize: "35px",
+                  color: "black",
+                  height: "35px",
+                  width: "35px",
+                }}
+              />
+            </ListItemIcon>
+            <ListItemText primary="Trending Product" />
+          </ListItemButton>
+        </ListItem>
+      </List>
+
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton onClick={() => navigate(`/admin-deals-manager`)}>
+            <ListItemIcon>
+              <LocalOfferIcon
+                sx={{
+                  fontSize: "35px",
+                  color: "black",
+                  height: "35px",
+                  width: "35px",
+                }}
+              />
+            </ListItemIcon>
+            <ListItemText primary="Deals" />
           </ListItemButton>
         </ListItem>
       </List>

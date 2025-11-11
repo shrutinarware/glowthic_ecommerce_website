@@ -56,6 +56,9 @@ import AdminSlideFragnance from "./AdminSubPage/AdminSlideFragnance";
 import AdminSlideBath from "./AdminSubPage/AdminSlideBath";
 import AdminSlideAppliances from "./AdminSubPage/AdminSlideAppliances";
 import AdminBrands from "./AdminSubPage/AdminBrands";
+import AdminTrendingProduct from "./AdminSubPage/AdminTrendingProduct";
+import AdminHomepageSettings from "./AdminSubPage/AdminHomePageSetting";
+import AdminDealsManager from "./AdminSubPage/AdminDealsManager";
 
 const AdminLayout = () => {
   return (
@@ -501,6 +504,33 @@ const AdminLayout = () => {
           element={
             <ProtectedRoute>
               <UserActivityInfo />
+              <Sidebar />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin-trending-product"
+          element={
+            <ProtectedRoute>
+              <AdminTrendingProduct />
+              <Sidebar />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="//admin-homepage-setting"
+          element={
+            <ProtectedRoute>
+              <AdminHomepageSettings />
+              <Sidebar />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin-deals-manager"
+          element={
+            <ProtectedRoute>
+              <AdminDealsManager />
               <Sidebar />
             </ProtectedRoute>
           }

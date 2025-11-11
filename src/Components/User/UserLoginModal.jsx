@@ -5,7 +5,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import BrandLogo from "../../assets/Topbar/glow_aesthetic_logo.svg";
 import { useNavigate } from "react-router-dom";
 
-const UserLogin = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
+const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
   const [email, setEmail] = useState("");
   const [mobilenumber, setMobileNumber] = useState("");
   const [password, setPassword] = useState("");
@@ -171,8 +171,10 @@ const UserLogin = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        overflowY: "auto", // ✅ allow scroll
-        padding: isMobile || isTablet ? "20px 0" : "0",
+        overflowY: "auto",
+        padding: isMobile ? "20px 0" : "40px 0",
+        paddingLeft: "0",
+        paddingRight: "0",
         zIndex: 9999,
         backdropFilter: "blur(4px)",
       }}
@@ -181,14 +183,15 @@ const UserLogin = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
         style={{
           display: "flex",
           flexDirection: isMobile ? "column" : "row",
-          width: isMobile ? "90%" : isTablet ? "80%" : "900px",
+          width: isMobile ? "94%" : isTablet ? "86%" : "520px",
+          maxWidth: "520px",
           height: "auto",
           maxHeight: isMobile ? "none" : "95vh",
           overflow: "visible",
           background: "rgba(255,192,203,0.95)",
           position: "relative",
           transition: "all 0.3s ease",
-          margin: isMobile || isTablet ? "40px 0" : "0",
+          margin: isMobile ? "20px 0" : isTablet ? "30px 0" : "0",
           boxShadow:
             "0 0 35px rgba(255,182,193,0.45), 0 0 10px rgba(255,215,0,0.25)",
           borderRadius: "18px",
@@ -212,32 +215,7 @@ const UserLogin = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
         >
           &times;
         </span>
-        {/* LEFT - Logo */}
-        <div
-          style={{
-            flex: isMobile ? "none" : 1,
-            width: isMobile ? "100%" : "auto",
-            background: "white",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-            padding: isMobile ? "20px 0" : "0",
-            boxSizing: "border-box",
-          }}
-        >
-          <img
-            src={BrandLogo}
-            alt="Brand Logo"
-            style={{
-              width: isMobile ? "65%" : isTablet ? "70%" : "75%",
-              objectFit: "contain",
-              marginTop: 0,
-              marginBottom: isMobile ? "10px" : "0",
-            }}
-          />
-          {isMobile && <div style={{ height: "10px" }}></div>}
-        </div>
+
         {/* RIGHT - Form */}
         <div
           style={{
@@ -247,7 +225,7 @@ const UserLogin = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "flex-start",
-            marginTop: "10%",
+            marginTop: isMobile ? "0px" : "20px",
             boxSizing: "border-box",
           }}
         >
@@ -308,7 +286,7 @@ const UserLogin = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                   color: "#D63384",
                   fontFamily: "cursive",
                   marginBottom: "20px",
-                  marginTop: "-40px",
+                  marginTop: isMobile ? "-10px" : "-40px",
                 }}
               >
                 Welcome to Glowthic Community
@@ -327,13 +305,21 @@ const UserLogin = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                   Log in
                 </span>
               </p>
-              <p style={{ color: "#D63384", marginBottom: "5px" }}>Name</p>
+              <p
+                style={{
+                  color: "#D63384",
+                  marginBottom: "5px",
+                  fontWeight: "bold",
+                }}
+              >
+                Name
+              </p>
               <input
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 style={{
-                  width: "100%",
+                  width: "92%",
                   padding: "10px",
                   fontSize: "16px",
                   border: "1px solid #D63384",
@@ -344,13 +330,21 @@ const UserLogin = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
               />
 
               {/* Email */}
-              <p style={{ color: "#D63384", marginBottom: "5px" }}>Email</p>
+              <p
+                style={{
+                  color: "#D63384",
+                  marginBottom: "5px",
+                  fontWeight: "bold",
+                }}
+              >
+                Email
+              </p>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 style={{
-                  width: "100%",
+                  width: "92%",
                   padding: "10px",
                   fontSize: "16px",
                   border: "1px solid #D63384",
@@ -359,20 +353,15 @@ const UserLogin = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                   marginBottom: "10px",
                 }}
               />
-              {email && (
-                <p
-                  style={{
-                    fontSize: "12px",
-                    color: "#D63384",
-                    marginTop: "2px",
-                    fontStyle: "italic",
-                  }}
-                >
-                  Your email will be used as your username.
-                </p>
-              )}
+
               {/* Contact */}
-              <p style={{ color: "#D63384", marginBottom: "5px" }}>
+              <p
+                style={{
+                  color: "#D63384",
+                  marginBottom: "5px",
+                  fontWeight: "bold",
+                }}
+              >
                 Contact No.
               </p>
               <input
@@ -380,7 +369,7 @@ const UserLogin = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                 value={mobilenumber}
                 onChange={(e) => setMobileNumber(e.target.value.slice(0, 10))}
                 style={{
-                  width: "100%",
+                  width: "92%",
                   padding: "10px",
                   fontSize: "16px",
                   border: "1px solid #D63384",
@@ -390,14 +379,22 @@ const UserLogin = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                 }}
               />
               {/* Password */}
-              <p style={{ color: "#D63384", marginBottom: "5px" }}>Password</p>
+              <p
+                style={{
+                  color: "#D63384",
+                  marginBottom: "5px",
+                  fontWeight: "bold",
+                }}
+              >
+                Password
+              </p>
               <div style={{ position: "relative", marginBottom: "15px" }}>
                 <input
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   style={{
-                    width: "100%",
+                    width: "92%",
                     padding: "10px",
                     fontSize: "16px",
                     border: "1px solid #D63384",
@@ -409,8 +406,8 @@ const UserLogin = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                   onClick={() => setShowPassword(!showPassword)}
                   style={{
                     position: "absolute",
-                    right: "10px",
-                    top: "-18%",
+                    right: "20px",
+                    top: "50%",
                     transform: "translateY(-50%)",
                     cursor: "pointer",
                     color: "#D63384",
@@ -468,7 +465,7 @@ const UserLogin = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
           ) : (
             <>
               {/* Login Form */}
-              <h2
+              <h1
                 style={{
                   textAlign: "center",
                   color: "#D63384",
@@ -477,15 +474,23 @@ const UserLogin = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                 }}
               >
                 Login to Glowthic
-              </h2>
+              </h1>
 
-              <p style={{ color: "#D63384", marginBottom: "5px" }}>Email</p>
+              <p
+                style={{
+                  color: "#D63384",
+                  marginBottom: "5px",
+                  fontWeight: "bold",
+                }}
+              >
+                Email
+              </p>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 style={{
-                  width: "100%",
+                  width: "92%",
                   padding: "10px",
                   fontSize: "16px",
                   border: "1px solid #D63384",
@@ -494,14 +499,22 @@ const UserLogin = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                   marginBottom: "10px",
                 }}
               />
-              <p style={{ color: "#D63384", marginBottom: "5px" }}>Password</p>
+              <p
+                style={{
+                  color: "#D63384",
+                  marginBottom: "5px",
+                  fontWeight: "bold",
+                }}
+              >
+                Password
+              </p>
               <div style={{ position: "relative", marginBottom: "15px" }}>
                 <input
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   style={{
-                    width: "100%",
+                    width: "92%",
                     padding: "10px",
                     fontSize: "16px",
                     border: "1px solid #D63384",
@@ -513,8 +526,8 @@ const UserLogin = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                   onClick={() => setShowPassword(!showPassword)}
                   style={{
                     position: "absolute",
-                    right: "10px",
-                    top: "-18%",
+                    right: "25px",
+                    top: "50%",
                     transform: "translateY(-50%)",
                     cursor: "pointer",
                     color: "#D63384",
@@ -524,6 +537,18 @@ const UserLogin = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                   {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
                 </span>
               </div>
+              <p
+                style={{
+                  textAlign: "center",
+                  fontSize: "12px",
+                  cursor: "pointer",
+                  color: "#D63384",
+                  fontWeight: "bold",
+                }}
+                onClick={() => setShowLogin(false)}
+              >
+                Back to Create Account
+              </p>
               <button
                 onClick={handleLogin}
                 style={{
@@ -536,21 +561,11 @@ const UserLogin = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                   fontSize: "16px",
                   cursor: "pointer",
                   marginBottom: "15px",
+                  alignContent: "center",
                 }}
               >
                 Sign In
               </button>
-              <p
-                style={{
-                  textAlign: "center",
-                  fontSize: "12px",
-                  cursor: "pointer",
-                  color: "#D63384",
-                }}
-                onClick={() => setShowLogin(false)}
-              >
-                Back to Create Account
-              </p>
             </>
           )}
           {signupError && (
@@ -583,4 +598,4 @@ const UserLogin = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
   );
 };
 
-export default UserLogin;
+export default UserLoginModal;
