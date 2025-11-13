@@ -1,6 +1,6 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
 import { Link, useLocation } from "react-router-dom";
-import LOGO from "../../assets/Topbar/glow_aesthetic_logo.svg";
+import LOGO from "../../assets/Topbar/logo.jpg.png";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
@@ -157,34 +157,29 @@ const Topbar = () => {
           top: 0,
           left: 0,
           width: "100%",
-          height: "100px",
-          background: "pink",
+          height: isMobile ? "80px" : "110px",
+          background: "black",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          padding: "0 20px",
+          padding: isMobile ? "0 10px" : "0 25px",
           boxSizing: "border-box",
           zIndex: 1000,
           flexWrap: "wrap",
         }}
       >
         {/* Left: Logo */}
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        <div style={{ flex: "0 0 auto" }}>
           <img
             src={LOGO}
             alt="Logo"
-            style={{ height: isMobile ? "50px" : "90px" }}
-          />
-          <h1
             style={{
-              color: "#D63384",
-              fontFamily: "cursive",
-              fontSize: isMobile ? "28px" : "40px",
-              margin: 0,
+              height: isMobile ? "45px" : "80px", // smaller on mobile
+              width: "auto",
+              objectFit: "contain",
+              marginLeft: isMobile ? "2px" : "0px",
             }}
-          >
-            Glowthic
-          </h1>
+          />
         </div>
         {/* Right: Nav links + Account */}
         <div
@@ -196,24 +191,31 @@ const Topbar = () => {
         >
           {/* Desktop Navigation */}
           {!isMobile && (
-            <div style={{ display: "flex", gap: "30px", alignItems: "center" }}>
+            <div
+              style={{
+                display: "flex",
+                gap: "30px",
+                alignItems: "center",
+                flexWrap: "nowrap",
+              }}
+            >
               {navItems.map((item, i) => (
                 <h3 key={i} style={{ margin: 0 }}>
                   <Link
                     key={i}
                     to={getLinkPath(item)}
                     onMouseEnter={(e) => {
-                      e.target.style.color = "#D63384";
+                      e.target.style.color = "white";
                       e.target.style.textShadow =
                         "0 0 8px rgba(255,215,0,0.6), 0 0 15px rgba(255,215,0,0.3)";
                     }}
                     onMouseLeave={(e) => {
-                      e.target.style.color = "white";
+                      e.target.style.color = "#dfb441";
                       e.target.style.textShadow = "none";
                     }}
                     style={{
                       textDecoration: "none",
-                      color: "white",
+                      color: "#dfb441",
                       fontSize: "18px",
                       transition: "all 0.3s ease",
                     }}
@@ -230,21 +232,25 @@ const Topbar = () => {
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: "5px",
+
                 position: "relative",
               }}
             >
               <div
                 onClick={handleAccountClick}
                 style={{
-                  cursor: "pointer",
+                  width: isMobile ? "35px" : "45px",
+                  height: isMobile ? "35px" : "45px",
+                  borderRadius: "10%",
+
+                  color: "#dfb441",
                   display: "flex",
-                  alignItems: "center",
-                  flexDirection: "column",
                   justifyContent: "center",
-                  position: "relative",
-                  minWidth: isMobile ? "45px" : "55px",
-                  marginTop: "10px",
+                  alignItems: "center",
+                  fontSize: isMobile ? "14px" : "18px",
+                  fontWeight: "bold",
+                  cursor: "pointer",
+                  userSelect: "none",
                 }}
               >
                 {isLoggedIn ? (
@@ -254,8 +260,8 @@ const Topbar = () => {
                       width: isMobile ? "30px" : "40px",
                       height: isMobile ? "30px" : "40px",
                       borderRadius: "10%",
-                      backgroundColor: "#D63384",
-                      color: "white",
+                      backgroundColor: "black",
+                      color: "black",
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
@@ -276,24 +282,17 @@ const Topbar = () => {
                     {username ? (
                       username.charAt(0).toUpperCase()
                     ) : (
-                      <AccountBoxIcon style={{ color: "white" }} />
+                      <AccountBoxIcon style={{ color: "pink" }} />
                     )}
                   </div>
                 ) : (
                   <AccountBoxIcon
                     onClick={handleAccountClick}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.filter =
-                        "drop-shadow(0 0 8px rgba(255,215,0,0.6)) drop-shadow(0 0 20px rgba(255,215,0,0.3))";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.filter = "none";
-                    }}
                     style={{
-                      fontSize: isMobile ? 38 : 55,
-                      color: "#D63384",
-                      marginTop: "-6px",
+                      fontSize: isMobile ? 40 : 55,
+                      marginTop: "6px",
                       transition: "all 0.3s ease",
+                      cursor: "pointer",
                     }}
                   />
                 )}
@@ -302,19 +301,23 @@ const Topbar = () => {
                   <div
                     style={{
                       position: "absolute",
-                      top: "100%",
+                      top: "110%",
                       right: 0,
                       background: "white",
-                      border: "1px solid #D63384",
+                      border: "1px solid #dfb441",
                       borderRadius: "8px",
                       padding: "10px",
                       boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
-                      zIndex: 1000,
-                      marginTop: "4px",
+                      zIndex: 1200,
                     }}
                   >
                     <p
-                      style={{ margin: 0, cursor: "pointer", color: "#D63384" }}
+                      style={{
+                        margin: 0,
+                        cursor: "pointer",
+                        color: "black",
+                        fontSize: "14px",
+                      }}
                       onClick={handleLogout}
                     >
                       Logout
@@ -357,7 +360,12 @@ const Topbar = () => {
           {isMobile && (
             <div
               onClick={toggleMenu}
-              style={{ fontSize: "30px", color: "#D63384", cursor: "pointer" }}
+              style={{
+                fontSize: "33px",
+                color: "#dfb441",
+                cursor: "pointer",
+                marginLeft: "8px",
+              }}
             >
               &#9776;
             </div>
@@ -365,18 +373,17 @@ const Topbar = () => {
         </div>
       </div>
       {/* Spacer */}
-      {!isAdminPage && <div style={{ height: isMobile ? "95px" : "130px" }} />}
+      {!isAdminPage && <div style={{ height: isMobile ? "75px" : "120px" }} />}
       {/* Mobile Menu */}
       {isMobile && isMobileMenuOpen && (
         <div
           style={{
-            background: "pink",
+            background: "#C5A45F",
             display: "flex",
             flexDirection: "column",
-            gap: "10px",
+            gap: "12px",
             padding: "18px 0",
             textAlign: "center",
-            marginBottom: "12px",
           }}
         >
           {navItems.map((item, i) => (
@@ -386,8 +393,8 @@ const Topbar = () => {
               onClick={toggleMenu}
               style={{
                 textDecoration: "none",
-                color: "white",
-                fontSize: "18px",
+                color: "black",
+                fontSize: "17px",
               }}
             >
               {item}

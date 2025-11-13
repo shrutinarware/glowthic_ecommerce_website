@@ -203,7 +203,7 @@ const styles = {
     textAlign: "center",
     fontSize: "28px",
     marginBottom: "20px",
-    color: "#D63384",
+    color: "#7d0a0a",
     fontFamily: "sans-serif",
   },
 
@@ -217,7 +217,7 @@ const styles = {
     maxWidth: "400px",
     fontSize: "16px",
     borderRadius: "5px",
-    border: "1px solid #D63384",
+    border: "1px solid #7d0a0a",
   },
   cardLink: {
     textDecoration: "none",
@@ -229,7 +229,7 @@ const styles = {
     overflow: "hidden",
     transition: "transform 0.2s ease-in-out",
     height: "100%",
-    border: "2px solid pink",
+    border: "2px solid #D4AF37",
   },
   cardImage: {
     width: "100%",
@@ -243,7 +243,7 @@ const styles = {
   cardTitle: {
     margin: 0,
     fontWeight: "bold",
-    color: "#333",
+    color: "#7d0a0a",
     fontSize: "16px",
   },
 };

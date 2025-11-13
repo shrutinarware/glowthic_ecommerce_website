@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { ref, onValue } from "firebase/database";
+import { ref, onValue, push, set } from "firebase/database";
 import { database } from "../../Firebase";
 
 // Slider Images
@@ -38,6 +38,10 @@ import Men from "../../assets/Gender/men.jpg";
 // Blog
 import blog1 from "../../assets/Blog/eyecare.jpg";
 import Blog2 from "../../assets/Blog/facecare.jpg";
+import Blog3 from "../../assets/Blog/haircare.jpg";
+
+//Icons
+import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 
 const settings = {
   dots: true,
@@ -47,11 +51,11 @@ const settings = {
   slidesToScroll: 1,
   autoplay: true,
   autoplaySpeed: 2000,
-  arrows: false,
+  arrows: true,
 };
 
 const sliderSettings = {
-  dots: true,
+  dots: false,
   infinite: true,
   speed: 500,
   slidesToShow: 1,
@@ -164,6 +168,55 @@ const Home = () => {
     skinType: true,
     genderSection: true,
   });
+  const [userId, setUserId] = useState(() => {});
+
+  useEffect(() => {
+    const storedUserId = localStorage.getItem("userId");
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+    if (isLoggedIn && storedUserId) {
+      setUserId(storedUserId);
+    } else {
+      setUserId(null);
+    }
+
+    const handleStorageChange = () => {
+      const storedUserId = localStorage.getItem("userId");
+      const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+      if (isLoggedIn && storedUserId) {
+        setUserId(storedUserId);
+      } else {
+        setUserId(null);
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
+
+  const handleTrendingClick = async (item) => {
+    if (!userId) {
+      window.dispatchEvent(new CustomEvent("openLoginModal"));
+      return;
+    }
+
+    try {
+      const logRef = push(ref(database, "UserActivityInfo"));
+      await set(logRef, {
+        userId: userId,
+        productId: item.id || "",
+        productName: item.Heading || "",
+        category: "Trending",
+        productLink: item.link || "",
+        timestamp: new Date().toISOString(),
+      });
+
+      if (item.link) window.open(item.link, "_blank");
+    } catch (err) {
+      console.error("Failed to log trending product click:", err);
+    }
+  };
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -214,21 +267,28 @@ const Home = () => {
       setIsLoggedIn(true);
     }
   }, []);
-  const gold = "#d4af37"; // elegant gold tone
 
   return (
-    <div style={{ padding: "1% 0 10px 10px", fontFamily: "sans-serif" }}>
+    <div
+      style={{
+        padding: "0 0 10px 0",
+        fontFamily: "sans-serif",
+        marginTop: "-10px",
+      }}
+    >
       <p
         style={{
           textAlign: "center",
-          color: "#D63384",
-          fontFamily: "cursive",
-          fontSize: "30px",
+          color: "black",
+          paddingTop: "10px",
+          fontFamily: "sans-serif",
+          fontSize: "35px",
           fontWeight: "bolder",
           flex: "1 1 100%",
         }}
       >
-        Your Ultimate Makeup and SkinCare Collection: Discover Your Perfect Look
+        ⭐Your Ultimate Makeup and SkinCare Collection:Discover Your Perfect
+        Look⭐
       </p>
       {/* Slider */}
       <div style={{ width: "80%", margin: "0 auto" }}>
@@ -262,7 +322,7 @@ const Home = () => {
                     fontWeight: "bolder",
                   }}
                 >
-                  <h2 style={{ fontSize: "40px", margin: 0, color: "#D63384" }}>
+                  <h2 style={{ fontSize: "40px", margin: 0, color: "#7d0a0a" }}>
                     {slide.title}
                   </h2>
                   <p style={{ fontSize: "16px", marginTop: "10px" }}>
@@ -284,7 +344,11 @@ const Home = () => {
         }}
       >
         <h3
-          style={{ color: "#D63384", fontFamily: "cursive", fontSize: "24px" }}
+          style={{
+            color: "#7d0a0a",
+            fontFamily: "sans-serif",
+            fontSize: "24px",
+          }}
         >
           Discover the Products You Love
         </h3>
@@ -295,67 +359,11 @@ const Home = () => {
           every day. Explore quality, color, and care — all in one place.
         </p>
       </div>
-      {/* Top Categories */}
-      {homeSections.topCategories && (
-        <div
-          id="topcategories"
-          style={{ marginTop: "100px", textAlign: "center" }}
-        >
-          <h2 style={{ color: "#D63384", fontFamily: "cursive" }}>
-            Top Categories
-          </h2>
-          <div className="top-categories-grid">
-            {Top.map((item, index) => (
-              <Link
-                key={index}
-                to={item.path}
-                style={{ textDecoration: "none" }}
-              >
-                <div
-                  className="top-category-card"
-                  style={{
-                    width: "240px",
-                    borderRadius: "18px",
-                    overflow: "hidden",
-                    background: "#fff",
-                    border: `2px solid #D63384`,
-                    boxShadow: "0 4px 15px rgba(212,175,55,0.2)",
-                    transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                    cursor: "pointer",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = "scale(1.06)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = "scale(1)";
-                  }}
-                >
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    style={{
-                      width: "100%",
-                      height: "250px",
-                      objectFit: "cover",
-                    }}
-                  />
-                  <div style={{ padding: "10px" }}>
-                    <h4 style={{ margin: 0, color: "#D63384" }}>
-                      {item.title}
-                    </h4>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
       {/* ✅ Trending Products Section */}
       <div>
         {homeSections.trending && (
           <div
             style={{
-              background: "#F6E8D7",
               height: "450px",
               marginTop: "60px",
             }}
@@ -365,10 +373,12 @@ const Home = () => {
                 paddingTop: "10px",
                 paddingLeft: "20px",
                 fontSize: "30px",
-                color: "#D63384",
+                color: "#7d0a0a",
+                fontFamily: "sans-serif",
               }}
             >
               {" "}
+              <DoubleArrowIcon />
               Trending Products
             </h2>
             <Slider
@@ -389,18 +399,17 @@ const Home = () => {
             >
               {/* ✅ Product Card 1 */}
               {trending.map((item, index) => (
-                <div key={index} style={{ padding: "6px" }}>
-                  <a
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ textDecoration: "none" }}
-                  >
+                <div
+                  key={index}
+                  style={{ padding: "6px" }}
+                  onClick={() => handleTrendingClick(item)}
+                >
+                  <div style={{ textDecoration: "none" }}>
                     <div
                       style={{
                         background: "#fff",
                         borderRadius: "12px",
-                        border: "1px solid #e5e5e5",
+                        border: "2px solid   #dfb441",
                         padding: "12px",
                         textAlign: "center",
                         boxShadow: "0px 2px 8px rgba(0,0,0,0.08)",
@@ -418,7 +427,6 @@ const Home = () => {
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",
-                          background: "#fafafa",
                           borderRadius: "10px",
                           overflow: "hidden",
                         }}
@@ -453,21 +461,76 @@ const Home = () => {
                       <p
                         style={{
                           fontSize: "14px",
-                          fontWeight: "700",
-                          color: "#d32f2f",
+                          color: "#7d0a0a",
                           marginTop: "4px",
+                          fontWeight: "bold",
                         }}
                       >
                         ₹{item.price}
                       </p>
                     </div>
-                  </a>
+                  </div>
                 </div>
               ))}
             </Slider>
           </div>
         )}
       </div>
+      {/* Top Categories */}
+      {homeSections.topCategories && (
+        <div
+          id="topcategories"
+          style={{ marginTop: "30px", textAlign: "center" }}
+        >
+          <h2 style={{ color: "#7d0a0a", fontFamily: "sans-serif" }}>
+            ✨ Top Categories ✨
+          </h2>
+          <div className="top-categories-grid">
+            {Top.map((item, index) => (
+              <Link
+                key={index}
+                to={item.path}
+                style={{ textDecoration: "none" }}
+              >
+                <div
+                  className="top-category-card"
+                  style={{
+                    width: "220px",
+                    borderRadius: "18px",
+                    overflow: "hidden",
+                    background: "black",
+                    border: `2px solid #dfb441`,
+                    boxShadow: "0 4px 15px rgba(212,175,55,0.2)",
+                    transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                    cursor: "pointer",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "scale(1.06)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "scale(1)";
+                  }}
+                >
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    style={{
+                      width: "100%",
+                      height: "250px",
+                      objectFit: "cover",
+                    }}
+                  />
+                  <div style={{ padding: "10px" }}>
+                    <h4 style={{ margin: 0, color: "#dfb441" }}>
+                      {item.title}
+                    </h4>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
       {/* Responsive Styles */}
       <style>
         {`
@@ -840,7 +903,7 @@ const Home = () => {
             textAlign: "center",
           }}
         >
-          <h2 style={{ color: "#D63384", fontFamily: "cursive" }}>
+          <h2 style={{ color: "#7d0a0a", fontFamily: "sans-serif" }}>
             Shop Skincare Products by Your Skin Type
           </h2>
           <div className="skin-type-grid">
@@ -856,8 +919,8 @@ const Home = () => {
                     width: "300px",
                     borderRadius: "18px",
                     overflow: "hidden",
-                    background: "#fff",
-                    border: `2px solid #D63384`,
+                    background: "black",
+                    border: `2px solid #dfb441`,
                     boxShadow: "0 4px 15px rgba(212,175,55,0.2)",
                     transition: "transform 0.3s ease, box-shadow 0.3s ease",
                     cursor: "pointer",
@@ -883,7 +946,7 @@ const Home = () => {
                     }}
                   />
                   <div style={{ padding: "10px" }}>
-                    <h4 style={{ margin: 0, color: "#D63384" }}>
+                    <h4 style={{ margin: 0, color: "#dfb441" }}>
                       {item.title}
                     </h4>
                   </div>
@@ -904,8 +967,8 @@ const Home = () => {
             alignItems: "center",
             gap: isMobile ? "20px" : "60px",
             paddingTop: "10px",
-            color: "#D63384",
-            fontFamily: "cursive",
+            color: "#7d0a0a",
+            fontFamily: "sans-serif",
           }}
         >
           <Link
@@ -913,7 +976,7 @@ const Home = () => {
             style={{
               textAlign: "center",
               textDecoration: "none",
-              color: "#D63384",
+              color: "#7d0a0a",
             }}
           >
             <h1>Women</h1>
@@ -924,9 +987,9 @@ const Home = () => {
                 height: "350px",
                 width: isMobile ? "300px" : "600px",
                 maxWidth: "100%",
-                borderRadius: "10px",
+                borderRadius: "30px",
                 cursor: "pointer",
-                border: "1px solid #D63384",
+                border: "2px solid black",
               }}
             />
           </Link>
@@ -935,7 +998,7 @@ const Home = () => {
             style={{
               textAlign: "center",
               textDecoration: "none",
-              color: "#D63384",
+              color: "#7d0a0a",
             }}
           >
             <h1>Men</h1>
@@ -946,146 +1009,242 @@ const Home = () => {
                 height: "350px",
                 width: isMobile ? "300px" : "600px",
                 maxWidth: "100%",
-                borderRadius: "10px",
+                borderRadius: "30px",
                 cursor: "pointer",
-                border: "1px solid #D63384",
+                border: "2px solid black",
               }}
             />
           </Link>
         </div>
       )}
       {/** Blog1..................... */}
-      {homeSections.blogs && (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: isMobile ? "column" : "row",
-            justifyContent: "center",
-            alignItems: "center",
-            background: "#e3e1e1",
-            padding: "30px",
-            gap: "40px",
-            width: "70%",
-            margin: "40px auto",
-            boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
-            height: isMobile ? "auto" : "400px",
-            borderRadius: "20px",
-          }}
-        >
-          <div style={{ textAlign: "center", flex: 1 }}>
-            <h1
-              style={{ maxWidth: "700px", margin: "0 auto", color: "#D63384" }}
-            >
-              Explore our Eyecare essentials and unlock the secret to glowing,
-              confident eyes
-            </h1>
-            <p
-              style={{
-                Width: "450px",
-                margin: "20px auto",
-                lineHeight: "1.6",
-                fontSize: "16px",
-                color: "#333",
-              }}
-            >
-              Your eyes deserve the best care. Whether it's dark circles,
-              puffiness, or dryness, our eyecare collection is designed to
-              refresh and protect your under-eye area. With hydrating creams and
-              powerful serums, we help reduce fine lines, wrinkles, and signs of
-              fatigue for a brighter, youthful look.
-            </p>
-            <h3 style={{ color: "#555", marginTop: "20px" }}>
-              Say goodbye to tired eyes and hello to a refreshed, radiant gaze.
-            </h3>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap", // ✅ allows responsive wrapping
+          justifyContent: "center", // ✅ centers content on all screens
+          alignItems: "center",
+          gap:
+            window.innerWidth <= 480
+              ? "15px"
+              : window.innerWidth <= 1024
+              ? "25px"
+              : "40px", // ✅ dynamic spacing
+          padding: window.innerWidth <= 480 ? "15px" : "30px",
+          background: "#e3e1e1", // same as your current off-white
+          marginTop: "10px",
+          boxSizing: "border-box",
+        }}
+      >
+        {homeSections.blogs && (
+          <div
+            style={{
+              width:
+                window.innerWidth <= 480
+                  ? "90%" // mobile
+                  : window.innerWidth <= 1024
+                  ? "45%" // tablet
+                  : "30%", // desktop
+              background: "white",
+              boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+              overflow: "hidden",
+              textAlign: "center",
+              padding: "10px",
+              transition: "transform 0.3s ease, box-shadow 0.3s ease",
+            }}
+          >
+            <div style={{ flex: 1 }}>
+              <h2
+                style={{
+                  margin: "0 auto",
+                  color: "#7d0a0a",
+                }}
+              >
+                Explore our Eyecare essentials and unlock the secret to glowing,
+                confident eyes
+              </h2>
+              <p
+                style={{
+                  Width: "450px",
+                  margin: "20px auto",
+                  lineHeight: "1.6",
+                  fontSize: "14px",
+                  color: "#333",
+                }}
+              >
+                Your eyes deserve the best care. Whether it's dark circles,
+                puffiness, or dryness, our eyecare collection is designed to
+                refresh and protect your under-eye area. With hydrating creams
+                and powerful serums, we help reduce fine lines, wrinkles, and
+                signs of fatigue for a brighter, youthful look.
+              </p>
+            </div>
+            <div style={{ flex: 1 }}>
+              <img
+                src={blog1}
+                alt="Eyecare"
+                style={{
+                  width: "100%",
+                  height:
+                    window.innerWidth <= 480
+                      ? "180px"
+                      : window.innerWidth <= 1024
+                      ? "200px"
+                      : "250px",
+                  objectFit: "cover",
+                  borderRadius: "10px",
+                }}
+              />
+            </div>
           </div>
-          <div style={{ flex: 1 }}>
-            <img
-              src={blog1}
-              alt="Eyecare"
-              style={{
-                width: "100%",
-                maxWidth: "550px",
-                height: isMobile ? "auto" : "400px",
-                borderRadius: "20px",
-                mixBlendMode: "multiply",
-                objectFit: "cover",
-                opacity: 0.9,
-                border: "1px solid #D63384",
-              }}
-            />
+        )}
+        {/** Blog1..................... */}
+        {/** Blog2..................... */}
+        {homeSections.blogs && (
+          <div
+            style={{
+              width:
+                window.innerWidth <= 480
+                  ? "90%" // mobile
+                  : window.innerWidth <= 1024
+                  ? "45%" // tablet
+                  : "30%", // desktop
+              background: "white",
+              boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+              overflow: "hidden",
+              textAlign: "center",
+              padding: "10px",
+              transition: "transform 0.3s ease, box-shadow 0.3s ease",
+            }}
+          >
+            <div style={{ flex: 1 }}>
+              <img
+                src={Blog2}
+                alt="Facecare"
+                style={{
+                  width: "100%",
+                  height:
+                    window.innerWidth <= 480
+                      ? "180px"
+                      : window.innerWidth <= 1024
+                      ? "200px"
+                      : "250px",
+                  objectFit: "cover",
+                  borderRadius: "10px",
+                }}
+              />
+            </div>
+            <div style={{ flex: 1 }}>
+              <h2
+                style={{
+                  margin: "0 auto",
+                  color: "#7d0a0a",
+                }}
+              >
+                Nourish, Rejuvenate, and Glow: The Ultimate Face Care Ritual
+              </h2>
+              <p
+                style={{
+                  Width: "450px",
+                  margin: "20px auto",
+                  lineHeight: "1.6",
+                  fontSize: "14px",
+                  color: "#333",
+                }}
+              >
+                Your face deserves the finest care — it's the canvas of your
+                beauty. Whether you're aiming to combat acne, reduce
+                pigmentation, or simply maintain radiant, balanced skin, our
+                face care collection has been designed with all skin types in
+                mind. From deeply hydrating moisturizers and brightening serums
+                to gentle cleansers and exfoliants.
+              </p>
+            </div>
           </div>
-        </div>
-      )}
-      {/** Blog1..................... */}
-      {/** Blog2..................... */}
-      {homeSections.blogs && (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: isMobile ? "column" : "row",
-            justifyContent: "center",
-            alignItems: "center",
-            background: "#e3e1e1",
-            padding: "30px",
-            gap: "40px",
-            width: "70%",
-            margin: "40px auto",
-            boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
-            height: isMobile ? "auto" : "400px",
-            borderRadius: "20px",
-          }}
-        >
-          <div style={{ flex: 1 }}>
-            <img
-              src={Blog2}
-              alt="Facecare"
-              style={{
-                width: "100%",
-                maxWidth: "550px",
-                height: isMobile ? "auto" : "400px",
-                borderRadius: "20px",
-                mixBlendMode: "multiply",
-                objectFit: "cover",
-                opacity: 0.9,
-                border: "1px solid #D63384",
-              }}
-            />
+        )}
+        {/** Blog2..................... */}
+        {/** Blog 3................. */}
+        {homeSections.blogs && (
+          <div
+            style={{
+              width:
+                window.innerWidth <= 480
+                  ? "90%" // mobile
+                  : window.innerWidth <= 1024
+                  ? "45%" // tablet
+                  : "30%", // desktop
+              background: "white",
+              boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+              overflow: "hidden",
+              textAlign: "center",
+              padding: "10px",
+              transition: "transform 0.3s ease, box-shadow 0.3s ease",
+              margin: "20px auto",
+            }}
+          >
+            <div style={{ flex: 1 }}>
+              <h2
+                style={{
+                  margin: "10px auto",
+                  color: "#7d0a0a",
+                  fontSize:
+                    window.innerWidth <= 480
+                      ? "18px"
+                      : window.innerWidth <= 1024
+                      ? "20px"
+                      : "22px",
+                }}
+              >
+                Strong, Shiny, and Nourished: The Secret to Perfect Hair
+              </h2>
+
+              <p
+                style={{
+                  width: "90%",
+                  margin: "15px auto",
+                  lineHeight: "1.6",
+                  fontSize:
+                    window.innerWidth <= 480
+                      ? "13px"
+                      : window.innerWidth <= 1024
+                      ? "14px"
+                      : "15px",
+                  color: "#333",
+                }}
+              >
+                Transform dull strands into a crown of glory with our
+                expert-recommended hair care essentials. From nourishing oils
+                and hydrating shampoos to damage-repair serums — every product
+                is crafted to restore natural shine and strength. Give your hair
+                the love it deserves, from root to tip!
+              </p>
+            </div>
+            <div style={{ flex: 1 }}>
+              <img
+                src={Blog3} // ✅ replace with your hair blog image import
+                alt="Haircare"
+                style={{
+                  width: "100%",
+                  height:
+                    window.innerWidth <= 480
+                      ? "180px"
+                      : window.innerWidth <= 1024
+                      ? "200px"
+                      : "250px",
+                  objectFit: "cover",
+                  borderRadius: "10px",
+                }}
+              />
+            </div>
           </div>
-          <div style={{ textAlign: "center", flex: 1 }}>
-            <h1
-              style={{ maxWidth: "700px", margin: "0 auto", color: "#D63384" }}
-            >
-              Nourish, Rejuvenate, and Glow: The Ultimate Face Care Ritual
-            </h1>
-            <p
-              style={{
-                Width: "450px",
-                margin: "20px auto",
-                lineHeight: "1.6",
-                fontSize: "16px",
-                color: "#333",
-              }}
-            >
-              Your face deserves the finest care — it's the canvas of your
-              beauty. Whether you're aiming to combat acne, reduce pigmentation,
-              or simply maintain radiant, balanced skin, our face care
-              collection has been designed with all skin types in mind. From
-              deeply hydrating moisturizers and brightening serums to gentle
-              cleansers and exfoliants.
-            </p>
-            <h3 style={{ color: "#555", marginTop: "20px" }}>
-              Let your natural beauty shine through with every step.
-            </h3>
-          </div>
-        </div>
-      )}
-      {/** Blog2..................... */}
+        )}
+      </div>
       {/* Testimonials..................... */}
       <p
         style={{
           textAlign: "center",
-          color: "#D63384",
-          fontFamily: "cursive",
+          color: "#7d0a0a",
+          fontFamily: "sans-serif",
           fontSize: "30px",
           fontWeight: "bolder",
         }}
@@ -1094,7 +1253,7 @@ const Home = () => {
       </p>
       <div
         style={{
-          background: "#e3e1e1",
+          background: "linear-gradient(to right, #8B6A2B, #F8E1A1, #C29A4D)",
           padding: "30px",
           width: "80%",
           margin: "0 auto",
@@ -1122,8 +1281,8 @@ const Home = () => {
                     borderRadius: "50%",
                     height: "200px",
                     width: "200px",
-                    backgroundColor: "#D63384",
-                    color: "white",
+                    backgroundColor: "white",
+                    color: "black",
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
@@ -1137,22 +1296,23 @@ const Home = () => {
                 <div style={{ maxWidth: isMobile ? "90%" : "100%" }}>
                   <h2
                     style={{
-                      color: "#D63384",
+                      color: "#7d0a0a",
                       fontWeight: "bold",
-                      fontFamily: "cursive",
+                      fontFamily: "sans-serif",
+                      textAlign: "left",
                     }}
                   >
                     {testimonial.name}
                   </h2>
                   <p>"{testimonial.text}"</p>
                   {/* Star rating */}
-                  <div>
+                  <div style={{ textAlign: "left" }}>
                     {[...Array(5)].map((_, i) => (
                       <span
                         key={i}
                         style={{
-                          color: i < testimonial.rating ? "#D63384" : "#ccc",
-                          fontSize: "30px",
+                          color: i < testimonial.rating ? "#7d0a0a" : "#D4AF37",
+                          fontSize: "25px",
                         }}
                       >
                         ★

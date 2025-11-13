@@ -95,8 +95,8 @@ const Brands = () => {
         style={{
           textAlign: "center",
           fontSize: "38px",
-          color: "#D63384",
-          fontFamily: "cursive",
+          color: "#7d0a0a",
+          fontFamily: "sans-serif",
           marginBottom: "10px",
           marginTop: "10px",
         }}
@@ -129,7 +129,7 @@ const Brands = () => {
           style={{
             height: "45px",
             width: "350px",
-            border: "1px solid #D63384",
+            border: "1px solid #7d0a0a ",
             borderRadius: "10px",
             padding: "0 15px",
             fontSize: "16px",
@@ -155,7 +155,7 @@ const Brands = () => {
               style={{
                 textAlign: "center",
                 background: "#fff",
-                border: "2px solid #D63384",
+                border: "2px solid #D4AF37",
                 borderRadius: "12px",
                 padding: "15px 10px",
                 boxShadow: "0 2px 6px rgba(0,0,0,0.05)",
@@ -163,11 +163,11 @@ const Brands = () => {
               onMouseEnter={(e) => {
                 e.currentTarget.style.boxShadow =
                   "0 0 15px rgba(212, 175, 55, 0.6)";
-                e.currentTarget.style.borderColor = "#D4AF37"; // gold
+                e.currentTarget.style.borderColor = "#7d0a0a"; // gold
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.boxShadow = "0 2px 6px rgba(0,0,0,0.05)";
-                e.currentTarget.style.borderColor = "#D63384"; // back to pink
+                e.currentTarget.style.borderColor = "#D4AF37";
               }}
             >
               <a
@@ -183,7 +183,7 @@ const Brands = () => {
                 }}
                 style={{
                   textDecoration: "none",
-                  color: "#D63384",
+                  color: "black",
                   fontWeight: "500",
                   fontSize: "18px",
                   display: "flex",

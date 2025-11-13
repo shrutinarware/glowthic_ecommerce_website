@@ -12,7 +12,7 @@ const Main = () => {
       }}
     >
       Welcome to the Admin Panel{" "}
-      <span style={{ color: "#D63384" }}> "SHRUTI"</span>
+      <span style={{ color: "#7d0a0a" }}> "SHRUTI"</span>
     </div>
    
   );

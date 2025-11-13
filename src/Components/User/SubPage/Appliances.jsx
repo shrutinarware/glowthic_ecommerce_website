@@ -158,14 +158,14 @@ const Appliances = ({
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <h3 style={{ color: "#D63384", marginBottom: "10px" }}>
+            <h3 style={{ color: "#7d0a0a", marginBottom: "10px" }}>
               Please login first to see product details
             </h3>
 
             <button
               style={{
-                background: "#D63384",
-                color: "#fff",
+                background: "#D4AF37",
+                color: "#7d0a0a",
                 border: "none",
                 padding: "10px 20px",
                 borderRadius: "6px",
@@ -203,7 +203,7 @@ const Appliances = ({
           gap: 30px;
           padding: 20px;
           scrollbar-width: thin;
-          scrollbar-color: #d63384 transparent;
+          scrollbar-color: #7d0a0a transparent;
           -webkit-overflow-scrolling: touch;
         }
         .categories-container {
@@ -221,7 +221,7 @@ const Appliances = ({
   overflow: hidden;
   background: #fff;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  border: 2px solid #D63384;
+  border: 2px solid #7d0a0a ;
   display: flex;
   flex-direction: column;
   cursor: pointer;
@@ -240,7 +240,7 @@ const Appliances = ({
 }
 .category-heading {
   margin: 0;
-  color: #D63384;
+  color: #7d0a0a;
   text-align: center;
   font-size: 18px;
   padding: 10px 0;

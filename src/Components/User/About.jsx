@@ -25,7 +25,9 @@ const About = () => {
   }, [location]);
 
   return (
-    <div style={{ padding: "0 10px", boxSizing: "border-box" , marginTop:"-30px",}}>
+    <div
+      style={{ padding: "0 10px", boxSizing: "border-box", marginTop: "-30px" }}
+    >
       {/* Intro Section */}
       <div
         style={{
@@ -41,10 +43,10 @@ const About = () => {
           Hi we're{" "}
           <span
             style={{
-              color: "#D63384",
+              color: "#D4AF37",
               fontWeight: "bolder",
               fontSize: isMobile ? "60px" : "90px",
-              fontFamily: "cursive",
+              fontFamily: "sans-serif",
             }}
           >
             Glowthic
@@ -58,13 +60,13 @@ const About = () => {
       {/* Brand Story */}
       <div
         style={{
-          background: "#e3e1e1",
-          border: "2px solid pink",
+          border: "2px solid #7d0a0a",
           borderRadius: "20px",
           margin: "0 auto",
-          padding: isMobile ? "20px" : "40px",
+          padding: isMobile ? "10px" : "20px",
           maxWidth: "1200px",
           textAlign: "justify",
+          marginTop: "-30px",
         }}
       >
         <p style={{ fontSize: "18px", lineHeight: "1.8" }}>
@@ -100,8 +102,8 @@ const About = () => {
         {/* Vision */}
         <div
           style={{
-            background: "#e3e1e1",
-            border: "2px solid pink",
+            background: "linear-gradient(to right, #8B6A2B, #F8E1A1, #C29A4D)",
+            border: "2px solid #7d0a0a",
             borderRadius: "20px",
             padding: "20px",
             flex: 1,
@@ -109,9 +111,9 @@ const About = () => {
         >
           <h1
             style={{
-              color: "#D63384",
+              color: "#7d0a0a",
               fontWeight: "bolder",
-              fontFamily: "cursive",
+              fontFamily: "sans-serif",
               textAlign: "center",
             }}
           >
@@ -138,8 +140,8 @@ const About = () => {
         {/* Mission */}
         <div
           style={{
-            background: "#e3e1e1",
-            border: "2px solid pink",
+            background: "linear-gradient(to right, #8B6A2B, #F8E1A1, #C29A4D)",
+            border: "2px solid #7d0a0a",
             borderRadius: "20px",
             padding: "20px",
             flex: 1,
@@ -147,9 +149,9 @@ const About = () => {
         >
           <h1
             style={{
-              color: "#D63384",
+              color: "#7d0a0a",
               fontWeight: "bolder",
-              fontFamily: "cursive",
+              fontFamily: "sans-serif",
               textAlign: "center",
             }}
           >
@@ -194,7 +196,9 @@ const About = () => {
           <br />
           With all our love,
           <br />
-          <strong style={{color: "#D63384",fontSize:"25px"}}>Team Glowthic</strong>
+          <strong style={{ color: "#D4AF37", fontSize: "25px" }}>
+            Team Glowthic
+          </strong>
         </h3>
       </div>
     </div>

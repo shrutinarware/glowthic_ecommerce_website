@@ -160,14 +160,14 @@ const Fragnance = ({
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <h3 style={{ color: "#D63384", marginBottom: "10px" }}>
+            <h3 style={{ color: "#7d0a0a", marginBottom: "10px" }}>
               Please login first to see product details
             </h3>
 
             <button
               style={{
-                background: "#D63384",
-                color: "#fff",
+                background: "#D4AF37",
+                color: "#7d0a0a",
                 border: "none",
                 padding: "10px 20px",
                 borderRadius: "6px",
@@ -210,7 +210,7 @@ const Fragnance = ({
           overflow-x: auto;
           gap: 15px;
           scrollbar-width: thin;
-          scrollbar-color: #d63384 transparent;
+          scrollbar-color: #7d0a0a transparent;
         }
 
         .category-card {
@@ -219,7 +219,7 @@ const Fragnance = ({
           overflow: hidden;
           background: #fff;
           box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-          border: 2px solid #D63384;
+          border: 2px solid #7d0a0a;
           display: flex;
           flex-direction: column;
           cursor: pointer;
@@ -241,7 +241,7 @@ const Fragnance = ({
 
         .category-heading {
           margin: 0;
-          color: #D63384;
+          color: #7d0a0a;
           text-align: center;
           font-size: 18px;
           line-height: 1.2;
@@ -329,7 +329,7 @@ const Fragnance = ({
           fontFamily: "sans-serif",
           color: isMenPage
             ? "black"
-            : headingColor || (isWomenPage ? "#D63384" : "#333"),
+            : headingColor || (isWomenPage ? "#7d0a0a" : "#333"),
           paddingTop: "20px",
         }}
       >

@@ -117,7 +117,7 @@ export default function Sidebar() {
   const drawer = (
     <div
       style={{
-        background: "pink",
+        background: "linear-gradient(to right, #8B6A2B, #F8E1A1, #C29A4D)",
         height: "",
         marginTop: "-60px",
       }}
@@ -559,7 +559,7 @@ export default function Sidebar() {
         </List>
       </Collapse>
       <List>
-        <ListItem disablePadding>
+        <ListItem disablePadding style={{ marginTop: "-8px" }}>
           <ListItemButton onClick={() => navigate(`/admin-homepage-setting`)}>
             <ListItemIcon>
               <HomeIcon
@@ -576,7 +576,7 @@ export default function Sidebar() {
         </ListItem>
       </List>
       <List>
-        <ListItem disablePadding>
+        <ListItem disablePadding style={{ marginTop: "-10px" }}>
           <ListItemButton onClick={() => navigate(`/admin-brands`)}>
             <ListItemIcon>
               <StoreIcon
@@ -593,7 +593,7 @@ export default function Sidebar() {
         </ListItem>
       </List>
       <List>
-        <ListItem disablePadding>
+        <ListItem disablePadding style={{ marginTop: "-10px" }}>
           <ListItemButton onClick={() => navigate(`/admin-trending-product`)}>
             <ListItemIcon>
               <TrendingUpIcon
@@ -611,7 +611,7 @@ export default function Sidebar() {
       </List>
 
       <List>
-        <ListItem disablePadding>
+        <ListItem disablePadding style={{ marginTop: "-10px" }}>
           <ListItemButton onClick={() => navigate(`/admin-deals-manager`)}>
             <ListItemIcon>
               <LocalOfferIcon

@@ -39,10 +39,10 @@ const Contact = () => {
   const inputStyle = {
     padding: "10px",
     borderRadius: "8px",
-    border: "1px solid  #D63384",
-    fontFamily: "cursive",
+    border: "1px solid  #7d0a0a",
+    fontFamily: "sans-serif",
     fontSize: "16px",
-    color: "black",
+    color: "#7d0a0a",
   };
   const handleSubmit = async () => {
     const trimmedName = name.trim();
@@ -105,7 +105,11 @@ const Contact = () => {
       >
         <h1
           id="contactglowthic"
-          style={{ fontSize: "40px", color: "#D63384", fontFamily: "cursive" }}
+          style={{
+            fontSize: "40px",
+            color: " #7d0a0a",
+            fontFamily: "sans-serif",
+          }}
         >
           Contact Glowthic
         </h1>
@@ -124,7 +128,7 @@ const Contact = () => {
           margin: "30px auto",
           background: "#fff",
           padding: "30px",
-          border: "1px solid #D63384",
+          border: "1px solid #D4AF37",
           borderRadius: "15px",
           boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
           marginBottom: "100px",
@@ -132,7 +136,7 @@ const Contact = () => {
       >
         {/* Contact Info */}
         <div style={{ flex: 1 }}>
-          <h2 style={{ color: "#D63384" }}>Get in Touch</h2>
+          <h2 style={{ color: "#D4AF37" }}>Get in Touch</h2>
           <p>
             <strong>Email:</strong> glowthicteam@gmail.com
           </p>
@@ -152,7 +156,7 @@ const Contact = () => {
         </div>
         {/* Contact Form */}
         <div style={{ flex: 1 }}>
-          <h2 style={{ color: "#D63384", marginBottom: "15px" }}>
+          <h2 style={{ color: "#D4AF37", marginBottom: "15px" }}>
             Send us a Message
           </h2>
           <form
@@ -200,12 +204,13 @@ const Contact = () => {
               onClick={handleSubmit}
               style={{
                 padding: "10px 20px",
-                background: "#D63384",
-                color: "#fff",
+                background: "#D4AF37",
+                color: "black",
                 border: "none",
                 borderRadius: "8px",
                 cursor: "pointer",
                 fontWeight: "bold",
+                fontFamily: "sans-serif",
               }}
               disabled={loading}
             >

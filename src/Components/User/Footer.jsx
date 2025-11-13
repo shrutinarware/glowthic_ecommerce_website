@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import LOGO from "../../assets/Topbar/glow_aesthetic_logo.svg";
+import LOGO from "../../assets/Topbar/logo.jpg.png";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -14,7 +14,7 @@ const Footer = () => {
   }, []);
 
   const linkStyle = {
-    color: "black",
+    color: "white",
     textDecoration: "none",
     fontWeight: "normal",
     transition: "all 0.3s ease",
@@ -27,7 +27,7 @@ const Footer = () => {
   return (
     <div
       style={{
-        background: "pink",
+        background: "black",
         width: "100%",
         minHeight: "280px",
         textAlign: "center",
@@ -55,8 +55,7 @@ const Footer = () => {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "10px",
-            flexDirection: isMobile ? "column" : "row",
+            flexDirection: "column",
             textAlign: isMobile ? "center" : "left",
             maxWidth: "400px",
           }}
@@ -65,27 +64,14 @@ const Footer = () => {
             src={LOGO}
             alt="Glowthic Logo"
             style={{
-              width: isMobile ? "80px" : "100px",
+              width: isMobile ? "230px" : "250px",
               height: "auto",
               objectFit: "contain",
+              marginTop: "15px",
             }}
           />
-          <div>
-            <h1
-              style={{
-                color: "#D63384",
-                fontFamily: "cursive",
-                fontWeight: "bolder",
-                margin: "0",
-              }}
-            >
-              Glowthic
-            </h1>
-            <p style={{ marginTop: "5px" }}>
-              Your one-stop destination for skincare, self-care, and confidence.
-            </p>
-          </div>
         </div>
+
         {/* Right Columns */}
         <div
           style={{
@@ -97,7 +83,7 @@ const Footer = () => {
         >
           {/* Quick Links */}
           <div>
-            <h3 style={{ marginBottom: "10px", color: "#D63384" }}>
+            <h3 style={{ marginBottom: "10px", color: "#dfb441" }}>
               Quick Links
             </h3>
             <p>
@@ -136,22 +122,28 @@ const Footer = () => {
             <h3>
               <Link
                 to="/contact"
-                style={{ color: "#D63384", textDecoration: "none" }}
+                style={{ color: "#dfb441", textDecoration: "none" }}
               >
                 Contact Us
               </Link>
             </h3>
-            <p>
-              Call:{" "}
-              <span style={{ fontWeight: "bolder" }}> +91 8349759769</span>
+            <p style={{ color: "white" }}>
+              Call:
+              <span style={{ fontWeight: "bolder", color: "white" }}>
+                {" "}
+                +91 8349759769
+              </span>
             </p>
-            <p>
+            <p style={{ color: "white" }}>
               Whatsapp:{" "}
-              <span style={{ fontWeight: "bolder" }}> 8349759769</span>
+              <span style={{ fontWeight: "bolder", color: "white" }}>
+                {" "}
+                8349759769
+              </span>
             </p>
-            <p>
+            <p style={{ color: "white" }}>
               Email:
-              <span style={{ fontWeight: "bolder" }}>
+              <span style={{ fontWeight: "bolder", color: "white" }}>
                 {" "}
                 glowthicteam@gmail.com
               </span>
@@ -159,7 +151,14 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <p style={{ marginTop: "-10px", fontSize: "14px" }}>
+      <p
+        style={{
+          marginTop: "-10px",
+          fontSize: "14px",
+          fontFamily: "sans-serif",
+          color: "white",
+        }}
+      >
         © 2025 Glowthic. All Rights Reserved.
       </p>
     </div>

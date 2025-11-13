@@ -145,48 +145,6 @@ const HairStraightener = () => {
           </p>
         )}
       </div>
-      <style>{`
-  .popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-  }
-
-  .popup-box {
-    background: white;
-    padding: 25px 30px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    max-width: 300px;
-    width: 90%;
-  }
-
-  .popup-box h3 {
-    margin-bottom: 15px;
-    color: #d63384;
-  }
-
-  .popup-box button {
-    background: #d63384;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  .popup-box button:hover {
-    background: #b2276a;
-  }
-`}</style>
     </div>
   );
 };
@@ -203,7 +161,7 @@ const styles = {
     textAlign: "center",
     fontSize: "28px",
     marginBottom: "20px",
-    color: "#D63384",
+    color: "#7d0a0a",
     fontFamily: "sans-serif",
   },
 
@@ -217,7 +175,7 @@ const styles = {
     maxWidth: "400px",
     fontSize: "16px",
     borderRadius: "5px",
-    border: "1px solid #D63384",
+    border: "1px solid #7d0a0a",
   },
   cardLink: {
     textDecoration: "none",
@@ -229,7 +187,7 @@ const styles = {
     overflow: "hidden",
     transition: "transform 0.2s ease-in-out",
     height: "100%",
-    border: "2px solid pink",
+    border: "2px solid #D4AF37",
   },
   cardImage: {
     width: "100%",
@@ -243,7 +201,7 @@ const styles = {
   cardTitle: {
     margin: 0,
     fontWeight: "bold",
-    color: "#333",
+    color: "#7d0a0a",
     fontSize: "16px",
   },
 };

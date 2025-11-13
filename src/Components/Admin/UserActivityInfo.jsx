@@ -185,7 +185,7 @@ const UserActivityInfo = () => {
         </div>
       </div>
 
-      <TableContainer component={Paper} style={{ maxHeight: "70vh" }}>
+      <TableContainer component={Paper} style={{ maxHeight: "auto" }}>
         <Table>
           <TableHead style={{ background: "pink" }}>
             <TableRow>
