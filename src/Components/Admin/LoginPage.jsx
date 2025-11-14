@@ -44,7 +44,7 @@ const LoginPage = () => {
       <div
         style={{
           height: "auto",
-          background: "pink",
+          background: "#D4AF37",
           borderRadius: "45px",
           display: "flex",
           justifyContent: "center",
@@ -66,7 +66,7 @@ const LoginPage = () => {
             width: "100%",
           }}
         >
-          <h1 style={{ textAlign: "center", color: "#D63384" }}>Admin Login</h1>
+          <h1 style={{ textAlign: "center", color: "#7d0a0a" }}>Admin Login</h1>
 
           {/* Email Input */}
           <TextField
@@ -81,7 +81,7 @@ const LoginPage = () => {
               maxWidth: "400px",
               "& .MuiOutlinedInput-root": {
                 "&.Mui-focused fieldset": {
-                  borderColor: "black",
+                  borderColor: "#7d0a0a",
                 },
               },
             }}
@@ -98,6 +98,7 @@ const LoginPage = () => {
           <TextField
             type="password"
             placeholder="Password"
+            variant="outlined"
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -106,7 +107,7 @@ const LoginPage = () => {
               maxWidth: "400px",
               "& .MuiOutlinedInput-root": {
                 "&.Mui-focused fieldset": {
-                  borderColor: "black",
+                  borderColor: "#7d0a0a",
                 },
               },
             }}
@@ -125,7 +126,7 @@ const LoginPage = () => {
             sx={{
               cursor: "pointer",
               background: "black",
-              color: "#D63384",
+              color: "#D4AF37",
               height: "45px",
               width: "100%",
               maxWidth: "180px",
