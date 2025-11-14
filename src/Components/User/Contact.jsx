@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { database } from "../../Firebase"; // Make sure your Firebase config is correct
 import { ref, push, set } from "firebase/database";
+import PersonIcon from "@mui/icons-material/Person";
+import EmailIcon from "@mui/icons-material/Email";
+import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
+import MessageIcon from "@mui/icons-material/Message";
+import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 
 const Contact = () => {
   const location = useLocation();
@@ -44,6 +49,24 @@ const Contact = () => {
     fontSize: "16px",
     color: "#7d0a0a",
   };
+  const inputWrapper = {
+    display: "flex",
+    alignItems: "center",
+    border: "1px solid #7d0a0a",
+    borderRadius: "8px",
+    padding: "8px 12px",
+    gap: "10px",
+  };
+
+  const inputField = {
+    border: "none",
+    outline: "none",
+    fontSize: "16px",
+    width: "100%",
+    color: "#7d0a0a",
+    fontFamily: "sans-serif",
+  };
+
   const handleSubmit = async () => {
     const trimmedName = name.trim();
     const trimmedEmail = email.trim();
@@ -136,7 +159,18 @@ const Contact = () => {
       >
         {/* Contact Info */}
         <div style={{ flex: 1 }}>
-          <h2 style={{ color: "#D4AF37" }}>Get in Touch</h2>
+          <h2
+            style={{
+              color: "#D4AF37",
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
+            <SupportAgentIcon style={{ color: "#D4AF37" }} />
+            Get in Touch
+          </h2>
+
           <p>
             <strong>Email:</strong> glowthicteam@gmail.com
           </p>
@@ -163,42 +197,53 @@ const Contact = () => {
             style={{ display: "flex", flexDirection: "column", gap: "15px" }}
             onSubmit={(e) => e.preventDefault()}
           >
-            <input
-              type="text"
-              placeholder="Your Name"
-              style={inputStyle}
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <input
-              type="Number"
-              placeholder="Your Contact"
-              style={inputStyle}
-              value={contact}
-              onChange={(e) => {
-                const value = e.target.value.replace(/\D/g, "");
-                setContact(value.slice(0, 10));
-              }}
-            />
-            <input
-              type="email"
-              placeholder="Your Email"
-              style={inputStyle}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <textarea
-              type="text"
-              placeholder="Your Message"
-              rows="5"
-              style={inputStyle}
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-            />
-            {error && <p style={{ color: "red" }}>{error}</p>}
-            {success && (
-              <p style={{ color: "green" }}>Message sent successfully!</p>
-            )}
+            <div style={inputWrapper}>
+              <PersonIcon style={{ color: "#7d0a0a" }} />
+              <input
+                type="text"
+                placeholder="Your Name"
+                style={inputField}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+
+            <div style={inputWrapper}>
+              <PhoneAndroidIcon style={{ color: "#7d0a0a" }} />
+              <input
+                type="text"
+                placeholder="Your Contact"
+                style={inputField}
+                value={contact}
+                onChange={(e) => {
+                  const value = e.target.value.replace(/\D/g, "");
+                  setContact(value.slice(0, 10));
+                }}
+              />
+            </div>
+
+            <div style={inputWrapper}>
+              <EmailIcon style={{ color: "#7d0a0a" }} />
+              <input
+                type="email"
+                placeholder="Your Email"
+                style={inputField}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
+            <div style={{ ...inputWrapper, alignItems: "flex-start" }}>
+              <MessageIcon style={{ color: "#7d0a0a", marginTop: "5px" }} />
+              <textarea
+                rows="5"
+                placeholder="Your Message"
+                style={{ ...inputField, resize: "none" }}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              />
+            </div>
+
             <button
               type="button"
               onClick={handleSubmit}

@@ -107,11 +107,11 @@ const AdminDealsManager = ({ category }) => {
           onChange={(e) => setSelectedCategory(e.target.value)}
           style={{
             borderRadius: "8px",
-            border: "2px solid #D63384",
+            border: "2px solid #D4AF37",
             fontSize: "16px",
             fontWeight: "600",
-            color: "#D63384",
-            width: "10%",
+            color: "#7d0a0a",
+            width: "200px",
             height: "50px",
           }}
         >
@@ -129,7 +129,7 @@ const AdminDealsManager = ({ category }) => {
             setForm({ image: "", link: "", heading: "" });
           }}
           style={{
-            background: "#D63384",
+            background: "#D4AF37",
             color: "#fff",
             borderRadius: "10px",
             border: "none",
@@ -154,7 +154,7 @@ const AdminDealsManager = ({ category }) => {
         >
           <div
             style={{
-              background: "pink",
+              background: "#D4AF37",
               padding: "20px",
               borderRadius: "12px",
               width: "550px",
@@ -164,7 +164,7 @@ const AdminDealsManager = ({ category }) => {
             <h2
               style={{
                 textAlign: "center",
-                color: "#D63384",
+                color: "#7d0a0a",
                 fontWeight: "bold",
               }}
             >
@@ -172,7 +172,7 @@ const AdminDealsManager = ({ category }) => {
             </h2>
 
             <label
-              style={{ color: "#D63384", fontSize: "20px", fontWeight: "bold" }}
+              style={{ color: "#7d0a0a", fontSize: "20px", fontWeight: "bold" }}
             >
               {" "}
               Heading
@@ -185,7 +185,7 @@ const AdminDealsManager = ({ category }) => {
             </label>
             {/* Link */}
             <label
-              style={{ color: "#D63384", fontSize: "20px", fontWeight: "bold" }}
+              style={{ color: "#7d0a0a", fontSize: "20px", fontWeight: "bold" }}
             >
               Link:
               <input
@@ -200,7 +200,7 @@ const AdminDealsManager = ({ category }) => {
             <label
               style={{
                 marginTop: "15px",
-                color: "#D63384",
+                color: "#7d0a0a",
                 fontSize: "20px",
                 fontWeight: "bold",
               }}
@@ -241,7 +241,7 @@ const AdminDealsManager = ({ category }) => {
               <button
                 onClick={saveDeal}
                 style={{
-                  background: "#D63384",
+                  background: "#7d0a0a",
                   color: "white",
                   padding: "15px",
                   borderRadius: "8px",
@@ -255,7 +255,7 @@ const AdminDealsManager = ({ category }) => {
               <button
                 onClick={() => setShowForm(false)}
                 style={{
-                  background: "#D63384",
+                  background: "#7d0a0a",
                   color: "white",
                   padding: "15px",
                   borderRadius: "8px",
@@ -278,7 +278,7 @@ const AdminDealsManager = ({ category }) => {
             style={{
               width: "95%",
               borderRadius: "16px",
-              background: "#D63384",
+              background: "#7d0a0a",
               margin: "25px auto",
               padding: "20px",
               boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
@@ -340,7 +340,7 @@ const AdminDealsManager = ({ category }) => {
                   }}
                   style={{
                     background: "white",
-                    color: "#D63384",
+                    color: "#7d0a0a",
                     height: "45px",
                     width: "95px",
                     borderRadius: "10px",
@@ -361,7 +361,7 @@ const AdminDealsManager = ({ category }) => {
                   onClick={() => handleDelete(item.id)}
                   style={{
                     background: "white",
-                    color: "#D63384",
+                    color: "#7d0a0a",
                     height: "45px",
                     width: "95px",
                     borderRadius: "10px",

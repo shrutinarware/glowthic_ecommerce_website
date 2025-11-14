@@ -129,7 +129,7 @@ const AdminTrendingProduct = () => {
           style={{
             height: "45px",
             width: "320px",
-            border: "1px solid #D63384",
+            border: "1px solid #7d0a0a",
             borderRadius: "10px",
             padding: "0 15px",
             background: "#e3e1e1",
@@ -142,17 +142,19 @@ const AdminTrendingProduct = () => {
             setShowForm(true);
           }}
           style={{
-            background: "#D63384",
+            background: "#D4AF37",
             color: "white",
             width: "200px",
             height: "50px",
+            border: "none",
             borderRadius: "10px",
             fontSize: "20px",
-
+            cursor: "pointer",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            gap: "8px",
+            gap: "10px",
+            zIndex: 10,
           }}
         >
           <AddIcon /> Add
@@ -163,11 +165,11 @@ const AdminTrendingProduct = () => {
       {showForm && (
         <div
           style={{
-            background: "pink",
+            background: "#D4AF37",
             padding: "30px",
             marginTop: "30px",
             borderRadius: "20px",
-            width: "50%",
+            width: "55%",
           }}
         >
           <label style={formLabel}>
@@ -176,27 +178,30 @@ const AdminTrendingProduct = () => {
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              style={inputStyle}
+              style={{
+                width: "400px",
+                height: "35px",
+                border: "none",
+                borderRadius: "10px",
+                marginLeft: "3%",
+              }}
             />
           </label>
 
           <label style={formLabel}>
-            Price :
+            Price:
             <input
               type="number"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
-              style={inputStyle}
-            />
-          </label>
-
-          <label style={formLabel}>
-            Image :
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => setImageFile(e.target.files[0])}
-              style={{ ...inputStyle, width: "400px", background: "white" }}
+              style={{
+                width: "400px",
+                marginRight: "10px",
+                height: "35px",
+                border: "none",
+                borderRadius: "10px",
+                marginLeft: "3%",
+              }}
             />
           </label>
 
@@ -206,7 +211,30 @@ const AdminTrendingProduct = () => {
               type="text"
               value={productLink}
               onChange={(e) => setProductLink(e.target.value)}
-              style={inputStyle}
+              style={{
+                width: "400px",
+                height: "35px",
+                border: "none",
+                borderRadius: "10px",
+                marginLeft: "4%",
+              }}
+            />
+          </label>
+          <label style={formLabel}>
+            Image :
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => setImageFile(e.target.files[0])}
+              style={{
+                width: "400px",
+                height: "35px",
+                border: "1px solid white",
+                borderRadius: "10px",
+                paddingTop: "6px",
+                paddingLeft: "10px",
+                marginLeft: "2%",
+              }}
             />
           </label>
 
@@ -230,7 +258,7 @@ const AdminTrendingProduct = () => {
               onClick={handleFormSubmit}
               style={{
                 padding: "12px 25px",
-                background: "#D63384",
+                background: "#7d0a0a",
                 color: "#fff",
                 borderRadius: "10px",
                 width: "120px",
@@ -243,7 +271,7 @@ const AdminTrendingProduct = () => {
               onClick={resetForm}
               style={{
                 padding: "12px 25px",
-                background: "#D63384",
+                background: "#7d0a0a",
                 color: "#fff",
                 borderRadius: "10px",
                 width: "120px",
@@ -268,7 +296,7 @@ const AdminTrendingProduct = () => {
               style={{
                 minHeight: "100px",
                 width: "100%",
-                background: "#D63384",
+                background: "#7d0a0a",
                 borderRadius: "10px",
                 padding: "10px",
                 marginTop: "40px",
@@ -335,7 +363,7 @@ const formLabel = {
   gap: "20px",
   fontSize: "20px",
   fontWeight: "bold",
-  color: "#D63384",
+  color: "#7d0a0a",
   marginTop: "15px",
   alignItems: "center",
 };
@@ -350,7 +378,7 @@ const inputStyle = {
 
 const editBtn = {
   background: "white",
-  color: "#D63384",
+  color: "#7d0a0a",
   width: "90px",
   height: "45px",
   borderRadius: "10px",
@@ -360,7 +388,7 @@ const editBtn = {
 
 const deleteBtn = {
   background: "white",
-  color: "#D63384",
+  color: "#7d0a0a",
   width: "90px",
   height: "45px",
   borderRadius: "10px",

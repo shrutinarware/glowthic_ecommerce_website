@@ -122,7 +122,7 @@ const Adminnails = () => {
           style={{
             height: "45px",
             width: "320px",
-            border: "1px solid #D63384",
+            border: "1px solid #7d0a0a",
             borderRadius: "10px",
             padding: "0 15px",
             fontSize: "16px",
@@ -135,7 +135,7 @@ const Adminnails = () => {
         <button
           onClick={handleAddClick}
           style={{
-            background: "#D63384",
+            background: "#D4AF37",
             color: "white",
             width: "200px",
             height: "50px",
@@ -179,12 +179,13 @@ const Adminnails = () => {
           .map((item) => (
             <div
               key={item.id}
+              className="product-card"
               style={{
                 minHeight: "100px",
                 width: "100%",
                 borderRadius: "10px",
-                background: "#D63384",
-                marginTop: "30px",
+                background: "#7d0a0a",
+                marginTop: "50px",
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "space-between",
@@ -192,6 +193,7 @@ const Adminnails = () => {
               }}
             >
               <div
+                className="product-info"
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -202,6 +204,7 @@ const Adminnails = () => {
                 <img
                   src={item.img}
                   alt="product"
+                  className="product-img"
                   style={{
                     height: "80px",
                     width: "100px",
@@ -209,13 +212,17 @@ const Adminnails = () => {
                     objectFit: "cover",
                   }}
                 />
-                <div style={{ lineHeight: "1.2", color: "white" }}>
+                <div
+                  className="product-title"
+                  style={{ lineHeight: "1.2", color: "white" }}
+                >
                   <h1 style={{ margin: 0 }}>{item.Heading}</h1>
                   <h3 style={{ margin: 0 }}>{item.subHeading}</h3>
                 </div>
               </div>
 
               <div
+                className="product-actions"
                 style={{
                   display: "flex",
                   gap: "20px",
@@ -231,7 +238,7 @@ const Adminnails = () => {
                   }}
                   style={{
                     background: "white",
-                    color: "#D63384",
+                    color: "#7d0a0a",
                     width: "100px",
                     height: "50px",
                     border: "none",
@@ -252,7 +259,7 @@ const Adminnails = () => {
                   onClick={() => handleDelete(item.id)}
                   style={{
                     background: "white",
-                    color: "#D63384",
+                    color: "#7d0a0a",
                     width: "100px",
                     height: "50px",
                     border: "none",

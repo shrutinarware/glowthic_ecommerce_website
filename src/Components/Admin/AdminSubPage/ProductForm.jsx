@@ -114,7 +114,7 @@ const ProductForm = ({
       <h1
         style={{
           textAlign: "center",
-          color: "#D63384",
+          color: "#7d0a0a",
           fontSize: "40px",
           marginTop: "-10px",
         }}
@@ -127,8 +127,8 @@ const ProductForm = ({
         style={{
           padding: "25px",
           width: "75%",
-          background: "pink",
-          border: "1px solid #D63384",
+          background: "#D4AF37",
+          border: "1px solid #7d0a0a",
           borderRadius: "20px",
           display: "flex",
           flexDirection: "column",
@@ -139,7 +139,7 @@ const ProductForm = ({
       >
         {/* Product ID */}
         <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
-          <label style={{ fontSize: "30px", color: "#D63384", width: "200px" }}>
+          <label style={{ fontSize: "30px", color: "#7d0a0a", width: "200px" }}>
             Product ID
           </label>
           <input
@@ -160,7 +160,7 @@ const ProductForm = ({
 
         {/* Heading */}
         <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-          <label style={{ fontSize: "30px", color: "#D63384", width: "200px" }}>
+          <label style={{ fontSize: "30px", color: "#7d0a0a", width: "200px" }}>
             Heading
           </label>
           <input
@@ -181,7 +181,7 @@ const ProductForm = ({
 
         {/* Subheading */}
         <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-          <label style={{ fontSize: "30px", color: "#D63384", width: "200px" }}>
+          <label style={{ fontSize: "30px", color: "#7d0a0a", width: "200px" }}>
             Sub Heading
           </label>
           <input
@@ -202,7 +202,7 @@ const ProductForm = ({
 
         {/* Description */}
         <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-          <label style={{ fontSize: "30px", color: "#D63384", width: "200px" }}>
+          <label style={{ fontSize: "30px", color: "#7d0a0a", width: "200px" }}>
             Product Description
           </label>
           <input
@@ -223,7 +223,7 @@ const ProductForm = ({
 
         {/* Product Link */}
         <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-          <label style={{ fontSize: "30px", color: "#D63384", width: "200px" }}>
+          <label style={{ fontSize: "30px", color: "#7d0a0a", width: "200px" }}>
             Product Link
           </label>
           <input
@@ -244,7 +244,7 @@ const ProductForm = ({
 
         {/* Image Upload */}
         <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-          <label style={{ fontSize: "30px", color: "#D63384", width: "200px" }}>
+          <label style={{ fontSize: "30px", color: "#7d0a0a", width: "200px" }}>
             Upload Image
           </label>
           <input
@@ -280,7 +280,7 @@ const ProductForm = ({
             style={{
               padding: "15px 40px",
               fontSize: "20px",
-              backgroundColor: "#D63384",
+              backgroundColor: "#7d0a0a",
               color: "white",
               border: "none",
               borderRadius: "10px",
@@ -296,7 +296,7 @@ const ProductForm = ({
             style={{
               padding: "15px 40px",
               fontSize: "20px",
-              backgroundColor: "#D63384",
+              backgroundColor: "#7d0a0a",
               color: "white",
               border: "none",
               borderRadius: "10px",

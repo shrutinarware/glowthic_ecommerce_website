@@ -188,7 +188,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
           height: "auto",
           maxHeight: isMobile ? "none" : "95vh",
           overflow: "visible",
-          background: "rgba(255,192,203,0.95)",
+          background: "linear-gradient(to right, #8B6A2B, #F8E1A1, #C29A4D)",
           position: "relative",
           transition: "all 0.3s ease",
           margin: isMobile ? "20px 0" : isTablet ? "30px 0" : "0",
@@ -208,7 +208,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
             right: isMobile ? "10px" : "15px",
             fontSize: isMobile ? "22px" : "28px",
             cursor: "pointer",
-            color: "#D63384",
+            color: "black",
             fontWeight: "bold",
             transition: "0.3s",
           }}
@@ -235,7 +235,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
               <h2
                 style={{
                   textAlign: "center",
-                  color: "#D63384",
+                  color: "black",
                   marginBottom: "15px",
                 }}
               >
@@ -243,20 +243,20 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
               </h2>
               <div
                 style={{
-                  border: "1px solid #D63384",
+                  border: "1px solid black",
                   borderRadius: "10px",
                   padding: "10px",
                   background: "#fff",
                 }}
               >
-                <h4 style={{ color: "#D63384" }}>Privacy Policy</h4>
+                <h4 style={{ color: "#7d0a0a" }}>Privacy Policy</h4>
                 <p style={{ fontSize: "14px" }}>
                   We collect only necessary user data for account and service
                   personalization. Your information will never be sold or
                   misused. You have the right to access, update, or delete your
                   personal information by contacting our support team.
                 </p>
-                <h4 style={{ color: "#D63384" }}>Terms of Use</h4>
+                <h4 style={{ color: "#7d0a0a" }}>Terms of Use</h4>
                 <p style={{ fontSize: "14px" }}>
                   By using Glowthic, you agree to maintain the confidentiality
                   of your account and comply with our usage policies. All
@@ -269,7 +269,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                 onClick={() => setShowPrivacy(false)}
                 style={{
                   textAlign: "center",
-                  color: "#D63384",
+                  color: "#7d0a0a",
                   marginTop: "15px",
                   cursor: "pointer",
                 }}
@@ -283,7 +283,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
               <h2
                 style={{
                   textAlign: "center",
-                  color: "#D63384",
+                  color: "black",
                   fontFamily: "cursive",
                   marginBottom: "20px",
                   marginTop: isMobile ? "-10px" : "-40px",
@@ -297,17 +297,18 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                   fontSize: "12px",
                   cursor: "pointer",
                   marginTop: "-15px",
+                  color: "black",
                 }}
                 onClick={() => setShowLogin(true)}
               >
                 Already have an Account?{" "}
-                <span style={{ color: "#D63384", fontWeight: "bold" }}>
+                <span style={{ color: "#7d0a0a", fontWeight: "bold" }}>
                   Log in
                 </span>
               </p>
               <p
                 style={{
-                  color: "#D63384",
+                  color: "#7d0a0a",
                   marginBottom: "5px",
                   fontWeight: "bold",
                 }}
@@ -322,7 +323,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                   width: "92%",
                   padding: "10px",
                   fontSize: "16px",
-                  border: "1px solid #D63384",
+                  border: "1px solid #7d0a0a",
                   borderRadius: "10px",
                   outline: "none",
                   marginBottom: "10px",
@@ -332,7 +333,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
               {/* Email */}
               <p
                 style={{
-                  color: "#D63384",
+                  color: "#7d0a0a",
                   marginBottom: "5px",
                   fontWeight: "bold",
                 }}
@@ -347,7 +348,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                   width: "92%",
                   padding: "10px",
                   fontSize: "16px",
-                  border: "1px solid #D63384",
+                  border: "1px solid #7d0a0a",
                   borderRadius: "10px",
                   outline: "none",
                   marginBottom: "10px",
@@ -357,7 +358,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
               {/* Contact */}
               <p
                 style={{
-                  color: "#D63384",
+                  color: "#7d0a0a",
                   marginBottom: "5px",
                   fontWeight: "bold",
                 }}
@@ -372,7 +373,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                   width: "92%",
                   padding: "10px",
                   fontSize: "16px",
-                  border: "1px solid #D63384",
+                  border: "1px solid #7d0a0a",
                   borderRadius: "10px",
                   outline: "none",
                   marginBottom: "10px",
@@ -381,14 +382,14 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
               {/* Password */}
               <p
                 style={{
-                  color: "#D63384",
+                  color: "#7d0a0a",
                   marginBottom: "5px",
                   fontWeight: "bold",
                 }}
               >
                 Password
               </p>
-              <div style={{ position: "relative", marginBottom: "15px" }}>
+              <div>
                 <input
                   type={showPassword ? "text" : "password"}
                   value={password}
@@ -397,7 +398,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                     width: "92%",
                     padding: "10px",
                     fontSize: "16px",
-                    border: "1px solid #D63384",
+                    border: "1px solid #7d0a0a",
                     borderRadius: "10px",
                     outline: "none",
                   }}
@@ -410,7 +411,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                     top: "50%",
                     transform: "translateY(-50%)",
                     cursor: "pointer",
-                    color: "#D63384",
+                    color: "#7d0a0a",
                     fontSize: "20px",
                   }}
                 >
@@ -430,11 +431,11 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                 )}
               </div>
               {/* Terms */}
-              <p style={{ fontSize: "12px" }}>
+              <p style={{ fontSize: "12px", color: "black" }}>
                 By creating an Account, you agree to our{" "}
                 <span
                   style={{
-                    color: "#D63384",
+                    color: "#7d0a0a",
                     cursor: "pointer",
                     textDecoration: "underline",
                   }}
@@ -448,7 +449,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                 onClick={handleSignUp}
                 style={{
                   width: "100%",
-                  background: "#D63384",
+                  background: "black",
                   color: "white",
                   border: "none",
                   borderRadius: "8px",
@@ -468,7 +469,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
               <h1
                 style={{
                   textAlign: "center",
-                  color: "#D63384",
+                  color: "#7d0a0a",
                   fontFamily: "cursive",
                   marginBottom: "20px",
                 }}
@@ -478,7 +479,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
 
               <p
                 style={{
-                  color: "#D63384",
+                  color: "#7d0a0a",
                   marginBottom: "5px",
                   fontWeight: "bold",
                 }}
@@ -493,7 +494,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                   width: "92%",
                   padding: "10px",
                   fontSize: "16px",
-                  border: "1px solid #D63384",
+                  border: "1px solid #7d0a0a",
                   borderRadius: "10px",
                   outline: "none",
                   marginBottom: "10px",
@@ -501,7 +502,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
               />
               <p
                 style={{
-                  color: "#D63384",
+                  color: "#7d0a0a",
                   marginBottom: "5px",
                   fontWeight: "bold",
                 }}
@@ -517,7 +518,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                     width: "92%",
                     padding: "10px",
                     fontSize: "16px",
-                    border: "1px solid #D63384",
+                    border: "1px solid #7d0a0a",
                     borderRadius: "10px",
                     outline: "none",
                   }}
@@ -530,7 +531,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                     top: "50%",
                     transform: "translateY(-50%)",
                     cursor: "pointer",
-                    color: "#D63384",
+                    color: "#7d0a0a",
                     fontSize: "20px",
                   }}
                 >
@@ -542,7 +543,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                   textAlign: "center",
                   fontSize: "12px",
                   cursor: "pointer",
-                  color: "#D63384",
+                  color: "black",
                   fontWeight: "bold",
                 }}
                 onClick={() => setShowLogin(false)}
@@ -553,7 +554,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                 onClick={handleLogin}
                 style={{
                   width: "100%",
-                  background: "#D63384",
+                  background: "#7d0a0a",
                   color: "white",
                   border: "none",
                   borderRadius: "8px",

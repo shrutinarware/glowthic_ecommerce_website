@@ -65,7 +65,7 @@ const AdminHomepageSettings = () => {
                   justifyContent: "space-between",
                   width: "300px",
                   marginBottom: "10px",
-                  color: "#D63384",
+                  color: "#7d0a0a",
                   fontSize: "20px",
                 }}
               >
@@ -84,7 +84,7 @@ const AdminHomepageSettings = () => {
             style={{
               marginTop: "20px",
               padding: "10px 20px",
-              background: "#D63384",
+              background: "#7d0a0a",
               color: "white",
               border: "none",
               borderRadius: "10px",

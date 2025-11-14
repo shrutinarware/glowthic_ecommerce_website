@@ -125,7 +125,7 @@ const AdminDryer = () => {
           style={{
             height: "45px",
             width: "320px",
-            border: "1px solid #D63384",
+            border: "1px solid #7d0a0a",
             borderRadius: "10px",
             padding: "0 15px",
             fontSize: "16px",
@@ -140,7 +140,7 @@ const AdminDryer = () => {
           className="admin-add-button"
           onClick={handleAddClick}
           style={{
-            background: "#D63384",
+            background: "#D4AF37",
             color: "white",
             width: "200px",
             height: "50px",
@@ -176,108 +176,113 @@ const AdminDryer = () => {
 
       {/* Product List */}
       <div>
-        {products.map((item) => (
-          <div
-            key={item.id}
-            className="product-card"
-            style={{
-              minHeight: "100px",
-              width: "100%",
-              borderRadius: "10px",
-              background: "#D63384",
-              marginTop: "50px",
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              flexWrap: "wrap",
-            }}
-          >
+        {products
+          .filter((item) =>
+            item.Heading.toLowerCase().includes(searchTerm.toLowerCase())
+          )
+          .sort((a, b) => b.id - a.id)
+          .map((item) => (
             <div
-              className="product-info"
+              key={item.id}
+              className="product-card"
               style={{
+                minHeight: "100px",
+                width: "100%",
+                borderRadius: "10px",
+                background: "#7d0a0a",
+                marginTop: "50px",
                 display: "flex",
-                alignItems: "center",
-                padding: "20px",
-                gap: "20px",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                flexWrap: "wrap",
               }}
             >
-              <img
-                src={item.img}
-                alt="product"
-                className="product-img"
-                style={{
-                  height: "80px",
-                  width: "100px",
-                  borderRadius: "8px",
-                  objectFit: "cover",
-                }}
-              />
               <div
-                className="product-title"
-                style={{ lineHeight: "1.2", color: "white" }}
+                className="product-info"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  padding: "20px",
+                  gap: "20px",
+                }}
               >
-                <h1 style={{ margin: 0 }}>{item.Heading}</h1>
-                <h3 style={{ margin: 0 }}>{item.subHeading}</h3>
+                <img
+                  src={item.img}
+                  alt="product"
+                  className="product-img"
+                  style={{
+                    height: "80px",
+                    width: "100px",
+                    borderRadius: "8px",
+                    objectFit: "cover",
+                  }}
+                />
+                <div
+                  className="product-title"
+                  style={{ lineHeight: "1.2", color: "white" }}
+                >
+                  <h1 style={{ margin: 0 }}>{item.Heading}</h1>
+                  <h3 style={{ margin: 0 }}>{item.subHeading}</h3>
+                </div>
+              </div>
+
+              <div
+                className="product-actions"
+                style={{
+                  display: "flex",
+                  gap: "20px",
+                  alignItems: "center",
+                  padding: "20px",
+                  paddingRight: "40px",
+                }}
+              >
+                <button
+                  onClick={() => {
+                    setEditingProduct(item);
+                    setShowForm(true);
+                  }}
+                  style={{
+                    background: "white",
+                    color: "#7d0a0a",
+                    width: "100px",
+                    height: "50px",
+                    border: "none",
+                    borderRadius: "10px",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "8px",
+                    fontSize: "16px",
+                  }}
+                >
+                  <EditIcon style={{ fontSize: 20 }} />
+                  Edit
+                </button>
+
+                <button
+                  onClick={() => handleDelete(item.id)}
+                  style={{
+                    background: "white",
+                    color: "#7d0a0a",
+                    width: "100px",
+                    height: "50px",
+                    border: "none",
+                    borderRadius: "10px",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "8px",
+                    fontSize: "16px",
+                  }}
+                >
+                  <DeleteIcon style={{ fontSize: 20 }} />
+                  Delete
+                </button>
               </div>
             </div>
-
-            <div
-              className="product-actions"
-              style={{
-                display: "flex",
-                gap: "20px",
-                alignItems: "center",
-                padding: "20px",
-                paddingRight: "40px",
-              }}
-            >
-              <button
-                onClick={() => {
-                  setEditingProduct(item);
-                  setShowForm(true);
-                }}
-                style={{
-                  background: "white",
-                  color: "#D63384",
-                  width: "100px",
-                  height: "50px",
-                  border: "none",
-                  borderRadius: "10px",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "8px",
-                  fontSize: "16px",
-                }}
-              >
-                <EditIcon style={{ fontSize: 20 }} />
-                Edit
-              </button>
-
-              <button
-                onClick={() => handleDelete(item.id)}
-                style={{
-                  background: "white",
-                  color: "#D63384",
-                  width: "100px",
-                  height: "50px",
-                  border: "none",
-                  borderRadius: "10px",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "8px",
-                  fontSize: "16px",
-                }}
-              >
-                <DeleteIcon style={{ fontSize: 20 }} />
-                Delete
-              </button>
-            </div>
-          </div>
-        ))}
+          ))}
       </div>
 
       {/* Responsive styles */}

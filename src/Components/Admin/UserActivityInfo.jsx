@@ -120,7 +120,7 @@ const UserActivityInfo = () => {
   return (
     <div
       style={{
-        padding: "100px 5% 0 260px",
+        padding: "120px 3% 0 260px",
         fontFamily: "'Segoe UI', sans-serif",
       }}
     >
@@ -133,7 +133,7 @@ const UserActivityInfo = () => {
           gap: "10px",
         }}
       >
-        <h1 style={{ color: "#D63384", marginBottom: "20px" }}>
+        <h1 style={{ color: "#7d0a0a", marginBottom: "20px" }}>
           User Activity
         </h1>
 
@@ -146,11 +146,11 @@ const UserActivityInfo = () => {
             onChange={(e) => setFromDate(e.target.value)}
             size="small"
             style={{
-              border: "1px solid #D63384",
+              border: "1px solid #7d0a0a",
               borderRadius: "6px",
             }}
             inputProps={{
-              style: { color: "#D63384", cursor: "pointer" },
+              style: { color: "#7d0a0a", cursor: "pointer" },
             }}
           />
           <TextField
@@ -161,11 +161,11 @@ const UserActivityInfo = () => {
             onChange={(e) => setToDate(e.target.value)}
             size="small"
             style={{
-              border: "1px solid #D63384",
+              border: "1px solid #7d0a0a",
               borderRadius: "6px",
             }}
             inputProps={{
-              style: { color: "#D63384", cursor: "pointer" },
+              style: { color: "#7d0a0a", cursor: "pointer" },
             }}
           />
 
@@ -173,7 +173,7 @@ const UserActivityInfo = () => {
             variant="contained"
             onClick={exportToExcel}
             style={{
-              backgroundColor: "#D63384",
+              backgroundColor: "#7d0a0a",
               color: "white",
               borderRadius: "8px",
               padding: "10px 20px",
@@ -187,7 +187,7 @@ const UserActivityInfo = () => {
 
       <TableContainer component={Paper} style={{ maxHeight: "auto" }}>
         <Table>
-          <TableHead style={{ background: "pink" }}>
+          <TableHead style={{ background: "#D4AF37" }}>
             <TableRow>
               <TableCell>
                 <strong>User Id</strong>
@@ -232,8 +232,8 @@ const UserActivityInfo = () => {
                         <TableCell
                           colSpan={6}
                           style={{
-                            background: "#ffb6c1",
-                            height: "4px",
+                            background: "black",
+                            height: "3px",
                             padding: 0,
                           }}
                         ></TableCell>
@@ -250,6 +250,7 @@ const UserActivityInfo = () => {
                           href={click.productLink}
                           target="_blank"
                           rel="noreferrer"
+                          style={{ color: "#7d0a0a" }}
                         >
                           View Product
                         </a>

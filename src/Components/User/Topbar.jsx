@@ -364,7 +364,6 @@ const Topbar = () => {
                 fontSize: "33px",
                 color: "#dfb441",
                 cursor: "pointer",
-                marginLeft: "8px",
               }}
             >
               &#9776;

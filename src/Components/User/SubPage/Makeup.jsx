@@ -370,7 +370,7 @@ const Makeup = ({
           </Link>
         ))}
       </div>
-      {showDeals && (
+      {!isMenPage && !isWomenPage && showDeals && (
         <div style={{ padding: "20px" }}>
           <h2
             style={{
@@ -383,36 +383,45 @@ const Makeup = ({
           </h2>
 
           <div
-            onClick={handleSlideClick}
             style={{
-              display: "flex",
-              overflowX: "auto",
-              gap: "20px",
-              padding: "10px",
+              padding: "20px",
+              background: "rgba(255, 242, 215, 0.3)", // light premium glow bg
+              boxShadow: "0 0 40px rgba(212, 175, 55, 0.4)", // GOLD GLOW in background
+              marginBottom: "30px",
             }}
           >
-            {deals.map((item) => (
-              <div
-                key={item.id}
-                href={item.link}
-                style={{
-                  minWidth: "400px",
-                  height: "200px",
-                  overflow: "hidden",
-                  border: "2px solid black",
-                }}
-              >
-                <img
-                  src={item.image}
-                  alt=""
+            <div
+              onClick={handleSlideClick}
+              style={{
+                display: "flex",
+                overflowX: "auto",
+                gap: "20px",
+                padding: "10px",
+              }}
+            >
+              {deals.map((item) => (
+                <div
+                  key={item.id}
                   style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
+                    minWidth: "400px",
+                    height: "200px",
+                    overflow: "hidden",
+                    border: "4px solid #D4AF37",
+                    borderRadius: "20px",
                   }}
-                />
-              </div>
-            ))}
+                >
+                  <img
+                    src={item.image}
+                    alt=""
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}

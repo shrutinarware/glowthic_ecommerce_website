@@ -2,6 +2,12 @@ import React, { useState, useEffect } from "react";
 import LOGO from "../../assets/Topbar/logo.jpg.png";
 import { Link } from "react-router-dom";
 
+// MUI ICONS
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import PhoneIcon from "@mui/icons-material/Phone";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import EmailIcon from "@mui/icons-material/Email";
+
 const Footer = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -127,26 +133,38 @@ const Footer = () => {
                 Contact Us
               </Link>
             </h3>
-            <p style={{ color: "white" }}>
-              Call:
-              <span style={{ fontWeight: "bolder", color: "white" }}>
-                {" "}
-                +91 8349759769
-              </span>
+            <p
+              style={{
+                color: "white",
+                display: "flex",
+                gap: "6px",
+                alignItems: "center",
+              }}
+            >
+              <PhoneIcon style={{ color: "#dfb441" }} />
+              <strong>+91 8349759769</strong>
             </p>
-            <p style={{ color: "white" }}>
-              Whatsapp:{" "}
-              <span style={{ fontWeight: "bolder", color: "white" }}>
-                {" "}
-                8349759769
-              </span>
+            <p
+              style={{
+                color: "white",
+                display: "flex",
+                gap: "6px",
+                alignItems: "center",
+              }}
+            >
+              <WhatsAppIcon style={{ color: "#25D366" }} />
+              <strong>8349759769</strong>
             </p>
-            <p style={{ color: "white" }}>
-              Email:
-              <span style={{ fontWeight: "bolder", color: "white" }}>
-                {" "}
-                glowthicteam@gmail.com
-              </span>
+            <p
+              style={{
+                color: "white",
+                display: "flex",
+                gap: "6px",
+                alignItems: "center",
+              }}
+            >
+              <EmailIcon style={{ color: "#dfb441" }} />
+              <strong>glowthicteam@gmail.com</strong>
             </p>
           </div>
         </div>

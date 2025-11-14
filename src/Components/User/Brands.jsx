@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { ref, push, set, onValue } from "firebase/database";
 import { database } from "../../Firebase";
 import UserLoginModal from "./UserLoginModal";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const Brands = () => {
   const location = useLocation();
@@ -101,7 +102,9 @@ const Brands = () => {
           marginTop: "10px",
         }}
       >
+        <FavoriteIcon style={{ color: "#7d0a0a", fontSize: "30px" }} />
         Brands You Love
+        <FavoriteIcon style={{ color: "#7d0a0a", fontSize: "30px" }} />
       </h1>
       <p
         style={{

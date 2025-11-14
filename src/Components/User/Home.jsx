@@ -359,122 +359,137 @@ const Home = () => {
           every day. Explore quality, color, and care — all in one place.
         </p>
       </div>
-      {/* ✅ Trending Products Section */}
-      <div>
-        {homeSections.trending && (
-          <div
-            style={{
-              height: "450px",
-              marginTop: "60px",
-            }}
-          >
-            <h2
+      <div
+        style={{
+          width: "100%",
+          padding: "15px 10px",
+          background: "#FFF8E7",
+          boxSizing: "border-box",
+          boxShadow: "0px 0px 50px rgba(212, 175, 55, 0.45)",
+          borderRadius: "20px",
+          marginTop: "30px",
+        }}
+      >
+        {/* ✅ Trending Products Section */}
+        <div>
+          {homeSections.trending && (
+            <div
               style={{
-                paddingTop: "10px",
-                paddingLeft: "20px",
-                fontSize: "30px",
-                color: "#7d0a0a",
-                fontFamily: "sans-serif",
+                height: "auto",
+                marginTop: "20px",
               }}
             >
-              {" "}
-              <DoubleArrowIcon />
-              Trending Products
-            </h2>
-            <Slider
-              {...{
-                dots: false,
-                infinite: true,
-                speed: 600,
-                slidesToShow: 4,
-                slidesToScroll: 1,
-                autoplay: true,
-                autoplaySpeed: 2500,
-                responsive: [
-                  { breakpoint: 1024, settings: { slidesToShow: 3 } },
-                  { breakpoint: 768, settings: { slidesToShow: 2 } },
-                  { breakpoint: 480, settings: { slidesToShow: 1 } },
-                ],
-              }}
-            >
-              {/* ✅ Product Card 1 */}
-              {trending.map((item, index) => (
-                <div
-                  key={index}
-                  style={{ padding: "6px" }}
-                  onClick={() => handleTrendingClick(item)}
-                >
-                  <div style={{ textDecoration: "none" }}>
-                    <div
-                      style={{
-                        background: "#fff",
-                        borderRadius: "12px",
-                        border: "2px solid   #dfb441",
-                        padding: "12px",
-                        textAlign: "center",
-                        boxShadow: "0px 2px 8px rgba(0,0,0,0.08)",
-                        transition: "0.3s",
-                        cursor: "pointer",
-                        width: "180px",
-                        margin: " 0 auto",
-                      }}
-                    >
-                      {/* ✅ Flipkart-style tall image section */}
+              <h2
+                style={{
+                  paddingTop: "5px",
+                  paddingLeft: "20px",
+                  fontSize: "30px",
+                  color: "#7d0a0a",
+                  fontFamily: "sans-serif",
+                }}
+              >
+                <DoubleArrowIcon /> Trending Products
+              </h2>
+
+              <Slider
+                {...{
+                  dots: false,
+                  infinite: true,
+                  speed: 600,
+                  slidesToShow: 4,
+                  slidesToScroll: 1,
+                  autoplay: true,
+                  autoplaySpeed: 2500,
+                  responsive: [
+                    { breakpoint: 1200, settings: { slidesToShow: 3 } },
+                    { breakpoint: 992, settings: { slidesToShow: 3 } },
+                    { breakpoint: 768, settings: { slidesToShow: 2 } },
+                    { breakpoint: 480, settings: { slidesToShow: 1 } },
+                  ],
+                }}
+              >
+                {trending.map((item, index) => (
+                  <div
+                    key={index}
+                    style={{ padding: "6px" }}
+                    onClick={() => handleTrendingClick(item)}
+                  >
+                    <div style={{ textDecoration: "none" }}>
                       <div
                         style={{
+                          background: "#fff",
+                          borderRadius: "12px",
+                          border: "2px solid #dfb441",
+                          padding: "12px",
+                          textAlign: "center",
+                          boxShadow: "0px 2px 8px rgba(0,0,0,0.08)",
+                          transition: "0.3s",
+                          cursor: "pointer",
+
+                          /* 🔥 RESPONSIVE FIX */
                           width: "100%",
-                          height: "240px",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          borderRadius: "10px",
-                          overflow: "hidden",
+                          maxWidth: "180px", // same UI
+                          margin: "0 auto",
                         }}
                       >
-                        <img
-                          src={item.image}
-                          alt="Product"
+                        <div
                           style={{
-                            width: "80%",
-                            height: "100%",
-                            objectFit: "contain",
+                            width: "100%",
+                            height: "auto",
+
+                            /* 🔥 Responsive height */
+                            aspectRatio: "3 / 4",
+
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            borderRadius: "10px",
+                            overflow: "hidden",
                           }}
-                        />
+                        >
+                          <img
+                            src={item.image}
+                            alt="Product"
+                            style={{
+                              width: "80%",
+                              height: "100%",
+                              objectFit: "contain",
+                            }}
+                          />
+                        </div>
+
+                        <h4
+                          style={{
+                            fontSize: "15px",
+                            fontWeight: "600",
+                            color: "#333",
+                            marginTop: "10px",
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                          }}
+                        >
+                          {item.title}
+                        </h4>
+
+                        <p
+                          style={{
+                            fontSize: "14px",
+                            color: "#7d0a0a",
+                            marginTop: "4px",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          ₹{item.price}
+                        </p>
                       </div>
-
-                      {/* ✅ Title */}
-                      <h4
-                        style={{
-                          fontSize: "15px",
-                          fontWeight: "600",
-                          color: "#333",
-                          marginTop: "10px",
-                          whiteSpace: "nowrap",
-                          overflow: "hidden",
-                          textOverflow: "ellipsis",
-                        }}
-                      >
-                        {item.title}
-                      </h4>
-
-                      {/* ✅ Price */}
-                      <p
-                        style={{
-                          fontSize: "14px",
-                          color: "#7d0a0a",
-                          marginTop: "4px",
-                          fontWeight: "bold",
-                        }}
-                      >
-                        ₹{item.price}
-                      </p>
                     </div>
                   </div>
-                </div>
-              ))}
-            </Slider>
-          </div>
-        )}
+                ))}
+              </Slider>
+            </div>
+          )}
+        </div>
       </div>
       {/* Top Categories */}
       {homeSections.topCategories && (
@@ -894,6 +909,7 @@ const Home = () => {
         width: 90% !important;
       }
     }
+      
   `}
       </style>
       {homeSections.skinType && (

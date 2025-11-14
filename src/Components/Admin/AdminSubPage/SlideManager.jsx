@@ -90,7 +90,7 @@ const SlideManager = ({ onCancel, initialData, newId, folder }) => {
 
   return (
     <div>
-      <h2 style={{ color: "#D63384", textAlign: "center", fontSize: "35px" }}>
+      <h2 style={{ color: "#7d0a0a", textAlign: "center", fontSize: "35px" }}>
         {initialData ? "Edit Slide" : "Add New Slide"}
       </h2>
 
@@ -102,13 +102,15 @@ const SlideManager = ({ onCancel, initialData, newId, folder }) => {
           gap: "20px",
           padding: "25px",
           width: "80%",
-          background: "pink",
+          background: "#D4AF37",
           borderRadius: "20px",
           margin: "0 auto",
         }}
       >
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <label style={{ fontSize: "25px", color: "#D63384" }}>
+          <label
+            style={{ fontSize: "25px", color: "#7d0a0a", fontWeight: "bold" }}
+          >
             {" "}
             Heading{" "}
           </label>
@@ -127,7 +129,9 @@ const SlideManager = ({ onCancel, initialData, newId, folder }) => {
         </div>
         {/* Redirect Link */}
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <label style={{ fontSize: "25px", color: "#D63384" }}>
+          <label
+            style={{ fontSize: "25px", color: "#7d0a0a", fontWeight: "bold" }}
+          >
             Image Link
           </label>
           <input
@@ -152,7 +156,9 @@ const SlideManager = ({ onCancel, initialData, newId, folder }) => {
             gap: "60px",
           }}
         >
-          <label style={{ fontSize: "25px", color: "#D63384" }}>
+          <label
+            style={{ fontSize: "25px", color: "#7d0a0a", fontWeight: "bold" }}
+          >
             Upload Image
           </label>
           <input
@@ -197,7 +203,7 @@ const SlideManager = ({ onCancel, initialData, newId, folder }) => {
             type="submit"
             disabled={uploading}
             style={{
-              background: "#D63384",
+              background: "#7d0a0a",
               color: "white",
               border: "none",
               padding: "10px 30px",
@@ -212,7 +218,7 @@ const SlideManager = ({ onCancel, initialData, newId, folder }) => {
             type="button"
             onClick={onCancel}
             style={{
-              background: "#D63384",
+              background: "#7d0a0a",
               color: "white",
               border: "none",
               padding: "10px 30px",

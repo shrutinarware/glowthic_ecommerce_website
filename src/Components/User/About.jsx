@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import InsightsIcon from "@mui/icons-material/Insights";
+import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 
 const About = () => {
   const location = useLocation();
@@ -115,10 +117,16 @@ const About = () => {
               fontWeight: "bolder",
               fontFamily: "sans-serif",
               textAlign: "center",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "8px",
             }}
           >
+            <InsightsIcon style={{ color: "#7d0a0a" }} />
             Our Vision
           </h1>
+
           <p
             style={{
               fontSize: "15px",
@@ -153,10 +161,16 @@ const About = () => {
               fontWeight: "bolder",
               fontFamily: "sans-serif",
               textAlign: "center",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "8px",
             }}
           >
+            <RocketLaunchIcon style={{ color: "#7d0a0a" }} />
             Our Mission
           </h1>
+
           <p
             style={{
               fontSize: "15px",
@@ -194,7 +208,7 @@ const About = () => {
           can’t wait to grow with you.
           <br />
           <br />
-          With all our love,
+          With all our love ✨❤️
           <br />
           <strong style={{ color: "#D4AF37", fontSize: "25px" }}>
             Team Glowthic

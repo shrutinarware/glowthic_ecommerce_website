@@ -34,8 +34,8 @@ const UserResponse = () => {
         });
         // Convert grouped object to array
         const groupedArray = Object.values(grouped).map((msgs) => ({
-          ...msgs[0], 
-          allMessages: msgs, 
+          ...msgs[0],
+          allMessages: msgs,
         }));
         // Sort by latest timestamp
         groupedArray.sort(
@@ -64,27 +64,27 @@ const UserResponse = () => {
     return Object.values(registeredUsers).some((user) => user.email === email);
   };
   const truncateMessage = (text, wordLimit = 100) => {
-  const words = text.split(" ");
-  if (words.length <= wordLimit) return text;
-  return words.slice(0, wordLimit).join(" ") + "...";
-};
+    const words = text.split(" ");
+    if (words.length <= wordLimit) return text;
+    return words.slice(0, wordLimit).join(" ") + "...";
+  };
 
   return (
     <div
       style={{ paddingLeft: "300px", paddingRight: "5%", marginTop: "150px" }}
     >
-      <h1 style={{ color: "#D63384", marginBottom: "20px" }}>
+      <h1 style={{ color: "#7d0a0a", marginBottom: "20px" }}>
         User Contact Responses
       </h1>
 
       <TableContainer component={Paper}>
         <Table>
-          <TableHead style={{ background: "pink" }}>
+          <TableHead style={{ background: "#D4AF37" }}>
             <TableRow>
               <TableCell sx={{ width: "10%" }}>
                 <strong>Name</strong>
               </TableCell>
-              <TableCell sx={{ width:  "5%"  }}>
+              <TableCell sx={{ width: "5%" }}>
                 <strong>Contact</strong>
               </TableCell>
               <TableCell>
@@ -120,7 +120,7 @@ const UserResponse = () => {
                   <TableCell sx={{ width: "40%" }}>
                     <ul style={{ paddingLeft: "15px", margin: 0 }}>
                       {(msg.allMessages || []).map((m, idx) => (
-                       <li key={idx}>{truncateMessage(m.message)}</li>
+                        <li key={idx}>{truncateMessage(m.message)}</li>
                       ))}
                     </ul>
                   </TableCell>

@@ -123,7 +123,7 @@ const AdminBrands = () => {
           style={{
             height: "45px",
             width: "320px",
-            border: "1px solid #D63384",
+            border: "1px solid #7d0a0a",
             borderRadius: "10px",
             padding: "0 15px",
             fontSize: "16px",
@@ -138,7 +138,7 @@ const AdminBrands = () => {
           className="admin-add-button"
           onClick={handleAddClick}
           style={{
-            background: "#D63384",
+            background: "#7d0a0a",
             color: "white",
             width: "200px",
             height: "50px",
@@ -190,7 +190,7 @@ const AdminBrands = () => {
                 minHeight: "100px",
                 width: "100%",
                 borderRadius: "10px",
-                background: "#D63384",
+                background: "#7d0a0a",
                 marginTop: "50px",
                 display: "flex",
                 flexDirection: "row",
@@ -243,7 +243,7 @@ const AdminBrands = () => {
                   }}
                   style={{
                     background: "white",
-                    color: "#D63384",
+                    color: "#7d0a0a",
                     width: "100px",
                     height: "50px",
                     border: "none",
@@ -264,7 +264,7 @@ const AdminBrands = () => {
                   onClick={() => handleDelete(item.id)}
                   style={{
                     background: "white",
-                    color: "#D63384",
+                    color: "#7d0a0a",
                     width: "100px",
                     height: "50px",
                     border: "none",

@@ -75,7 +75,7 @@ const BrandManager = ({ onSubmit, onCancel, initialData, newId }) => {
 
   return (
     <div>
-      <h2 style={{ color: "#D63384", textAlign: "center", fontSize: "30px" }}>
+      <h2 style={{ color: "#7d0a0a", textAlign: "center", fontSize: "30px" }}>
         {initialData ? "Edit Brand" : "Add New Brand"}
       </h2>
 
@@ -86,7 +86,7 @@ const BrandManager = ({ onSubmit, onCancel, initialData, newId }) => {
           flexDirection: "column",
           gap: "15px",
           padding: "20px",
-          background: "pink",
+          background: "#D4AF37",
           border: "none",
           borderRadius: "15px",
           width: "80%",
@@ -96,7 +96,7 @@ const BrandManager = ({ onSubmit, onCancel, initialData, newId }) => {
         {/* Brand Name */}
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <label
-            style={{ fontWeight: "bold", color: "#D63384", fontSize: "25px" }}
+            style={{ fontWeight: "bold", color: "#7d0a0a", fontSize: "25px" }}
           >
             Brand Name
           </label>
@@ -117,7 +117,7 @@ const BrandManager = ({ onSubmit, onCancel, initialData, newId }) => {
         {/* Brand Link */}
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <label
-            style={{ fontWeight: "bold", color: "#D63384", fontSize: "25px" }}
+            style={{ fontWeight: "bold", color: "#7d0a0a", fontSize: "25px" }}
           >
             Brand Link
           </label>
@@ -138,12 +138,19 @@ const BrandManager = ({ onSubmit, onCancel, initialData, newId }) => {
         {/* Brand Logo */}
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
           <label
-            style={{ fontWeight: "bold", color: "#D63384", fontSize: "25px" }}
+            style={{
+              fontWeight: "bold",
+              color: "#7d0a0a",
+              fontSize: "25px",
+              display: "flex",
+              gap: "35px",
+            }}
           >
             Brand Logo
+            <div>
+              <input type="file" accept="image/*" onChange={handleFileChange} />
+            </div>
           </label>
-
-          <input type="file" accept="image/*" onChange={handleFileChange} />
 
           {uploading && (
             <p style={{ color: "gray", textAlign: "center" }}>
@@ -180,7 +187,7 @@ const BrandManager = ({ onSubmit, onCancel, initialData, newId }) => {
             type="submit"
             disabled={uploading}
             style={{
-              background: "#D63384",
+              background: "#7d0a0a",
               color: "#fff",
               border: "none",
               padding: "10px 20px",
@@ -194,7 +201,7 @@ const BrandManager = ({ onSubmit, onCancel, initialData, newId }) => {
             type="button"
             onClick={onCancel}
             style={{
-              background: "#D63384",
+              background: "#7d0a0a",
               color: "#fff",
               border: "none",
               padding: "10px 20px",
