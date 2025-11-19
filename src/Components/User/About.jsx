@@ -208,9 +208,9 @@ const About = () => {
           can’t wait to grow with you.
           <br />
           <br />
-          With all our love ✨❤️
+          ❤️✨With all our love ✨❤️
           <br />
-          <strong style={{ color: "#D4AF37", fontSize: "25px" }}>
+          <strong style={{ color: "#D4AF37", fontSize: "30px" }}>
             Team Glowthic
           </strong>
         </h3>

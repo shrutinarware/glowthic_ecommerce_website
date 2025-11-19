@@ -117,7 +117,7 @@ export default function Sidebar() {
   const drawer = (
     <div
       style={{
-        background: "linear-gradient(to right, #8B6A2B, #F8E1A1, #C29A4D)",
+        background: "linear-gradient(to right, #d9b768, #e8c978, #d9b768)",
         height: "",
         marginTop: "-60px",
       }}

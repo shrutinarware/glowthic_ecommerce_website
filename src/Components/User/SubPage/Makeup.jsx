@@ -15,10 +15,10 @@ import LipM from "../../../assets/MakeupSubpae/Mcategories/lip1.jpg";
 import NailM from "../../../assets/MakeupSubpae/Mcategories/Nailmakeup.jpg";
 
 const Categories = [
-  { id: 1, heading: "Face", image: FaceM, path: "/face" },
-  { id: 2, heading: "Eye", image: EyeM, path: "/eye" },
-  { id: 3, heading: "Lip", image: LipM, path: "/Lip" },
-  { id: 4, heading: "Nails", image: NailM, path: "/Nail" },
+  { id: 1, heading: "FACE", image: FaceM, path: "/face" },
+  { id: 2, heading: "EYE", image: EyeM, path: "/eye" },
+  { id: 3, heading: "LIP", image: LipM, path: "/Lip" },
+  { id: 4, heading: "NAILS", image: NailM, path: "/Nail" },
 ];
 
 const Makeup = ({
@@ -81,9 +81,6 @@ const Makeup = ({
     return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
   // 🧠 Fetch slides for Makeup page
   useEffect(() => {
     const slidesRef = ref(database, "slides_makeup"); // 👈 use your Firebase path
@@ -112,6 +109,24 @@ const Makeup = ({
       window.open(slide.link, "_blank");
     }
   };
+  const handleDealsClick = (item) => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+    if (!isLoggedIn) {
+      setShowPopup(true);
+      return;
+    }
+
+    if (item?.link) {
+      window.open(item.link, "_blank");
+    }
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 0);
+  }, []);
   return (
     <>
       {/* 🔹 Popup (Same style as product login popup) */}
@@ -164,7 +179,6 @@ const Makeup = ({
           </div>
         </div>
       )}
-
       {/* Responsive Styles */}
       <style>{`
         /* Swiper image */
@@ -261,8 +275,71 @@ const Makeup = ({
   .category-image { height: 160px; }
   .category-heading { font-size: 13px; }
 }
+ 
       `}</style>
+      \{/* INLINE CSS (Same as Haircare) */}
+      <style>{`
+      .makeup-deals-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+      }
 
+      .makeup-deals-title {
+        background: linear-gradient(to right, #8B6A2B, #F8E1A1, #C29A4D);
+        padding: 5px 12px;
+        border-radius: 4px;
+        font-family: serif;
+        font-size: 22px;
+        white-space: nowrap;
+      }
+
+      .makeup-deals-line {
+        flex-grow: 1;
+        height: 2px;
+        background: #7d0a0a;
+        margin-top: 4px;
+      }
+
+      /* GRID SAME LIKE HAIRCARE */
+      .makeup-deals-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+
+      .makeup-deals-card {
+        width: 100%;
+        height: 200px;
+        border: 2px solid #D4AF37;
+        border-radius: 20px;
+        overflow: hidden;
+      }
+
+      .makeup-deals-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 992px) {
+        .makeup-deals-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .makeup-deals-grid {
+          grid-template-columns: repeat(1, 1fr);
+        }
+
+        .makeup-deals-title {
+          font-size: 18px;
+        }
+      }
+    `}</style>
       {/* 🔹 Swiper Slider */}
       {showSlider && slides.length > 0 && (
         <div
@@ -310,7 +387,6 @@ const Makeup = ({
           </Swiper>
         </div>
       )}
-
       {/* Top Categories Heading */}
       <h1
         style={{
@@ -320,9 +396,10 @@ const Makeup = ({
             ? "black"
             : headingColor || (isWomenPage ? "#7d0a0a" : "#333"),
           marginBottom: "20px",
+          fontWeight: "400",
         }}
       >
-        Top Makeup Categories
+        TOP MAKEUP CATEGORIES
       </h1>
       {/* Categories */}
       <div
@@ -372,43 +449,25 @@ const Makeup = ({
       </div>
       {!isMenPage && !isWomenPage && showDeals && (
         <div style={{ padding: "20px" }}>
-          <h2
-            style={{
-              fontSize: "28px",
-              fontWeight: "700",
-              marginBottom: "20px",
-            }}
-          >
-            Makeup Deals
+          <h2 className="makeup-deals-wrapper">
+            <span className="makeup-deals-title">MAKEUP DEALS</span>
+
+            {/* Horizontal Line */}
+            <span className="makeup-deals-line"></span>
           </h2>
 
           <div
             style={{
               padding: "20px",
-              background: "rgba(255, 242, 215, 0.3)", // light premium glow bg
-              boxShadow: "0 0 40px rgba(212, 175, 55, 0.4)", // GOLD GLOW in background
               marginBottom: "30px",
             }}
           >
-            <div
-              onClick={handleSlideClick}
-              style={{
-                display: "flex",
-                overflowX: "auto",
-                gap: "20px",
-                padding: "10px",
-              }}
-            >
+            <div className="makeup-deals-grid">
               {deals.map((item) => (
                 <div
                   key={item.id}
-                  style={{
-                    minWidth: "400px",
-                    height: "200px",
-                    overflow: "hidden",
-                    border: "4px solid #D4AF37",
-                    borderRadius: "20px",
-                  }}
+                  className="makeup-deals-card"
+                  onClick={() => handleDealsClick(item)}
                 >
                   <img
                     src={item.image}

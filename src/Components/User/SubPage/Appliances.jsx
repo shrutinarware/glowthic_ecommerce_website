@@ -17,23 +17,23 @@ import EpilatorImg from "../../../assets/AppliancesSubpage/Acategory/epillator.j
 import MassageImg from "../../../assets/AppliancesSubpage/Acategory/ftools.jpg";
 
 const AppliancesCategories = [
-  { id: 1, heading: "Hair Dryers", image: HairDryerImg, path: "/hair-dryers" },
+  { id: 1, heading: "DRYERS", image: HairDryerImg, path: "/hair-dryers" },
   {
     id: 2,
-    heading: "Hair Straighteners",
+    heading: "STRAIGHTNERS",
     image: StraightenerImg,
     path: "/straighteners",
   },
-  { id: 3, heading: "Hair Curlers", image: CurlingIronImg, path: "/curlers" },
-  { id: 4, heading: "Trimmers", image: TrimmerImg, path: "/trimmers" },
+  { id: 3, heading: "CURLERS", image: CurlingIronImg, path: "/curlers" },
+  { id: 4, heading: "TRIMMERS", image: TrimmerImg, path: "/trimmers" },
   {
     id: 5,
-    heading: "Facial Steamers",
+    heading: "FACIAL STEAMERS",
     image: FacialSteamerImg,
     path: "/facial-steamers",
   },
-  { id: 6, heading: "Epilators", image: EpilatorImg, path: "/epilators" },
-  { id: 7, heading: "Massage Tools", image: MassageImg, path: "/massage" },
+  { id: 6, heading: "EPILATORS", image: EpilatorImg, path: "/epilators" },
+  { id: 7, heading: "MASSAGE TOOLS", image: MassageImg, path: "/massage" },
 ];
 
 const Appliances = ({
@@ -47,6 +47,16 @@ const Appliances = ({
   const [userId, setUserId] = useState(() => {});
   const [deals, setDeals] = useState([]);
   const [showDeals, setShowDeals] = useState(true);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setScreenWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const isMobile = screenWidth <= 480;
+  const isTablet = screenWidth > 480 && screenWidth <= 768;
 
   useEffect(() => {
     const dealsRef = ref(database, "adminDeals/appliances");
@@ -110,10 +120,6 @@ const Appliances = ({
     return () => unsubscribe();
   }, []);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   // 🔹 Slide click logic
   const handleSlideClick = (slide) => {
     // Wait until Firebase has checked auth state
@@ -127,8 +133,25 @@ const Appliances = ({
     }
   };
 
-  const isCompactView = isMenPage || isWomenPage;
+  const handleDealsClick = (item) => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
+    if (!isLoggedIn) {
+      setShowPopup(true);
+      return;
+    }
+
+    if (item?.link) {
+      window.open(item.link, "_blank");
+    }
+  };
+
+  const isCompactView = isMenPage || isWomenPage;
+  useEffect(() => {
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 0);
+  }, []);
   return (
     <>
       {/* 🔹 Popup (Same style as product login popup) */}
@@ -268,7 +291,84 @@ const Appliances = ({
   .category-image { height: 160px; }
   .category-heading { font-size: 13px; }
 }
+  
+
+
+
       `}</style>
+      <style>{`
+/* DEALS SECTION HEADING */
+.appliances-deals-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.appliances-deals-title {
+  background: linear-gradient(to right, #8B6A2B, #F8E1A1, #C29A4D);
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-family: serif;
+  font-size: 22px;
+  
+}
+
+.appliances-deals-line {
+  flex-grow: 1;
+  height: 2px;
+  background: #7d0a0a;
+  margin-top: 4px;
+}
+
+/* DEALS GRID (Makeup जैसा) */
+.appliances-deals-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.appliances-deals-card {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;   /* fixed ratio like Lakme cards */
+  border: 2px solid #D4AF37;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.appliances-deals-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  background: #fff;
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .appliances-deals-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .appliances-deals-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .appliances-deals-title {
+    font-size: 18px;
+  }
+}
+`}</style>
       {/* 🔹 Swiper Slider */}
       {showSlider && slides.length > 0 && (
         <div
@@ -321,14 +421,15 @@ const Appliances = ({
       <h1
         style={{
           textAlign: "center",
-          fontFamily: "sans-serif",
+          fontFamily: "serif",
           color: isMenPage
             ? "black"
             : headingColor || (isWomenPage ? "#D63384" : "#333"),
           paddingTop: "20px",
+          fontWeight: "400",
         }}
       >
-        Top Beauty Appliances & Tools
+        TOP APPLIANCES & TOOLS CATEGORIES
       </h1>
       {/* Categories */}
       <div
@@ -371,43 +472,28 @@ const Appliances = ({
       </div>
       {!isMenPage && !isWomenPage && showDeals && (
         <div style={{ padding: "20px" }}>
-          <h2
-            style={{
-              fontSize: "28px",
-              fontWeight: "700",
-              marginBottom: "20px",
-            }}
-          >
-            Appliances Deals
+          <h2 className="appliances-deals-wrapper">
+            <span className="appliances-deals-title">
+              APPLIANCES & <br />
+              TOOLS DEALS
+            </span>
+
+            {/* Horizontal Line */}
+            <span className="appliances-deals-line"></span>
           </h2>
 
           <div
             style={{
               padding: "20px",
-              background: "rgba(255, 242, 215, 0.3)", // light premium glow bg
-              boxShadow: "0 0 40px rgba(212, 175, 55, 0.4)", // GOLD GLOW in background
               marginBottom: "30px",
             }}
           >
-            <div
-              onClick={handleSlideClick}
-              style={{
-                display: "flex",
-                overflowX: "auto",
-                gap: "20px",
-                padding: "10px",
-              }}
-            >
+            <div className="appliances-deals-grid">
               {deals.map((item) => (
                 <div
                   key={item.id}
-                  style={{
-                    minWidth: "400px",
-                    height: "200px",
-                    overflow: "hidden",
-                    border: "4px solid #D4AF37",
-                    borderRadius: "20px",
-                  }}
+                  className="appliances-deals-card"
+                  onClick={() => handleDealsClick(item)}
                 >
                   <img
                     src={item.image}

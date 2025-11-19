@@ -42,6 +42,7 @@ import Blog3 from "../../assets/Blog/haircare.jpg";
 
 //Icons
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
+import Divider from "@mui/material/Divider";
 
 const settings = {
   dots: true,
@@ -108,18 +109,18 @@ const slides = [
 ];
 
 const Top = [
-  { image: Top1, title: "Makeup", path: "/Makeup" },
-  { image: Top2, title: "Skin", path: "/Skin" },
-  { image: Top3, title: "Hair", path: "/Hair" },
-  { image: Top4, title: "Fragnance", path: "/Fragnance" },
-  { image: Top5, title: "Bath & Hygiene", path: "/bath-hygiene" },
-  { image: Top6, title: "Appliances & Tools", path: "/appliances" },
+  { image: Top1, title: "MAKEUP", path: "/Makeup" },
+  { image: Top2, title: "SKIN", path: "/Skin" },
+  { image: Top3, title: "HAIR", path: "/Hair" },
+  { image: Top4, title: "FRAGNANCE", path: "/Fragnance" },
+  { image: Top5, title: "BATH & HYGINIE", path: "/bath-hygiene" },
+  { image: Top6, title: "APPLIANCES & TOOLS", path: "/appliances" },
 ];
 const Skin = [
-  { title: "Oily skin", image: Oily, path: "/oily-skin" },
-  { title: "Dry Skin", image: Dry, path: "/dryskin" },
-  { title: "Combination Skin", image: Combination, path: "/combinationskin" },
-  { title: "Normal Skin", image: Normal, path: "/normalskin" },
+  { title: "OILY SKIN", image: Oily, path: "/oily-skin" },
+  { title: "DRY SKIN", image: Dry, path: "/dryskin" },
+  { title: "COMBINATION SKIN", image: Combination, path: "/combinationskin" },
+  { title: "NORMAL SKIN", image: Normal, path: "/normalskin" },
 ];
 
 const Testinomials = [
@@ -158,6 +159,7 @@ const Testinomials = [
 const Home = () => {
   const location = useLocation();
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
+  const isTablet = window.innerWidth > 480 && window.innerWidth <= 768;
   const [username, setUsername] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [trending, setTrending] = useState([]);
@@ -232,7 +234,7 @@ const Home = () => {
       }, 100);
     }
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 1024);
+      setIsMobile(window.innerWidth <= 600);
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -272,7 +274,7 @@ const Home = () => {
     <div
       style={{
         padding: "0 0 10px 0",
-        fontFamily: "sans-serif",
+        fontFamily: "serif",
         marginTop: "-10px",
       }}
     >
@@ -280,18 +282,21 @@ const Home = () => {
         style={{
           textAlign: "center",
           color: "black",
-          paddingTop: "10px",
-          fontFamily: "sans-serif",
+          paddingTop: "30px",
+          background: "linear-gradient(to right, #8B6A2B, #F8E1A1, #C29A4D)",
+          fontFamily: "serif",
           fontSize: "35px",
           fontWeight: "bolder",
           flex: "1 1 100%",
+          marginTop: "-20px",
+          paddingBottom: "10px",
         }}
       >
-        ⭐Your Ultimate Makeup and SkinCare Collection:Discover Your Perfect
-        Look⭐
+        ⭐YOUR ULTIMATE MAKEUP,SKINCARE AND HAIRCARE COLLECTION:DISCOVER YOUR
+        PERFECT LOOK⭐
       </p>
       {/* Slider */}
-      <div style={{ width: "80%", margin: "0 auto" }}>
+      <div style={{ width: "100%", margin: "0 auto" }}>
         <Slider {...settings}>
           {slides.map((slide, index) => (
             <div key={index}>
@@ -300,6 +305,9 @@ const Home = () => {
                   position: "relative",
                   height: "550px",
                   overflow: "hidden",
+                  width: "90%",
+                  margin: "0 auto",
+                  border: "none",
                   borderRadius: "20px",
                 }}
               >
@@ -310,7 +318,6 @@ const Home = () => {
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",
-                    borderRadius: "20px",
                   }}
                 />
                 <div
@@ -346,7 +353,7 @@ const Home = () => {
         <h3
           style={{
             color: "#7d0a0a",
-            fontFamily: "sans-serif",
+            fontFamily: "serif",
             fontSize: "24px",
           }}
         >
@@ -362,12 +369,7 @@ const Home = () => {
       <div
         style={{
           width: "100%",
-          padding: "15px 10px",
-          background: "#FFF8E7",
-          boxSizing: "border-box",
-          boxShadow: "0px 0px 50px rgba(212, 175, 55, 0.45)",
-          borderRadius: "20px",
-          marginTop: "30px",
+          marginTop: "40px",
         }}
       >
         {/* ✅ Trending Products Section */}
@@ -379,17 +381,43 @@ const Home = () => {
                 marginTop: "20px",
               }}
             >
-              <h2
+              <p
                 style={{
-                  paddingTop: "5px",
-                  paddingLeft: "20px",
-                  fontSize: "30px",
-                  color: "#7d0a0a",
-                  fontFamily: "sans-serif",
+                  padding: "5px",
+                  fontSize: "15px",
+                  color: "black",
+                  fontFamily: "serif",
+                  background:
+                    "linear-gradient(to right, #8B6A2B, #F8E1A1, #C29A4D)",
+                  width:
+                    window.innerWidth <= 480
+                      ? "110px" // Mobile
+                      : window.innerWidth <= 768
+                      ? "130px" // Tablet
+                      : "150px", // Desktop (original)
+                  marginLeft: "20px",
+                  fontWeight: "bold",
                 }}
               >
-                <DoubleArrowIcon /> Trending Products
-              </h2>
+                TRENDING NOW
+              </p>
+              <h1
+                style={{
+                  fontFamily: "serif",
+                  padding: "5px",
+                  marginTop: "-20px",
+                  marginLeft: "15px",
+                  fontWeight: "400",
+                  fontSize:
+                    window.innerWidth <= 480
+                      ? "18px"
+                      : window.innerWidth <= 768
+                      ? "22px"
+                      : "26px",
+                }}
+              >
+                NEW ARRIVALS
+              </h1>
 
               <Slider
                 {...{
@@ -417,33 +445,49 @@ const Home = () => {
                     <div style={{ textDecoration: "none" }}>
                       <div
                         style={{
-                          background: "#fff",
-                          borderRadius: "12px",
                           border: "2px solid #dfb441",
                           padding: "12px",
                           textAlign: "center",
                           boxShadow: "0px 2px 8px rgba(0,0,0,0.08)",
                           transition: "0.3s",
                           cursor: "pointer",
+                          width: isMobile
+                            ? "130px"
+                            : window.innerWidth <= 768
+                            ? "150px"
+                            : "180px",
 
-                          /* 🔥 RESPONSIVE FIX */
-                          width: "100%",
-                          maxWidth: "180px", // same UI
                           margin: "0 auto",
+                          position: "relative",
                         }}
                       >
+                        <div>
+                          <p
+                            style={{
+                              background:
+                                "linear-gradient(to right, #8B6A2B, #F8E1A1, #C29A4D)",
+                              textAlign: "left",
+                              width: window.innerWidth < 480 ? "35px" : "40px", // responsive
+                              padding: window.innerWidth < 480 ? "2px" : "3px",
+                              marginTop: "-5px",
+                              fontSize:
+                                window.innerWidth < 480 ? "10px" : "12px",
+                              fontWeight: "bold",
+                              marginLeft: "-10px",
+                              position: "absolute",
+                            }}
+                          >
+                            NEW
+                          </p>
+                        </div>
                         <div
                           style={{
                             width: "100%",
                             height: "auto",
-
-                            /* 🔥 Responsive height */
-                            aspectRatio: "3 / 4",
-
+                            aspectRatio: "4/ 4",
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
-                            borderRadius: "10px",
                             overflow: "hidden",
                           }}
                         >
@@ -451,7 +495,12 @@ const Home = () => {
                             src={item.image}
                             alt="Product"
                             style={{
-                              width: "80%",
+                              width: isMobile
+                                ? "85%"
+                                : window.innerWidth <= 768
+                                ? "82%"
+                                : "80%",
+
                               height: "100%",
                               objectFit: "contain",
                             }}
@@ -460,7 +509,12 @@ const Home = () => {
 
                         <h4
                           style={{
-                            fontSize: "15px",
+                            fontSize: isMobile
+                              ? "12px"
+                              : window.innerWidth <= 768
+                              ? "14px"
+                              : "15px",
+
                             fontWeight: "600",
                             color: "#333",
                             marginTop: "10px",
@@ -474,7 +528,11 @@ const Home = () => {
 
                         <p
                           style={{
-                            fontSize: "14px",
+                            fontSize: isMobile
+                              ? "18px"
+                              : isMobile
+                              ? "22px"
+                              : "25px",
                             color: "#7d0a0a",
                             marginTop: "4px",
                             fontWeight: "bold",
@@ -495,11 +553,52 @@ const Home = () => {
       {homeSections.topCategories && (
         <div
           id="topcategories"
-          style={{ marginTop: "30px", textAlign: "center" }}
+          style={{ marginTop: "40px", textAlign: "center" }}
         >
-          <h2 style={{ color: "#7d0a0a", fontFamily: "sans-serif" }}>
-            ✨ Top Categories ✨
+          <h2
+            className="esponsive-heading"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              color: "black",
+              fontFamily: "serif",
+              width: "100%",
+              marginBottom: "30px",
+            }}
+          >
+            {/* Horizontal Line */}
+            <span
+              style={{
+                flexGrow: 1,
+                height: "2px",
+                background: "#7d0a0a",
+                marginTop: "2px",
+              }}
+            ></span>
+            <span
+              style={{
+                background:
+                  "linear-gradient(to right, #8B6A2B, #F8E1A1, #C29A4D)",
+                padding: "5px 10px",
+                borderRadius: "4px",
+                whiteSpace: "nowrap",
+              }}
+            >
+              TOP CATEGORIES
+            </span>
+
+            {/* Horizontal Line */}
+            <span
+              style={{
+                flexGrow: 1,
+                height: "2px",
+                background: "#7d0a0a",
+                marginTop: "2px",
+              }}
+            ></span>
           </h2>
+
           <div className="top-categories-grid">
             {Top.map((item, index) => (
               <Link
@@ -536,7 +635,13 @@ const Home = () => {
                     }}
                   />
                   <div style={{ padding: "10px" }}>
-                    <h4 style={{ margin: 0, color: "#dfb441" }}>
+                    <h4
+                      style={{
+                        margin: 0,
+                        color: "#dfb441",
+                        fontFamily: "serif",
+                      }}
+                    >
                       {item.title}
                     </h4>
                   </div>
@@ -645,10 +750,7 @@ const Home = () => {
     }
 
     @media (max-width: 400px) {
-      .topbar-search-container {
-        justify-content: space-between;
-        padding: 0 5px;
-      }
+      
       .search-section input {
         width: 170px !important;
         font-size: 13px !important;
@@ -731,6 +833,33 @@ const Home = () => {
       </style>
       <style>
         {`
+      
+  @media (max-width: 768px) {
+    .responsive-heading {
+      font-size: 20px !important;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .responsive-para {
+      font-size: 14px !important;
+      line-height: 1.5;
+      padding: 0 10px;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .responsive-heading {
+      font-size: 18px !important;
+    }
+
+    .responsive-para {
+      font-size: 13px !important;
+    }
+  }
+
+
     @media (max-width: 768px) {
       .slider-container {
         height: 300px !important;
@@ -909,19 +1038,84 @@ const Home = () => {
         width: 90% !important;
       }
     }
+      .gender-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+  }
+
+  @media (max-width: 600px) {
+    .gender-wrapper {
+      flex-direction: column;
+      gap: 25px;
+    }
+  }
       
   `}
       </style>
       {homeSections.skinType && (
         <div
           style={{
-            marginTop: "50px",
+            marginTop: "80px",
             textAlign: "center",
           }}
         >
-          <h2 style={{ color: "#7d0a0a", fontFamily: "sans-serif" }}>
-            Shop Skincare Products by Your Skin Type
+          <h2
+            style={{
+              color: "black",
+              fontFamily: "serif",
+              background:
+                "linear-gradient(to right, #8B6A2B, #F8E1A1, #C29A4D)",
+              margin: "0 auto",
+              width: "40%",
+              padding: "5px",
+              // Responsive width
+              width: isMobile
+                ? "90%" // mobile
+                : window.innerWidth <= 1024
+                ? "60%" // tablet
+                : "40%", // desktop
+
+              // Responsive font size
+              fontSize:
+                window.innerWidth <= 480
+                  ? "16px"
+                  : window.innerWidth <= 1024
+                  ? "18px"
+                  : "20px",
+            }}
+          >
+            SHOP SKINCARE PRODUCTS BY YOUR SKIN TYPE
           </h2>
+          <p
+            className="responsive-para"
+            style={{
+              fontFamily: "serif",
+              marginTop: "20px",
+              margin: "0 auto",
+              width: "50%", // Responsive width
+              width:
+                window.innerWidth <= 480
+                  ? "90%" // mobile
+                  : window.innerWidth <= 1024
+                  ? "70%" // tablet
+                  : "50%", // desktop
+
+              // Responsive font size
+              fontSize:
+                window.innerWidth <= 480
+                  ? "13px"
+                  : window.innerWidth <= 1024
+                  ? "14px"
+                  : "15px",
+            }}
+          >
+            "Your skin type plays a major role in choosing the right skincare
+            and makeup products. Different skin types require different kinds of
+            care and attention. Select your skin type below to receive
+            personalized product suggestions.
+          </p>
           <div className="skin-type-grid">
             {Skin.map((item, index) => (
               <Link
@@ -940,6 +1134,7 @@ const Home = () => {
                     boxShadow: "0 4px 15px rgba(212,175,55,0.2)",
                     transition: "transform 0.3s ease, box-shadow 0.3s ease",
                     cursor: "pointer",
+                    marginTop: "20px",
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = "scale(1.06)";
@@ -962,7 +1157,13 @@ const Home = () => {
                     }}
                   />
                   <div style={{ padding: "10px" }}>
-                    <h4 style={{ margin: 0, color: "#dfb441" }}>
+                    <h4
+                      style={{
+                        margin: 0,
+                        color: "#dfb441",
+                        fontFamily: "serif",
+                      }}
+                    >
                       {item.title}
                     </h4>
                   </div>
@@ -975,62 +1176,96 @@ const Home = () => {
       {/*SKin................*/}
       {/** gender */}
       {homeSections.genderSection && (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: isMobile ? "column" : "row",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: isMobile ? "20px" : "60px",
-            paddingTop: "10px",
-            color: "#7d0a0a",
-            fontFamily: "sans-serif",
-          }}
-        >
-          <Link
-            to="/women"
+        <div style={{ marginTop: "80px", textAlign: "center" }}>
+          <h2
             style={{
-              textAlign: "center",
-              textDecoration: "none",
-              color: "#7d0a0a",
+              color: "black",
+              fontFamily: "serif",
+              background:
+                "linear-gradient(to right, #8B6A2B, #F8E1A1, #C29A4D)",
+              margin: "0 auto",
+              width: "15%",
+              padding: "5px",
+              marginBottom: "20px",
+              // Responsive width
+              width:
+                window.innerWidth <= 480
+                  ? "55%" // mobile
+                  : window.innerWidth <= 1024
+                  ? "30%" // tablet
+                  : "15%", // desktop (your original UI)
+
+              // Responsive font size
+              fontSize:
+                window.innerWidth <= 480
+                  ? "16px"
+                  : window.innerWidth <= 1024
+                  ? "18px"
+                  : "20px",
             }}
           >
-            <h1>Women</h1>
-            <img
-              src={Women}
-              alt="Women"
-              style={{
-                height: "350px",
-                width: isMobile ? "300px" : "600px",
-                maxWidth: "100%",
-                borderRadius: "30px",
-                cursor: "pointer",
-                border: "2px solid black",
-              }}
-            />
-          </Link>
-          <Link
-            to="/men"
-            style={{
-              textAlign: "center",
-              textDecoration: "none",
-              color: "#7d0a0a",
-            }}
-          >
-            <h1>Men</h1>
-            <img
-              src={Men}
-              alt="Men"
-              style={{
-                height: "350px",
-                width: isMobile ? "300px" : "600px",
-                maxWidth: "100%",
-                borderRadius: "30px",
-                cursor: "pointer",
-                border: "2px solid black",
-              }}
-            />
-          </Link>
+            SHOP BY GENDER
+          </h2>
+
+          <div className="gender-wrapper">
+            {/* Women */}
+            <Link to="/women" style={{ textDecoration: "none" }}>
+              <div
+                style={{
+                  width: "300px",
+                  borderRadius: "18px",
+                  overflow: "hidden",
+                  background: "black",
+                  border: "2px solid #dfb441",
+                  boxShadow: "0 4px 15px rgba(212,175,55,0.2)",
+                  cursor: "pointer",
+                  transition: "0.3s",
+                }}
+              >
+                <img
+                  src={Women}
+                  alt="Women"
+                  style={{ width: "100%", height: "250px", objectFit: "cover" }}
+                />
+                <div style={{ padding: "10px" }}>
+                  <h4
+                    style={{ color: "#dfb441", margin: 0, fontFamily: "serif" }}
+                  >
+                    WOMEN
+                  </h4>
+                </div>
+              </div>
+            </Link>
+
+            {/* Men */}
+            <Link to="/men" style={{ textDecoration: "none" }}>
+              <div
+                style={{
+                  width: "300px",
+                  borderRadius: "18px",
+                  overflow: "hidden",
+                  background: "black",
+                  border: "2px solid #dfb441",
+                  boxShadow: "0 4px 15px rgba(212,175,55,0.2)",
+                  cursor: "pointer",
+                  transition: "0.3s",
+                }}
+              >
+                <img
+                  src={Men}
+                  alt="Men"
+                  style={{ width: "100%", height: "250px", objectFit: "cover" }}
+                />
+                <div style={{ padding: "10px" }}>
+                  <h4
+                    style={{ color: "#dfb441", margin: 0, fontFamily: "serif" }}
+                  >
+                    MEN
+                  </h4>
+                </div>
+              </div>
+            </Link>
+          </div>
         </div>
       )}
       {/** Blog1..................... */}
@@ -1047,7 +1282,7 @@ const Home = () => {
               ? "25px"
               : "40px", // ✅ dynamic spacing
           padding: window.innerWidth <= 480 ? "15px" : "30px",
-          background: "#e3e1e1", // same as your current off-white
+
           marginTop: "10px",
           boxSizing: "border-box",
         }}
@@ -1059,14 +1294,20 @@ const Home = () => {
                 window.innerWidth <= 480
                   ? "90%" // mobile
                   : window.innerWidth <= 1024
-                  ? "45%" // tablet
-                  : "30%", // desktop
+                  ? "55%" // tablet
+                  : "40%", // desktop
               background: "white",
               boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
               overflow: "hidden",
               textAlign: "center",
               padding: "10px",
               transition: "transform 0.3s ease, box-shadow 0.3s ease",
+              minHeight: "430px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              border: "2px Solid #dfb441",
+              borderRadius: "12px",
             }}
           >
             <div style={{ flex: 1 }}>
@@ -1081,9 +1322,10 @@ const Home = () => {
               </h2>
               <p
                 style={{
-                  Width: "450px",
+                  width: "100%",
+                  maxWidth: "450px",
                   margin: "20px auto",
-                  lineHeight: "1.6",
+                  lineHeight: "1.4",
                   fontSize: "14px",
                   color: "#333",
                 }}
@@ -1123,14 +1365,20 @@ const Home = () => {
                 window.innerWidth <= 480
                   ? "90%" // mobile
                   : window.innerWidth <= 1024
-                  ? "45%" // tablet
-                  : "30%", // desktop
+                  ? "55%" // tablet
+                  : "40%", // desktop
               background: "white",
               boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
               overflow: "hidden",
               textAlign: "center",
-              padding: "10px",
+              padding: "12px",
               transition: "transform 0.3s ease, box-shadow 0.3s ease",
+              minHeight: "400px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              border: "2px solid #dfb441",
+              borderRadius: "12px",
             }}
           >
             <div style={{ flex: 1 }}>
@@ -1161,112 +1409,57 @@ const Home = () => {
               </h2>
               <p
                 style={{
-                  Width: "450px",
+                  width: "100%", // <-- full width so text never overflows
+                  maxWidth: "450px", // <-- desktop par same UI rahe
                   margin: "20px auto",
-                  lineHeight: "1.6",
+                  lineHeight: "1.4",
                   fontSize: "14px",
                   color: "#333",
                 }}
               >
-                Your face deserves the finest care — it's the canvas of your
-                beauty. Whether you're aiming to combat acne, reduce
-                pigmentation, or simply maintain radiant, balanced skin, our
-                face care collection has been designed with all skin types in
-                mind. From deeply hydrating moisturizers and brightening serums
-                to gentle cleansers and exfoliants.
+                Your face deserves the finest care — it's the true canvas of
+                your beauty. Whether you're targeting acne, reducing
+                pigmentation, or keeping your skin naturally radiant, the right
+                products make all the difference.Nourish it with gentle
+                cleansers,moisturizers,and brightening serums for a radiant
+                glow.
               </p>
             </div>
           </div>
         )}
         {/** Blog2..................... */}
         {/** Blog 3................. */}
-        {homeSections.blogs && (
-          <div
-            style={{
-              width:
-                window.innerWidth <= 480
-                  ? "90%" // mobile
-                  : window.innerWidth <= 1024
-                  ? "45%" // tablet
-                  : "30%", // desktop
-              background: "white",
-              boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
-              overflow: "hidden",
-              textAlign: "center",
-              padding: "10px",
-              transition: "transform 0.3s ease, box-shadow 0.3s ease",
-              margin: "20px auto",
-            }}
-          >
-            <div style={{ flex: 1 }}>
-              <h2
-                style={{
-                  margin: "10px auto",
-                  color: "#7d0a0a",
-                  fontSize:
-                    window.innerWidth <= 480
-                      ? "18px"
-                      : window.innerWidth <= 1024
-                      ? "20px"
-                      : "22px",
-                }}
-              >
-                Strong, Shiny, and Nourished: The Secret to Perfect Hair
-              </h2>
-
-              <p
-                style={{
-                  width: "90%",
-                  margin: "15px auto",
-                  lineHeight: "1.6",
-                  fontSize:
-                    window.innerWidth <= 480
-                      ? "13px"
-                      : window.innerWidth <= 1024
-                      ? "14px"
-                      : "15px",
-                  color: "#333",
-                }}
-              >
-                Transform dull strands into a crown of glory with our
-                expert-recommended hair care essentials. From nourishing oils
-                and hydrating shampoos to damage-repair serums — every product
-                is crafted to restore natural shine and strength. Give your hair
-                the love it deserves, from root to tip!
-              </p>
-            </div>
-            <div style={{ flex: 1 }}>
-              <img
-                src={Blog3} // ✅ replace with your hair blog image import
-                alt="Haircare"
-                style={{
-                  width: "100%",
-                  height:
-                    window.innerWidth <= 480
-                      ? "180px"
-                      : window.innerWidth <= 1024
-                      ? "200px"
-                      : "250px",
-                  objectFit: "cover",
-                  borderRadius: "10px",
-                }}
-              />
-            </div>
-          </div>
-        )}
       </div>
       {/* Testimonials..................... */}
-      <p
+      <h2
         style={{
+          color: "black",
+          fontFamily: "serif",
+          background: "linear-gradient(to right, #8B6A2B, #F8E1A1, #C29A4D)",
+          margin: "0 auto",
+          width: "15%",
+          padding: "5px",
+          marginBottom: "20px",
           textAlign: "center",
-          color: "#7d0a0a",
-          fontFamily: "sans-serif",
-          fontSize: "30px",
-          fontWeight: "bolder",
+          // Responsive Width
+          width:
+            window.innerWidth <= 480
+              ? "60%" // Mobile
+              : window.innerWidth <= 1024
+              ? "35%" // Tablet
+              : "18%", // Desktop (your original)
+
+          // Responsive Font Size
+          fontSize:
+            window.innerWidth <= 480
+              ? "16px"
+              : window.innerWidth <= 1024
+              ? "18px"
+              : "20px",
         }}
       >
-        Review by Customers
-      </p>
+        REVIEW BY CUSTOMER
+      </h2>
       <div
         style={{
           background: "linear-gradient(to right, #8B6A2B, #F8E1A1, #C29A4D)",
@@ -1314,15 +1507,14 @@ const Home = () => {
                     style={{
                       color: "#7d0a0a",
                       fontWeight: "bold",
-                      fontFamily: "sans-serif",
-                      textAlign: "left",
+                      fontFamily: "serif",
                     }}
                   >
                     {testimonial.name}
                   </h2>
                   <p>"{testimonial.text}"</p>
                   {/* Star rating */}
-                  <div style={{ textAlign: "left" }}>
+                  <div>
                     {[...Array(5)].map((_, i) => (
                       <span
                         key={i}

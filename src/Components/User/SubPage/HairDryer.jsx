@@ -98,7 +98,7 @@ const HairDryer = () => {
         }
       `}</style>
 
-      <h2 style={styles.heading}>Buy Dryers Online</h2>
+      <h2 style={styles.heading}>BUY HAIR DRYER</h2>
 
       {/* Search */}
       <div style={styles.searchContainer}>
@@ -154,11 +154,14 @@ const styles = {
   heading: {
     textAlign: "center",
     fontSize: "28px",
-    marginBottom: "20px",
-    color: "#7d0a0a",
+    color: "black",
+    fontFamily: "serif",
+    background: "linear-gradient(to right, #8B6A2B, #F8E1A1, #C29A4D)",
+    width: "20%",
+    margin: "0 auto",
   },
 
-  searchContainer: { textAlign: "center", marginBottom: "30px" },
+  searchContainer: { textAlign: "center", marginTop: "25px" },
   searchInput: {
     padding: "10px",
     width: "90%",
@@ -178,6 +181,7 @@ const styles = {
     border: "2px solid #D4AF37",
     display: "flex",
     flexDirection: "column",
+    marginTop: "25px",
   },
   cardImage: { width: "100%", height: "250px", objectFit: "cover" },
   cardText: { padding: "10px", textAlign: "center", flexGrow: 1 },

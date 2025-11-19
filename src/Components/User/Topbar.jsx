@@ -260,7 +260,7 @@ const Topbar = () => {
                       width: isMobile ? "30px" : "40px",
                       height: isMobile ? "30px" : "40px",
                       borderRadius: "10%",
-                      backgroundColor: "black",
+                      backgroundColor: "#dfb441",
                       color: "black",
                       display: "flex",
                       justifyContent: "center",
@@ -268,7 +268,7 @@ const Topbar = () => {
                       fontSize: isMobile ? "14px" : "18px",
                       fontWeight: "bold",
                       userSelect: "none",
-                      marginTop: "-12px",
+                      marginTop: "8px",
                     }}
                     title={username}
                     onMouseEnter={(e) => {

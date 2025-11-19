@@ -19,16 +19,16 @@ import ScrubsImg from "../../../assets/SkinSubpage/Scategories/Scrubs.jpg";
 const Categories = [
   {
     id: 1,
-    heading: "Moisturizers",
+    heading: "MOISTURIZERS",
     image: MoisturizerImg,
     path: "/moisturizers",
   },
-  { id: 2, heading: "Cleansers", image: CleanserImg, path: "/cleansers" },
-  { id: 3, heading: "Serums", image: SerumImg, path: "/serums" },
-  { id: 4, heading: "Sunscreens", image: SunscreenImg, path: "/sunscreens" },
-  { id: 5, heading: "Face masks", image: FacemaskImg, path: "/facemasks" },
-  { id: 6, heading: "Bodylotions", image: BodylotionImg, path: "/bodylotions" },
-  { id: 7, heading: "Scrubs", image: ScrubsImg, path: "/scrubs" },
+  { id: 2, heading: "CLEANSERS", image: CleanserImg, path: "/cleansers" },
+  { id: 3, heading: "SERUMS", image: SerumImg, path: "/serums" },
+  { id: 4, heading: "SUNSCREENS", image: SunscreenImg, path: "/sunscreens" },
+  { id: 5, heading: "FACE MASKS", image: FacemaskImg, path: "/facemasks" },
+  { id: 6, heading: "BODYLOTIONS", image: BodylotionImg, path: "/bodylotions" },
+  { id: 7, heading: "SCRUBS", image: ScrubsImg, path: "/scrubs" },
 ];
 
 const Skin = ({
@@ -114,10 +114,23 @@ const Skin = ({
       window.open(slide.link, "_blank");
     }
   };
+  const handleDealsClick = (item) => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
-  // scroll to top
+    if (!isLoggedIn) {
+      setShowPopup(true);
+      return;
+    }
+
+    if (item?.link) {
+      window.open(item.link, "_blank");
+    }
+  };
+
   useEffect(() => {
-    window.scrollTo(0, 0);
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 0);
   }, []);
 
   return (
@@ -267,7 +280,82 @@ const Skin = ({
   .category-image { height: 160px; }
   .category-heading { font-size: 13px; }
 }
+ 
+
       `}</style>
+      <style>{`
+/* DEALS SECTION HEADING */
+.skin-deals-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.skin-deals-title {
+  background: linear-gradient(to right, #8B6A2B, #F8E1A1, #C29A4D);
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-family: serif;
+  font-size: 22px;
+  white-space: nowrap;
+}
+
+.skin-deals-line {
+  flex-grow: 1;
+  height: 2px;
+  background: #7d0a0a;
+  margin-top: 4px;
+}
+
+/* DEALS GRID (Makeup जैसा) */
+.skin-deals-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.skin-deals-card {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;   /* fixed ratio like Lakme cards */
+  border: 2px solid #D4AF37;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.skin-deals-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  background: #fff;
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .skin-deals-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .skin-deals-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .skin-deals-title {
+    font-size: 18px;
+  }
+}
+`}</style>
 
       {/* 🔹 Swiper Slider */}
       {showSlider && slides.length > 0 && (
@@ -321,14 +409,15 @@ const Skin = ({
       <h1
         style={{
           textAlign: "center",
-          fontFamily: "sans-serif",
+          fontFamily: "serif",
           color: isMenPage
             ? "black"
             : headingColor || (isWomenPage ? "#7d0a0a" : "#333"),
           marginBottom: "20px",
+          fontWeight: "400",
         }}
       >
-        Top Skincare Categories
+        TOP SKIN CARE CATEGORIES
       </h1>
 
       {/* Single Line Categories */}
@@ -378,43 +467,25 @@ const Skin = ({
       </div>
       {!isMenPage && !isWomenPage && showDeals && (
         <div style={{ padding: "20px" }}>
-          <h2
-            style={{
-              fontSize: "28px",
-              fontWeight: "700",
-              marginBottom: "20px",
-            }}
-          >
-            skin Care Deals
+          <h2 className="skin-deals-wrapper">
+            <span className="skin-deals-title">SKIN CARE DEALS</span>
+
+            {/* Horizontal Line */}
+            <span className="skin-deals-line"></span>
           </h2>
 
           <div
             style={{
               padding: "20px",
-              background: "rgba(255, 242, 215, 0.3)", // light premium glow bg
-              boxShadow: "0 0 40px rgba(212, 175, 55, 0.4)", // GOLD GLOW in background
               marginBottom: "30px",
             }}
           >
-            <div
-              onClick={handleSlideClick}
-              style={{
-                display: "flex",
-                overflowX: "auto",
-                gap: "20px",
-                padding: "10px",
-              }}
-            >
+            <div className="skin-deals-grid">
               {deals.map((item) => (
                 <div
                   key={item.id}
-                  style={{
-                    minWidth: "400px",
-                    height: "200px",
-                    overflow: "hidden",
-                    border: "4px solid #D4AF37",
-                    borderRadius: "20px",
-                  }}
+                  className="skin-deals-card"
+                  onClick={() => handleDealsClick(item)}
                 >
                   <img
                     src={item.image}

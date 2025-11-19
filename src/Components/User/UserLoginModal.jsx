@@ -188,7 +188,8 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
           height: "auto",
           maxHeight: isMobile ? "none" : "95vh",
           overflow: "visible",
-          background: "linear-gradient(to right, #8B6A2B, #F8E1A1, #C29A4D)",
+          background: "linear-gradient(to right, #d9b768, #e8c978, #d9b768)",
+
           position: "relative",
           transition: "all 0.3s ease",
           margin: isMobile ? "20px 0" : isTablet ? "30px 0" : "0",
@@ -284,7 +285,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                 style={{
                   textAlign: "center",
                   color: "black",
-                  fontFamily: "cursive",
+                  fontFamily: "serif",
                   marginBottom: "20px",
                   marginTop: isMobile ? "-10px" : "-40px",
                 }}
@@ -389,20 +390,27 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
               >
                 Password
               </p>
-              <div>
+
+              <div
+                style={{
+                  position: "relative", // ⭐ Important fix
+                  width: "100%",
+                }}
+              >
                 <input
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   style={{
-                    width: "92%",
-                    padding: "10px",
+                    width: "85%",
+                    padding: "10px 45px 10px 10px", // ⭐ Extra right padding for icon
                     fontSize: "16px",
                     border: "1px solid #7d0a0a",
                     borderRadius: "10px",
                     outline: "none",
                   }}
                 />
+
                 <span
                   onClick={() => setShowPassword(!showPassword)}
                   style={{
@@ -412,24 +420,27 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                     transform: "translateY(-50%)",
                     cursor: "pointer",
                     color: "#7d0a0a",
-                    fontSize: "20px",
+                    fontSize: "22px",
+                    userSelect: "none",
                   }}
                 >
                   {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
                 </span>
-                {password && (
-                  <p
-                    style={{
-                      fontSize: "12px",
-                      color: validatePassword(password) ? "green" : "red",
-                    }}
-                  >
-                    {validatePassword(password)
-                      ? "✅ Strong password"
-                      : "❌ Must contain at least 8 chars, uppercase, lowercase, number & symbol"}
-                  </p>
-                )}
               </div>
+              {password && (
+                <p
+                  style={{
+                    fontSize: "12px",
+                    color: validatePassword(password) ? "green" : "red",
+                    marginTop: "5px",
+                  }}
+                >
+                  {validatePassword(password)
+                    ? "✅ Strong password"
+                    : "❌ Must contain at least 8 chars, uppercase, lowercase, number & symbol"}
+                </p>
+              )}
+
               {/* Terms */}
               <p style={{ fontSize: "12px", color: "black" }}>
                 By creating an Account, you agree to our{" "}
@@ -470,7 +481,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                 style={{
                   textAlign: "center",
                   color: "#7d0a0a",
-                  fontFamily: "cursive",
+                  fontFamily: "serif",
                   marginBottom: "20px",
                 }}
               >

@@ -126,16 +126,49 @@ const Contact = () => {
           marginTop: "-60px",
         }}
       >
-        <h1
-          id="contactglowthic"
+        <h2
           style={{
-            fontSize: "40px",
-            color: " #7d0a0a",
-            fontFamily: "sans-serif",
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            color: "black",
+            fontFamily: "serif",
+            width: "100%",
+            marginBottom: "20px",
           }}
         >
-          Contact Glowthic
-        </h1>
+          {/* Horizontal Line */}
+          <span
+            style={{
+              flexGrow: 1,
+              height: "2px",
+              background: "#7d0a0a",
+              marginTop: "2px",
+            }}
+          ></span>
+          <span
+            style={{
+              background:
+                "linear-gradient(to right, #8B6A2B, #F8E1A1, #C29A4D)",
+              padding: "5px 10px",
+              borderRadius: "4px",
+              whiteSpace: "nowrap",
+            }}
+          >
+            CONTACT GLOWTHIC
+          </span>
+
+          {/* Horizontal Line */}
+          <span
+            style={{
+              flexGrow: 1,
+              height: "2px",
+              background: "#7d0a0a",
+              marginTop: "2px",
+            }}
+          ></span>
+        </h2>
+
         <p style={{ fontSize: "18px", color: "#555" }}>
           We'd love to hear from you. Whether it's a question, feedback, or just
           a hello — reach out!

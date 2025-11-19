@@ -17,18 +17,18 @@ import HairColorImg from "../../../assets/HairSubpage/Hcategories/HAirColor.jpg"
 import HairGelImg from "../../../assets/HairSubpage/Hcategories/HAirGel.jpg";
 
 const HairCategories = [
-  { id: 1, heading: "Shampoos", image: ShampooImg, path: "/shampoos" },
+  { id: 1, heading: "SHAMPOOS", image: ShampooImg, path: "/shampoos" },
   {
     id: 2,
-    heading: "Conditioners",
+    heading: "CONDITIONERS",
     image: ConditionerImg,
     path: "/conditioners",
   },
-  { id: 3, heading: "Hair Oils", image: HairOilImg, path: "/hair-oils" },
-  { id: 4, heading: "Hair Serums", image: HairSerumImg, path: "/hair-serums" },
-  { id: 5, heading: "Hair Masks", image: HairMaskImg, path: "/hair-masks" },
-  { id: 6, heading: "Hair Colors", image: HairColorImg, path: "/hair-colors" },
-  { id: 7, heading: "Hair Gels", image: HairGelImg, path: "/hair-gels" },
+  { id: 3, heading: "HAIR OILS", image: HairOilImg, path: "/hair-oils" },
+  { id: 4, heading: "HAIR SERUMS", image: HairSerumImg, path: "/hair-serums" },
+  { id: 5, heading: "HAIR MASKS", image: HairMaskImg, path: "/hair-masks" },
+  { id: 6, heading: "HAIR COLORS", image: HairColorImg, path: "/hair-colors" },
+  { id: 7, heading: "HAIR GELS", image: HairGelImg, path: "/hair-gels" },
 ];
 
 const Haircare = ({
@@ -113,8 +113,23 @@ const Haircare = ({
       window.open(slide.link, "_blank");
     }
   };
+  const handleDealsClick = (item) => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+    if (!isLoggedIn) {
+      setShowPopup(true);
+      return;
+    }
+
+    if (item?.link) {
+      window.open(item.link, "_blank");
+    }
+  };
+
   useEffect(() => {
-    window.scrollTo(0, 0);
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 0);
   }, []);
 
   return (
@@ -267,6 +282,79 @@ const Haircare = ({
           .category-heading { font-size: 13px; }
         }
       `}</style>
+      <style>{`
+/* DEALS SECTION HEADING */
+.hair-deals-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.hair-deals-title {
+  background: linear-gradient(to right, #8B6A2B, #F8E1A1, #C29A4D);
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-family: serif;
+  font-size: 22px;
+  white-space: nowrap;
+}
+
+.hair-deals-line {
+  flex-grow: 1;
+  height: 2px;
+  background: #7d0a0a;
+  margin-top: 4px;
+}
+
+/* DEALS GRID (Makeup जैसा) */
+.hair-deals-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.hair-deals-card {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;   /* fixed ratio like Lakme cards */
+  border: 2px solid #D4AF37;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.hair-deals-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  background: #fff;
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .hair-deals-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .hair-deals-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .hair-deals-title {
+    font-size: 18px;
+  }
+}
+`}</style>
 
       {/* 🔹 Swiper Slider */}
       {showSlider && slides.length > 0 && (
@@ -321,14 +409,15 @@ const Haircare = ({
       <h1
         style={{
           textAlign: "center",
-          fontFamily: "sans-serif",
+          fontFamily: "serif",
           color: isMenPage
             ? "black"
             : headingColor || (isWomenPage ? "#7d0a0a" : "#333"),
           marginBottom: "20px",
+          fontWeight: "400",
         }}
       >
-        Top Haircare Categories
+        TOP HAIR CARE CATEGORIES
       </h1>
 
       {/* Categories */}
@@ -380,43 +469,25 @@ const Haircare = ({
       </div>
       {!isMenPage && !isWomenPage && showDeals && (
         <div style={{ padding: "20px" }}>
-          <h2
-            style={{
-              fontSize: "28px",
-              fontWeight: "700",
-              marginBottom: "20px",
-            }}
-          >
-            Hair Care Deals
+          <h2 className="hair-deals-wrapper">
+            <span className="hair-deals-title">HAIR CARE DEALS</span>
+
+            {/* Horizontal Line */}
+            <span className="hair-deals-line"></span>
           </h2>
 
           <div
             style={{
               padding: "20px",
-              background: "rgba(255, 242, 215, 0.3)", // light premium glow bg
-              boxShadow: "0 0 40px rgba(212, 175, 55, 0.4)", // GOLD GLOW in background
               marginBottom: "30px",
             }}
           >
-            <div
-              onClick={handleSlideClick}
-              style={{
-                display: "flex",
-                overflowX: "auto",
-                gap: "20px",
-                padding: "10px",
-              }}
-            >
+            <div className="hair-deals-grid">
               {deals.map((item) => (
                 <div
                   key={item.id}
-                  style={{
-                    minWidth: "400px",
-                    height: "200px",
-                    overflow: "hidden",
-                    border: "4px solid #D4AF37",
-                    borderRadius: "20px",
-                  }}
+                  className="hair-deals-card"
+                  onClick={() => handleDealsClick(item)}
                 >
                   <img
                     src={item.image}

@@ -88,7 +88,7 @@ const BodyLotions = () => {
         @media (max-width: 500px) { .product-grid { grid-template-columns: 1fr; } }
       `}</style>
 
-      <h2 style={styles.heading}>Buy Body Lotions Online</h2>
+      <h2 style={styles.heading}> BUY BODYLOTIONS </h2>
 
       {/* Search */}
       <div style={styles.searchContainer}>
@@ -143,13 +143,15 @@ const styles = {
   heading: {
     textAlign: "center",
     fontSize: "28px",
-    marginBottom: "20px",
-    color: "#7d0a0a",
-    fontFamily: "sans-serif",
+    color: "black",
+    fontFamily: "serif",
+    background: "linear-gradient(to right, #8B6A2B, #F8E1A1, #C29A4D)",
+    width: "20%",
+    margin: "0 auto",
   },
   searchContainer: {
     textAlign: "center",
-    marginBottom: "30px",
+    marginTop: "25px",
   },
   searchInput: {
     padding: "10px",
@@ -168,6 +170,7 @@ const styles = {
     transition: "transform 0.2s ease-in-out",
     height: "100%",
     border: "2px solid #D4AF37",
+    marginTop: "25px",
   },
   cardImage: { width: "100%", height: "250px", objectFit: "cover" },
   cardText: { padding: "10px", textAlign: "center" },
