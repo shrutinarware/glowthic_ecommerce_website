@@ -455,9 +455,14 @@ export default function Sidebar() {
             <img
               src={Dry}
               alt="dry"
-              style={{ height: "40px", width: "40px", marginRight: "20px" }}
+              style={{
+                height: "35px",
+                width: "35px",
+                marginRight: "20px",
+                marginTop: "-15px",
+              }}
             />
-            <ListItemText primary="Dry Skin" style={{ paddingTop: "10px" }} />
+            <ListItemText primary="Dry Skin" style={{ paddingTop: "2px" }} />
           </ListItemButton>
         </ListItem>
 
@@ -466,11 +471,16 @@ export default function Sidebar() {
             <img
               src={Combination}
               alt="combination"
-              style={{ height: "35px", width: "35px", marginRight: "20px" }}
+              style={{
+                height: "35px",
+                width: "35px",
+                marginRight: "20px",
+                marginTop: "-10px",
+              }}
             />
             <ListItemText
               primary="Combination Skin"
-              style={{ paddingTop: "10px" }}
+              style={{ paddingTop: "2px" }}
             />
           </ListItemButton>
         </ListItem>
@@ -482,10 +492,7 @@ export default function Sidebar() {
               alt="normal"
               style={{ height: "35px", width: "35px", marginRight: "20px" }}
             />
-            <ListItemText
-              primary="Normal Skin"
-              style={{ paddingTop: "10px" }}
-            />
+            <ListItemText primary="Normal Skin" style={{ paddingTop: "2px" }} />
           </ListItemButton>
         </ListItem>
       </List>
@@ -505,10 +512,10 @@ export default function Sidebar() {
           <InsertPhotoIcon
             sx={{
               marginTop: "-10px",
-              fontSize: "35px",
+
               color: "black",
-              height: "35px",
-              width: "35px",
+              height: "30px",
+              width: "30px",
             }}
           />
           <ListItemText
@@ -559,15 +566,15 @@ export default function Sidebar() {
         </List>
       </Collapse>
       <List>
-        <ListItem disablePadding style={{ marginTop: "-8px" }}>
+        <ListItem disablePadding style={{ marginTop: "-15px" }}>
           <ListItemButton onClick={() => navigate(`/admin-homepage-setting`)}>
             <ListItemIcon>
               <HomeIcon
                 sx={{
                   fontSize: "35px",
                   color: "black",
-                  height: "35px",
-                  width: "35px",
+                  height: "30px",
+                  width: "30px",
                 }}
               />
             </ListItemIcon>
@@ -576,15 +583,15 @@ export default function Sidebar() {
         </ListItem>
       </List>
       <List>
-        <ListItem disablePadding style={{ marginTop: "-10px" }}>
+        <ListItem disablePadding style={{ marginTop: "-18px" }}>
           <ListItemButton onClick={() => navigate(`/admin-brands`)}>
             <ListItemIcon>
               <StoreIcon
                 sx={{
                   fontSize: "35px",
                   color: "black",
-                  height: "35px",
-                  width: "35px",
+                  height: "30px",
+                  width: "30px",
                 }}
               />
             </ListItemIcon>
@@ -593,15 +600,15 @@ export default function Sidebar() {
         </ListItem>
       </List>
       <List>
-        <ListItem disablePadding style={{ marginTop: "-10px" }}>
+        <ListItem disablePadding style={{ marginTop: "-20px" }}>
           <ListItemButton onClick={() => navigate(`/admin-trending-product`)}>
             <ListItemIcon>
               <TrendingUpIcon
                 sx={{
                   fontSize: "35px",
                   color: "black",
-                  height: "35px",
-                  width: "35px",
+                  height: "25px",
+                  width: "25px",
                 }}
               />
             </ListItemIcon>
@@ -611,15 +618,15 @@ export default function Sidebar() {
       </List>
 
       <List>
-        <ListItem disablePadding style={{ marginTop: "-10px" }}>
+        <ListItem disablePadding style={{ marginTop: "-20px" }}>
           <ListItemButton onClick={() => navigate(`/admin-deals-manager`)}>
             <ListItemIcon>
               <LocalOfferIcon
                 sx={{
                   fontSize: "35px",
                   color: "black",
-                  height: "35px",
-                  width: "35px",
+                  height: "25px",
+                  width: "25px",
                 }}
               />
             </ListItemIcon>

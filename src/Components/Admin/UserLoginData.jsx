@@ -47,31 +47,31 @@ const UserLoginData = () => {
 
   return (
     <div style={{ padding: "120px 5% 0 300px" }}>
-      <h1 style={{ color: "#7d0a0a", marginBottom: "20px" }}>
-        User Login Data
+      <h1 style={{ marginBottom: "20px", fontFamily: "serif" }}>
+        USER LOGIN DATA
       </h1>
 
       <TableContainer component={Paper}>
         <Table>
           <TableHead style={{ background: "#D4AF37" }}>
-            <TableRow>
+            <TableRow style={{ fontFamily: "serif" }}>
               <TableCell>
                 <strong>USER ID</strong>
               </TableCell>
               <TableCell>
-                <strong>Name</strong>
+                <strong>NAME</strong>
               </TableCell>
               <TableCell>
-                <strong>Email</strong>
+                <strong>EMAIL</strong>
               </TableCell>
               <TableCell>
-                <strong>Contact No.</strong>
+                <strong>CONTACT NO.</strong>
               </TableCell>
               <TableCell>
-                <strong>Password</strong>
+                <strong>PASSWORD</strong>
               </TableCell>
               <TableCell>
-                <strong>Date</strong>
+                <strong>DATE</strong>
               </TableCell>
             </TableRow>
           </TableHead>

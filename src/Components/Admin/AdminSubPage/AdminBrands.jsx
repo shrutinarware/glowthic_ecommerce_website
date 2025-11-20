@@ -98,9 +98,14 @@ const AdminBrands = () => {
   return (
     <div
       className="admin-container"
-      style={{ paddingLeft: "300px", paddingRight: "5%", marginTop: "110px" }}
+      style={{
+        paddingLeft: "300px",
+        paddingRight: "5%",
+        marginTop: "130px",
+        fontFamily: "serif",
+      }}
     >
-      <h1>Brands</h1>
+      <h1>BRANDS</h1>
 
       {/* Top Bar */}
       <div
@@ -110,7 +115,7 @@ const AdminBrands = () => {
           justifyContent: "space-between",
           alignItems: "center",
           flexWrap: "wrap",
-          gap: "10px",
+
           zIndex: 10,
         }}
       >
@@ -191,7 +196,7 @@ const AdminBrands = () => {
                 width: "100%",
                 borderRadius: "10px",
                 background: "#7d0a0a",
-                marginTop: "50px",
+                marginTop: "40px",
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "space-between",

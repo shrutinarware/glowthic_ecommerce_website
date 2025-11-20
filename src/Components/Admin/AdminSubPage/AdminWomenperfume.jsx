@@ -100,9 +100,14 @@ const AdminWomenPerfume = () => {
   return (
     <div
       className="admin-container"
-      style={{ paddingLeft: "300px", paddingRight: "5%", marginTop: "110px" }}
+      style={{
+        paddingLeft: "300px",
+        paddingRight: "5%",
+        marginTop: "130px",
+        fontFamily: "serif",
+      }}
     >
-      <h1>Women Perfume </h1>
+      <h1>WOMEN PERFUME </h1>
 
       {/* Top Bar */}
       <div
@@ -182,7 +187,7 @@ const AdminWomenPerfume = () => {
           )
           .sort((a, b) => b.id - a.id)
           .map((item) => (
-           <div
+            <div
               key={item.id}
               className="product-card"
               style={{

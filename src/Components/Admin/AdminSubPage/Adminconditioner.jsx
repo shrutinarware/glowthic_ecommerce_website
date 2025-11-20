@@ -100,9 +100,14 @@ const AdminConditioner = () => {
 
   return (
     <div
-      style={{ paddingLeft: "300px", paddingRight: "5%", marginTop: "110px" }}
+      style={{
+        paddingLeft: "300px",
+        paddingRight: "5%",
+        marginTop: "130px",
+        fontFamily: "serif",
+      }}
     >
-      <h1>Conditioner</h1>
+      <h1>CONDITIONER</h1>
 
       {/* Top Bar */}
       <div

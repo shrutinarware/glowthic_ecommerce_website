@@ -100,9 +100,14 @@ const AdminShavingCream = () => {
   return (
     <div
       className="admin-container"
-      style={{ paddingLeft: "300px", paddingRight: "5%", marginTop: "110px" }}
+      style={{
+        paddingLeft: "300px",
+        paddingRight: "5%",
+        marginTop: "130px",
+        fontFamily: "serif",
+      }}
     >
-      <h1> Shaving Cream</h1>
+      <h1> SHAVING CREAMS</h1>
 
       {/* Top Bar */}
       <div

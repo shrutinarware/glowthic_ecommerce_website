@@ -133,8 +133,8 @@ const UserActivityInfo = () => {
           gap: "10px",
         }}
       >
-        <h1 style={{ color: "#7d0a0a", marginBottom: "20px" }}>
-          User Activity
+        <h1 style={{ fontFamily: "serif", marginBottom: "20px" }}>
+          USER ACTIVITY
         </h1>
 
         <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
@@ -178,6 +178,7 @@ const UserActivityInfo = () => {
               borderRadius: "8px",
               padding: "10px 20px",
               whiteSpace: "nowrap",
+              fontFamily: "serif",
             }}
           >
             📥 Download Excel
@@ -188,24 +189,24 @@ const UserActivityInfo = () => {
       <TableContainer component={Paper} style={{ maxHeight: "auto" }}>
         <Table>
           <TableHead style={{ background: "#D4AF37" }}>
-            <TableRow>
+            <TableRow style={{ fontFamily: "serif" }}>
               <TableCell>
-                <strong>User Id</strong>
+                <strong>USER ID</strong>
               </TableCell>
               <TableCell>
-                <strong>User Name</strong>
+                <strong>USER NAME</strong>
               </TableCell>
               <TableCell>
-                <strong>Category</strong>
+                <strong>CATEGORY</strong>
               </TableCell>
               <TableCell>
-                <strong>Product Name</strong>
+                <strong>PRODUCT NAME</strong>
               </TableCell>
               <TableCell>
-                <strong>Link</strong>
+                <strong>LINK</strong>
               </TableCell>
               <TableCell>
-                <strong>Date</strong>
+                <strong>DATE</strong>
               </TableCell>
             </TableRow>
           </TableHead>

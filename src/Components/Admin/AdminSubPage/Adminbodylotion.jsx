@@ -101,9 +101,14 @@ const Adminbodylotion = () => {
   return (
     <div
       className="admin-container"
-      style={{ paddingLeft: "300px", paddingRight: "5%", marginTop: "110px" }}
+      style={{
+        paddingLeft: "300px",
+        paddingRight: "5%",
+        marginTop: "130px",
+        fontFamily: "serif",
+      }}
     >
-      <h1>Body Lotion</h1>
+      <h1>BODY LOTION</h1>
 
       {/* Top Bar */}
       <div

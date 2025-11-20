@@ -105,9 +105,14 @@ const Adminunisexperfume = () => {
   return (
     <div
       className="admin-container"
-      style={{ paddingLeft: "300px", paddingRight: "5%", marginTop: "110px" }}
+      style={{
+        paddingLeft: "300px",
+        paddingRight: "5%",
+        marginTop: "130px",
+        fontFamily: "serif",
+      }}
     >
-      <h1>Unisex Perfume</h1>
+      <h1>UNISEX PERFUME</h1>
 
       {/* Top Bar */}
       <div

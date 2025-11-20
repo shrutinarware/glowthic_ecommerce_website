@@ -105,9 +105,14 @@ const AdminCombinationSkin = () => {
   };
   return (
     <div
-      style={{ paddingLeft: "300px", paddingRight: "5%", marginTop: "110px" }}
+      style={{
+        paddingLeft: "300px",
+        paddingRight: "5%",
+        marginTop: "130px",
+        fontFamily: "serif",
+      }}
     >
-      <h1>Combination Skin</h1>
+      <h1>COMBINATION SKIN</h1>
 
       {/* Top Bar */}
       <div

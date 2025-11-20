@@ -45,12 +45,17 @@ const AdminHomepageSettings = () => {
 
   return (
     <div
-      style={{ paddingLeft: "300px", paddingRight: "5%", marginTop: "110px" }}
+      style={{
+        paddingLeft: "300px",
+        paddingRight: "5%",
+        marginTop: "130px",
+        fontFamily: "serif",
+      }}
     >
       {/* ✅ ONLY SETTINGS TAB SHOWN */}
       {activeTab === "settings" && (
         <div style={{ marginTop: "60px" }}>
-          <h1>Homepage Sections Control</h1>
+          <h1>HOMEPAGE SECTIONS CONTROLLER</h1>
 
           <div
             style={{
@@ -88,6 +93,7 @@ const AdminHomepageSettings = () => {
               color: "white",
               border: "none",
               borderRadius: "10px",
+               fontFamily: "serif",
             }}
           >
             Save Settings

@@ -27,13 +27,35 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
   }, []);
   const isMobile = screenSize <= 768;
   const isTablet = screenSize > 768 && screenSize <= 1024;
+
   // Validators
   const validatePassword = (password) =>
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
       password
     );
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const validatePhone = (number) => /^[0-9]{10}$/.test(number);
+
+  const validateRealPhone = (num) => {
+    // Basic check for Indian numbers
+    if (!/^[6-9]\d{9}$/.test(num)) return false;
+
+    // Reject same digit repeated 10 times
+    if (/^(\d)\1{9}$/.test(num)) return false;
+
+    // Reject 4 or more repeating digits anywhere
+    if (/(\d)\1{3,}/.test(num)) return false;
+
+    // Reject sequences like 1234567890 or 9876543210
+    const ascending = "0123456789";
+    const descending = "9876543210";
+    if (ascending.includes(num) || descending.includes(num)) return false;
+
+    // Reject patterns like ABABABABAB or ABCABCABC (repeating groups)
+    if (/^(\d{2})\1{4,}$/.test(num)) return false;
+    if (/^(\d{3})\1{3,}$/.test(num)) return false;
+
+    return true;
+  };
 
   // 🔹 SIGNUP
   const handleSignUp = async () => {
@@ -46,10 +68,11 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
       setSignupError("Enter a valid email address.");
       return;
     }
-    if (!validatePhone(mobilenumber)) {
-      setSignupError("Contact number must be exactly 10 digits.");
+    if (!validateRealPhone(mobilenumber)) {
+      setSignupError("Enter a valid contact number.");
       return;
     }
+
     if (!validatePassword(password)) {
       setSignupError(
         "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character."
@@ -162,6 +185,17 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
     }
   };
 
+  const inputStyle = {
+    width: "100%",
+    padding: isMobile ? "10px 12px" : "12px 14px",
+    fontSize: isMobile ? "14px" : "16px",
+    border: "1px solid #7d0a0a",
+    borderRadius: "10px",
+    outline: "none",
+    boxSizing: "border-box",
+    marginBottom: "10px",
+  };
+
   return (
     <div
       style={{
@@ -189,7 +223,6 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
           maxHeight: isMobile ? "none" : "95vh",
           overflow: "visible",
           background: "linear-gradient(to right, #d9b768, #e8c978, #d9b768)",
-
           position: "relative",
           transition: "all 0.3s ease",
           margin: isMobile ? "20px 0" : isTablet ? "30px 0" : "0",
@@ -312,6 +345,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                   color: "#7d0a0a",
                   marginBottom: "5px",
                   fontWeight: "bold",
+                  fontFamily: "serif",
                 }}
               >
                 Name
@@ -320,15 +354,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                style={{
-                  width: "92%",
-                  padding: "10px",
-                  fontSize: "16px",
-                  border: "1px solid #7d0a0a",
-                  borderRadius: "10px",
-                  outline: "none",
-                  marginBottom: "10px",
-                }}
+                style={inputStyle}
               />
 
               {/* Email */}
@@ -337,6 +363,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                   color: "#7d0a0a",
                   marginBottom: "5px",
                   fontWeight: "bold",
+                  fontFamily: "serif",
                 }}
               >
                 Email
@@ -345,15 +372,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                style={{
-                  width: "92%",
-                  padding: "10px",
-                  fontSize: "16px",
-                  border: "1px solid #7d0a0a",
-                  borderRadius: "10px",
-                  outline: "none",
-                  marginBottom: "10px",
-                }}
+                style={inputStyle}
               />
 
               {/* Contact */}
@@ -362,6 +381,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                   color: "#7d0a0a",
                   marginBottom: "5px",
                   fontWeight: "bold",
+                  fontFamily: "serif",
                 }}
               >
                 Contact No.
@@ -370,15 +390,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                 type="number"
                 value={mobilenumber}
                 onChange={(e) => setMobileNumber(e.target.value.slice(0, 10))}
-                style={{
-                  width: "92%",
-                  padding: "10px",
-                  fontSize: "16px",
-                  border: "1px solid #7d0a0a",
-                  borderRadius: "10px",
-                  outline: "none",
-                  marginBottom: "10px",
-                }}
+                style={inputStyle}
               />
               {/* Password */}
               <p
@@ -386,6 +398,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                   color: "#7d0a0a",
                   marginBottom: "5px",
                   fontWeight: "bold",
+                  fontFamily: "serif",
                 }}
               >
                 Password
@@ -393,8 +406,10 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
 
               <div
                 style={{
-                  position: "relative", // ⭐ Important fix
+                  position: "relative",
                   width: "100%",
+                  display: "flex",
+                  alignItems: "center",
                 }}
               >
                 <input
@@ -402,12 +417,10 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   style={{
-                    width: "85%",
-                    padding: "10px 45px 10px 10px", // ⭐ Extra right padding for icon
-                    fontSize: "16px",
-                    border: "1px solid #7d0a0a",
-                    borderRadius: "10px",
-                    outline: "none",
+                    ...inputStyle,
+                    padding: isMobile
+                      ? "10px 40px 10px 12px"
+                      : "12px 50px 12px 14px",
                   }}
                 />
 
@@ -415,18 +428,19 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                   onClick={() => setShowPassword(!showPassword)}
                   style={{
                     position: "absolute",
-                    right: "20px",
-                    top: "50%",
+                    right: isMobile ? "12px" : "18px",
+                    top: "45%",
                     transform: "translateY(-50%)",
                     cursor: "pointer",
                     color: "#7d0a0a",
-                    fontSize: "22px",
+                    fontSize: isMobile ? "20px" : "22px",
                     userSelect: "none",
                   }}
                 >
                   {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
                 </span>
               </div>
+
               {password && (
                 <p
                   style={{
@@ -460,7 +474,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                 onClick={handleSignUp}
                 style={{
                   width: "100%",
-                  background: "black",
+                  background: "#7d0a0a",
                   color: "white",
                   border: "none",
                   borderRadius: "8px",
@@ -469,6 +483,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                   cursor: "pointer",
                   marginBottom: "15px",
                   marginTop: "30px",
+                  fontFamily: "serif",
                 }}
               >
                 Create an Account
@@ -493,6 +508,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                   color: "#7d0a0a",
                   marginBottom: "5px",
                   fontWeight: "bold",
+                  fontFamily: "serif",
                 }}
               >
                 Email
@@ -501,54 +517,55 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                style={{
-                  width: "92%",
-                  padding: "10px",
-                  fontSize: "16px",
-                  border: "1px solid #7d0a0a",
-                  borderRadius: "10px",
-                  outline: "none",
-                  marginBottom: "10px",
-                }}
+                style={inputStyle}
               />
               <p
                 style={{
                   color: "#7d0a0a",
                   marginBottom: "5px",
                   fontWeight: "bold",
+                  fontFamily: "serif",
                 }}
               >
                 Password
               </p>
-              <div style={{ position: "relative", marginBottom: "15px" }}>
+              <div
+                style={{
+                  position: "relative",
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  marginBottom: "15px",
+                }}
+              >
                 <input
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   style={{
-                    width: "92%",
-                    padding: "10px",
-                    fontSize: "16px",
-                    border: "1px solid #7d0a0a",
-                    borderRadius: "10px",
-                    outline: "none",
+                    ...inputStyle,
+                    padding: isMobile
+                      ? "10px 40px 10px 12px"
+                      : "12px 50px 12px 14px",
                   }}
                 />
+
                 <span
                   onClick={() => setShowPassword(!showPassword)}
                   style={{
                     position: "absolute",
-                    right: "25px",
-                    top: "50%",
+                    right: isMobile ? "12px" : "18px",
+                    top: "45%",
                     transform: "translateY(-50%)",
                     cursor: "pointer",
                     color: "#7d0a0a",
-                    fontSize: "20px",
+                    fontSize: isMobile ? "20px" : "22px",
                   }}
                 >
                   {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
                 </span>
               </div>
+
               <p
                 style={{
                   textAlign: "center",
@@ -574,6 +591,7 @@ const UserLoginModal = ({ onLoginSuccess = () => {}, onClose = () => {} }) => {
                   cursor: "pointer",
                   marginBottom: "15px",
                   alignContent: "center",
+                  fontFamily: "serif",
                 }}
               >
                 Sign In

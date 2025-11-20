@@ -103,10 +103,11 @@ const Adminface = () => {
       style={{
         paddingLeft: "300px",
         paddingRight: "5%",
-        marginTop: "110px",
+        marginTop: "130px",
+        fontFamily: "serif",
       }}
     >
-      <h1>Face</h1>
+      <h1>FACE</h1>
 
       {/* Top Bar */}
       <div

@@ -10,7 +10,6 @@ import { database } from "../../Firebase";
 // Slider Images
 import slide1 from "../../assets/HomeSlides/slide1.jpg";
 import slide2 from "../../assets/HomeSlides/slide2.jpg";
-import slide3 from "../../assets/HomeSlides/slide3.jpg";
 import slide4 from "../../assets/HomeSlides/slide4.jpg";
 import slide5 from "../../assets/HomeSlides/slide5.jpg";
 import slide6 from "../../assets/HomeSlides/slide6.jpg";
@@ -38,11 +37,6 @@ import Men from "../../assets/Gender/men.jpg";
 // Blog
 import blog1 from "../../assets/Blog/eyecare.jpg";
 import Blog2 from "../../assets/Blog/facecare.jpg";
-import Blog3 from "../../assets/Blog/haircare.jpg";
-
-//Icons
-import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
-import Divider from "@mui/material/Divider";
 
 const settings = {
   dots: true,
@@ -73,11 +67,6 @@ const slides = [
   },
   {
     image: slide2,
-    title: "Explore Our Beauty Range",
-    subtitle: "Curated looks for every occasion",
-  },
-  {
-    image: slide3,
     title: "Bold Eyes, Beautiful You",
     subtitle: "Discover eye makeup magic",
   },
@@ -88,8 +77,8 @@ const slides = [
   },
   {
     image: slide5,
-    title: "Glow From Head to Toe",
-    subtitle: "Body care products to pamper and protect your skin",
+    title: "Wrap Yourself in Luxury",
+    subtitle: "Long-lasting perfumes that leave a mark",
   },
   {
     image: slide6,
@@ -159,7 +148,6 @@ const Testinomials = [
 const Home = () => {
   const location = useLocation();
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
-  const isTablet = window.innerWidth > 480 && window.innerWidth <= 768;
   const [username, setUsername] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [trending, setTrending] = useState([]);
@@ -329,10 +317,16 @@ const Home = () => {
                     fontWeight: "bolder",
                   }}
                 >
-                  <h2 style={{ fontSize: "40px", margin: 0, color: "#7d0a0a" }}>
+                  <h2 style={{ fontSize: "40px", margin: 0, color: "#dfb441" }}>
                     {slide.title}
                   </h2>
-                  <p style={{ fontSize: "16px", marginTop: "10px" }}>
+                  <p
+                    style={{
+                      fontSize: "16px",
+                      marginTop: "10px",
+                      color: "white",
+                    }}
+                  >
                     {slide.subtitle}
                   </p>
                 </div>
@@ -1051,6 +1045,18 @@ const Home = () => {
       gap: 25px;
     }
   }
+    @media (max-width: 768px) {
+  div[style*="height: 300px"] {
+    height: 220px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  div[style*="height: 300px"] {
+    height: 180px !important;
+  }
+}
+
       
   `}
       </style>
@@ -1463,11 +1469,12 @@ const Home = () => {
       <div
         style={{
           background: "linear-gradient(to right, #8B6A2B, #F8E1A1, #C29A4D)",
-          padding: "30px",
-          width: "80%",
+          padding: isMobile ? "15px" : "30px",
+          width: isMobile ? "85%" : "70%",
           margin: "0 auto",
           borderRadius: "20px",
           marginBottom: "15px",
+          transition: "all 0.3s ease-in-out",
         }}
       >
         <Slider {...sliderSettings}>
@@ -1477,42 +1484,47 @@ const Home = () => {
                 style={{
                   display: "flex",
                   flexDirection: isMobile ? "column" : "row",
-                  gap: "30px",
+                  gap: isMobile ? "15px" : "30px",
                   justifyContent: "center",
                   alignItems: "center",
-                  padding: "10px",
+                  padding: isMobile ? "5px" : "10px",
                   textAlign: "center",
+                  transform: isMobile ? "scale(0.85)" : "scale(1)", // ⭐ small screens pr auto small
+                  transition: "0.3s",
                 }}
               >
                 {/* Circle with first letter */}
                 <div
                   style={{
                     borderRadius: "50%",
-                    height: "200px",
-                    width: "200px",
+                    height: isMobile ? "70px" : "100px",
+                    width: isMobile ? "70px" : "100px",
                     backgroundColor: "white",
                     color: "black",
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    fontSize: "50px",
+                    fontSize: isMobile ? "35px" : "50px",
                     fontWeight: "bold",
                     userSelect: "none",
                   }}
                 >
                   {testimonial.name.charAt(0).toUpperCase()}
                 </div>
-                <div style={{ maxWidth: isMobile ? "90%" : "100%" }}>
+                <div style={{ maxWidth: isMobile ? "95%" : "100%" }}>
                   <h2
                     style={{
                       color: "#7d0a0a",
                       fontWeight: "bold",
                       fontFamily: "serif",
+                      fontSize: isMobile ? "18px" : "24px",
                     }}
                   >
                     {testimonial.name}
                   </h2>
-                  <p>"{testimonial.text}"</p>
+                  <p style={{ fontSize: isMobile ? "14px" : "16px" }}>
+                    "{testimonial.text}"
+                  </p>
                   {/* Star rating */}
                   <div>
                     {[...Array(5)].map((_, i) => (
@@ -1520,7 +1532,7 @@ const Home = () => {
                         key={i}
                         style={{
                           color: i < testimonial.rating ? "#7d0a0a" : "#D4AF37",
-                          fontSize: "25px",
+                          fontSize: isMobile ? "18px" : "25px",
                         }}
                       >
                         ★
@@ -1532,7 +1544,8 @@ const Home = () => {
             </div>
           ))}
         </Slider>
-      </div>{" "}
+      </div>
+
       {/* Testimonials..................... */}
     </div>
   );

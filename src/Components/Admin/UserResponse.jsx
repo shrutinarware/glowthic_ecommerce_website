@@ -73,34 +73,34 @@ const UserResponse = () => {
     <div
       style={{ paddingLeft: "300px", paddingRight: "5%", marginTop: "150px" }}
     >
-      <h1 style={{ color: "#7d0a0a", marginBottom: "20px" }}>
-        User Contact Responses
+      <h1 style={{ marginBottom: "20px", fontFamily: "serif" }}>
+        USER RESPONSE DATA
       </h1>
 
       <TableContainer component={Paper}>
         <Table>
           <TableHead style={{ background: "#D4AF37" }}>
-            <TableRow>
+            <TableRow style={{ fontFamily: "serif" }}>
               <TableCell sx={{ width: "10%" }}>
-                <strong>Name</strong>
+                <strong>NAME</strong>
               </TableCell>
               <TableCell sx={{ width: "5%" }}>
-                <strong>Contact</strong>
+                <strong>CONTACT</strong>
               </TableCell>
               <TableCell>
-                <strong>Email</strong>
+                <strong>EMAIL</strong>
               </TableCell>
               <TableCell sx={{ width: "40%" }}>
-                <strong>Messages</strong>
+                <strong>MESSAGE</strong>
               </TableCell>
               <TableCell>
-                <strong> Date</strong>
+                <strong> DATE</strong>
               </TableCell>
               <TableCell>
-                <strong>User Type</strong>
+                <strong>USER TYPE</strong>
               </TableCell>
               <TableCell>
-                <strong>Reply</strong>
+                <strong>REPLY</strong>
               </TableCell>
             </TableRow>
           </TableHead>

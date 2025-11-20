@@ -101,9 +101,14 @@ const AdminSteamer = () => {
   return (
     <div
       className="admin-container"
-      style={{ paddingLeft: "300px", paddingRight: "5%", marginTop: "110px" }}
+      style={{
+        paddingLeft: "300px",
+        paddingRight: "5%",
+        marginTop: "130px",
+        fontFamily: "serif",
+      }}
     >
-      <h1> Steamer</h1>
+      <h1> STEAMER</h1>
 
       {/* Top Bar */}
       <div

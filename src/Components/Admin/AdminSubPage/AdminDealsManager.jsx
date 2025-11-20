@@ -91,9 +91,11 @@ const AdminDealsManager = ({ category }) => {
   };
 
   return (
-    <div style={{ marginLeft: "280px", marginTop: "140px" }}>
+    <div
+      style={{ marginLeft: "280px", marginTop: "140px", fontFamily: "serif" }}
+    >
       <h1 style={{ textTransform: "uppercase" }}>
-        {selectedCategory} Deals Manager
+        {selectedCategory} DEALS MANAGER
       </h1>
       {/* ✅ CATEGORY DROPDOWN */}
       <div
