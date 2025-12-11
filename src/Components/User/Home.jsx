@@ -311,7 +311,7 @@ const Home = () => {
                 <div
                   style={{
                     position: "absolute",
-                    top: "20%",
+                    top: "10%",
                     left: "8%",
                     color: "black",
                     fontWeight: "bolder",

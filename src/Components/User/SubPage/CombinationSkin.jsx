@@ -110,7 +110,7 @@ const CombinationSkin = () => {
       `}</style>
 
       <h2 style={styles.heading}>
-        BUY SKINCARE PRODUCTS FOR COMBINATION SKIN"
+        BUY SKINCARE PRODUCTS FOR COMBINATION SKIN
       </h2>
 
       {/* Search */}
@@ -169,7 +169,7 @@ const styles = {
     color: "black",
     fontFamily: "serif",
     background: "linear-gradient(to right, #8B6A2B, #F8E1A1, #C29A4D)",
-    width: "35%",
+    width: "65%",
     margin: "0 auto",
     
   },

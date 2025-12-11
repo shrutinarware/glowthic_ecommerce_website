@@ -166,7 +166,7 @@ const styles = {
     color: "black",
     fontFamily: "serif",
     background: "linear-gradient(to right, #8B6A2B, #F8E1A1, #C29A4D)",
-    width: "30%",
+    width: "48%",
     margin: "0 auto",
   },
 
